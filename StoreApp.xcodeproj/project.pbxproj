@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1153190184F41A04520FC300 /* Pods_StoreApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5453D5AA268F39F9A806095 /* Pods_StoreApp.framework */; };
+		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
+		DE50B23B27EBC0E00072B3BC /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23A27EBC0E00072B3BC /* StoreViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
 		DEA8FE9B27EA6A0300084595 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */; };
 		DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */; };
-		DEA8FE9F27EA6A0300084595 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FE9E27EA6A0300084595 /* ViewController.swift */; };
 		DEA8FEA227EA6A0300084595 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA8FEA027EA6A0300084595 /* Main.storyboard */; };
 		DEA8FEA527EA6A0300084595 /* StoreApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FEA327EA6A0300084595 /* StoreApp.xcdatamodeld */; };
 		DEA8FEA727EA6A0400084595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEA8FEA627EA6A0400084595 /* Assets.xcassets */; };
@@ -21,11 +22,12 @@
 /* Begin PBXFileReference section */
 		1E463D655AC7F74C63862EA3 /* Pods-StoreApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreApp.release.xcconfig"; path = "Target Support Files/Pods-StoreApp/Pods-StoreApp.release.xcconfig"; sourceTree = "<group>"; };
 		797B9853F2B09805D5F110A6 /* Pods-StoreApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreApp.debug.xcconfig"; path = "Target Support Files/Pods-StoreApp/Pods-StoreApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DE50B23A27EBC0E00072B3BC /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DEA8FE9727EA6A0300084595 /* StoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DEA8FE9E27EA6A0300084595 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DEA8FEA127EA6A0300084595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DEA8FEA427EA6A0300084595 /* StoreApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreApp.xcdatamodel; sourceTree = "<group>"; };
 		DEA8FEA627EA6A0400084595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,6 +65,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DE50B23727EBC0A80072B3BC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */,
+				DE50B23A27EBC0E00072B3BC /* StoreViewController.swift */,
+			);
+			name = ViewControllers;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		DEA8FE8E27EA6A0300084595 = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +98,7 @@
 			children = (
 				DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */,
 				DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */,
-				DEA8FE9E27EA6A0300084595 /* ViewController.swift */,
+				DE50B23727EBC0A80072B3BC /* ViewControllers */,
 				DEA8FEA027EA6A0300084595 /* Main.storyboard */,
 				DEA8FEA627EA6A0400084595 /* Assets.xcassets */,
 				DEA8FEA827EA6A0400084595 /* LaunchScreen.storyboard */,
@@ -213,8 +225,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEA8FE9F27EA6A0300084595 /* ViewController.swift in Sources */,
+				DE50B23B27EBC0E00072B3BC /* StoreViewController.swift in Sources */,
 				DEA8FE9B27EA6A0300084595 /* AppDelegate.swift in Sources */,
+				DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */,
 				DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */,
 				DEA8FEA527EA6A0300084595 /* StoreApp.xcdatamodeld in Sources */,
 			);
