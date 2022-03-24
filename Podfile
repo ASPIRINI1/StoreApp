@@ -8,9 +8,9 @@ target 'StoreApp' do
   # Pods for StoreApp
 
 pod 'Firebase/Auth'
+pod 'GoogleSignIn'
+
 pod 'Firebase/Firestore'
-
-
 pod 'Firebase/Storage'
 
 end
