@@ -16,7 +16,7 @@ class APIManager{
     static let shared = APIManager()
     private var docs = [Document]()
     var appSettings = AppSettings()
-    
+    var categories = [""]
     
     init() {
         getDocuments()
@@ -46,12 +46,39 @@ class APIManager{
                      for document in querySnapshot!.documents {
                          NotificationCenter.default.post(name: NSNotification.Name("LoadingNotes"), object: nil)
 //                         self.docs.append(Document(id: document.documentID, text: document.get("text") as! String))
+                         self.docs.append(Document(documentID: document.documentID,
+                                                   name: document.get("name") as! String,
+                                                   price: document.get("price") as! Int,
+                                                   img: "",
+                                                   description: document.get("description") as! String))
                      }
                      NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
                  }
              }
 //        }
      }
+    
+    
+    func getProductsForCategory(category: String, subCategories: String){
+        
+        let db = configureFB()
+        db.collection("Products").document(category).collection(subCategories).getDocuments { querySnapshot, error in
+            if let err = error{
+                print("Error getting documents for category: \(err)")
+                NotificationCenter.default.post(name: NSNotification.Name( "DocsNotLoaded"), object: nil)
+            } else {
+                for document in querySnapshot!.documents{
+                    self.docs.removeAll()
+                    self.docs.append(Document(documentID: document.documentID,
+                                              name: document.get("name") as! String,
+                                              price: document.get("price") as! Int,
+                                              img: "",
+                                              description: document.get("description") as! String))
+                }
+                NotificationCenter.default.post(name: NSNotification.Name( "DocsLoaded"), object: nil)
+            }
+         }
+    }
 
     //    MARK: - Create,Update,Delete documents
     
@@ -67,6 +94,7 @@ class APIManager{
     func updateDocument(id: String, text:String){
         
        let db = configureFB()
+        
         
        if text != ""{
            db.collection(appSettings.userID).document(id).updateData(["text": text]) { err in
@@ -107,7 +135,7 @@ class APIManager{
 //        }
 //    }
 
-    func getAllNotes() -> [Document]{
+    func getAllDocs() -> [Document]{
         return docs
     }
     

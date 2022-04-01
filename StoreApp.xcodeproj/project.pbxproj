@@ -19,9 +19,8 @@
 		DEA8FEAA27EA6A0400084595 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA8FEA827EA6A0400084595 /* LaunchScreen.storyboard */; };
 		DEBF989227F67318004DAD4C /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBF989127F67318004DAD4C /* CategoryTableViewController.swift */; };
 		DEBF989427F6761F004DAD4C /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */; };
-		DEBF989827F684D4004DAD4C /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBF989727F684D4004DAD4C /* CategoryTableViewCell.swift */; };
 		DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */; };
-		DEE68AD627ED096500BA6A55 /* FireAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD527ED096500BA6A55 /* FireAPI.swift */; };
+		DEE68AD627ED096500BA6A55 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD527ED096500BA6A55 /* APIManager.swift */; };
 		DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD727ED09EC00BA6A55 /* Document.swift */; };
 		DEE68ADA27ED0C6400BA6A55 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD927ED0C6400BA6A55 /* AppSettings.swift */; };
 /* End PBXBuildFile section */
@@ -42,9 +41,8 @@
 		DEA8FEAB27EA6A0400084595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEBF989127F67318004DAD4C /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
-		DEBF989727F684D4004DAD4C /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewController.swift; sourceTree = "<group>"; };
-		DEE68AD527ED096500BA6A55 /* FireAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPI.swift; sourceTree = "<group>"; };
+		DEE68AD527ED096500BA6A55 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		DEE68AD727ED09EC00BA6A55 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		DEE68AD927ED0C6400BA6A55 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		E5453D5AA268F39F9A806095 /* Pods_StoreApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoreApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,7 +128,6 @@
 				DEBF989127F67318004DAD4C /* CategoryTableViewController.swift */,
 				DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */,
 				DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */,
-				DEBF989727F684D4004DAD4C /* CategoryTableViewCell.swift */,
 			);
 			path = StoreSet;
 			sourceTree = "<group>";
@@ -156,7 +153,7 @@
 		DEE68AD427ED095200BA6A55 /* FireBase */ = {
 			isa = PBXGroup;
 			children = (
-				DEE68AD527ED096500BA6A55 /* FireAPI.swift */,
+				DEE68AD527ED096500BA6A55 /* APIManager.swift */,
 				DEE68AD727ED09EC00BA6A55 /* Document.swift */,
 			);
 			path = FireBase;
@@ -278,7 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEE68AD627ED096500BA6A55 /* FireAPI.swift in Sources */,
+				DEE68AD627ED096500BA6A55 /* APIManager.swift in Sources */,
 				DEA8FE9B27EA6A0300084595 /* AppDelegate.swift in Sources */,
 				DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */,
 				DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */,
@@ -289,7 +286,6 @@
 				DEBF989227F67318004DAD4C /* CategoryTableViewController.swift in Sources */,
 				DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */,
 				DEA8FEA527EA6A0300084595 /* StoreApp.xcdatamodeld in Sources */,
-				DEBF989827F684D4004DAD4C /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
