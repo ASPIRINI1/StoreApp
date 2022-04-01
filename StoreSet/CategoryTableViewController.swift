@@ -8,34 +8,34 @@
 import UIKit
 
 class CategoryTableViewController: UITableViewController {
+    
+    let fireAPI = APIManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .blue
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
-        return 0
+        return fireAPI.categories.count
     }
 
     
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)// as! CategoryTableViewCell
-//
-////        cell.backgroundColor = .blue
-//
-//        return cell
-//    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
+
+        cell.categoryName.text = fireAPI.categories[indexPath.row]
+
+        return cell
+    }
     
 
     /*

@@ -13,7 +13,9 @@ class StoreCollectionViewController: UICollectionViewController {
     
     let categoryVC = CategoryTableViewController()
     let fireAPI = APIManager()
-    var products = APIManager().getAllDocs()
+    var products: [Document] = []
+    
+    var selectedIndex = (-1,-1)
     
     override func viewDidLoad() {
         
@@ -30,6 +32,8 @@ class StoreCollectionViewController: UICollectionViewController {
 
         
     }
+    
+//    MARK: - CategoryButton
 
     @IBAction func CategoryButton(_ sender: Any) {
         
@@ -59,6 +63,21 @@ class StoreCollectionViewController: UICollectionViewController {
         }
     }
     
+
+    
+//    MARK: - Seque
+    
+    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+        
+        let detailVC = DetailViewController()
+        detailVC.docID = products[selectedIndex.1].documentID
+        
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+
+
+// MARK: - UICollectionViewDataSource
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         return 1
@@ -79,5 +98,12 @@ class StoreCollectionViewController: UICollectionViewController {
     
         return cell
     }
-
+    
+//    MARK: - UICollectionViewDelegate
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndex.0 = indexPath.section
+        selectedIndex.1 = indexPath.row
+    }
+    
 }

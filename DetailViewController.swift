@@ -8,11 +8,21 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    let fireAPI = APIManager()
+    
+    var docID = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        image.image =  UIImage(named: "11")
+        nameLabel.text = docID
     }
     
 

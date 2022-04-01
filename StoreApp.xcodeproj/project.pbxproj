@@ -10,6 +10,7 @@
 		1153190184F41A04520FC300 /* Pods_StoreApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5453D5AA268F39F9A806095 /* Pods_StoreApp.framework */; };
 		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
+		DE78F37527F78D3B008569BF /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78F37427F78D3B008569BF /* CategoryTableViewCell.swift */; };
 		DE8397DF27EFD7400064E2DF /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8397DE27EFD7400064E2DF /* CoreData.swift */; };
 		DEA8FE9B27EA6A0300084595 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */; };
 		DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		797B9853F2B09805D5F110A6 /* Pods-StoreApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreApp.debug.xcconfig"; path = "Target Support Files/Pods-StoreApp/Pods-StoreApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DE78F37427F78D3B008569BF /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		DE8397DE27EFD7400064E2DF /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		DEA8FE9727EA6A0300084595 /* StoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,8 +82,8 @@
 		DE50B23727EBC0A80072B3BC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */,
 				DEBF989527F67645004DAD4C /* StoreSet */,
+				DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */,
 			);
 			name = ViewControllers;
 			path = ..;
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				DEBF989127F67318004DAD4C /* CategoryTableViewController.swift */,
+				DE78F37427F78D3B008569BF /* CategoryTableViewCell.swift */,
 				DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */,
 				DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */,
 			);
@@ -286,6 +289,7 @@
 				DEBF989227F67318004DAD4C /* CategoryTableViewController.swift in Sources */,
 				DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */,
 				DEA8FEA527EA6A0300084595 /* StoreApp.xcdatamodeld in Sources */,
+				DE78F37527F78D3B008569BF /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

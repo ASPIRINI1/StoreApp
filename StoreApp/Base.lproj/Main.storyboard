@@ -40,6 +40,9 @@
                                         <constraint firstItem="jZY-A7-uWd" firstAttribute="leading" secondItem="oFE-fB-ztK" secondAttribute="leadingMargin" id="m9r-0r-iAv"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryName" destination="jZY-A7-uWd" id="eM2-id-uRj"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -188,6 +191,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qdt-tY-MKM"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="wMa-SV-WHv" id="uCN-FK-zhV"/>
+                        <outlet property="image" destination="DUv-R0-0QF" id="uEX-7t-Ts5"/>
+                        <outlet property="nameLabel" destination="GTL-dm-mIc" id="rga-f2-aVg"/>
+                        <outlet property="priceLabel" destination="4NL-j5-1vQ" id="ag0-yj-YP6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yy2-DW-9VP" sceneMemberID="firstResponder"/>
             </objects>

@@ -38,7 +38,7 @@ class APIManager{
 //        if appSettings.userID != ""{
             
             let db = configureFB()
-            db.collection("appSettings.userID").getDocuments()  { (querySnapshot, err) in
+        db.collection("Products").getDocuments()  { (querySnapshot, err) in
                  
                  if let err = err {
                      print("Error getting documents: \(err)")
@@ -46,11 +46,13 @@ class APIManager{
                      for document in querySnapshot!.documents {
                          NotificationCenter.default.post(name: NSNotification.Name("LoadingNotes"), object: nil)
 //                         self.docs.append(Document(id: document.documentID, text: document.get("text") as! String))
-                         self.docs.append(Document(documentID: document.documentID,
-                                                   name: document.get("name") as! String,
-                                                   price: document.get("price") as! Int,
-                                                   img: "",
-                                                   description: document.get("description") as! String))
+                         
+//                         self.docs.append(Document(documentID: document.documentID,
+//                                                   name: document.get("name") as! String,
+//                                                   price: document.get("price") as! Int,
+//                                                   img: "",
+//                                                   description: document.get("description") as! String))
+                         self.categories.append(document.documentID)
                      }
                      NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
                  }
