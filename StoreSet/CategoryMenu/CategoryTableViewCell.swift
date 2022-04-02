@@ -2,14 +2,14 @@
 //  CategoryTableViewCell.swift
 //  StoreApp
 //
-//  Created by Станислав Зверьков on 01.04.2022.
+//  Created by Станислав Зверьков on 02.04.2022.
 //
 
 import UIKit
 
 class CategoryTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var categoryName: UILabel!
+    @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

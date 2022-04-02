@@ -11,7 +11,7 @@ private let reuseIdentifier = "Cell"
 
 class StoreCollectionViewController: UICollectionViewController {
     
-    let categoryVC = CategoryTableViewController()
+    let categoryVC = CategoryViewController()
     let fireAPI = APIManager()
     var products: [Document] = []
     
@@ -27,6 +27,7 @@ class StoreCollectionViewController: UICollectionViewController {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("DocsLoaded"), object: nil, queue: nil) { _ in
             self.products = self.fireAPI.getAllDocs()
             print(self.products.count)
+            print(self.products.first)
             self.collectionView.reloadData()
         }
 
