@@ -10,7 +10,11 @@ import Foundation
 class Document {
     
     init(documentID: String, name: String, price: Int, img: String, description: String){
-        
+        self.documentID = documentID
+        self.name = name
+        self.price = price
+        self.img = img
+        self.description = description
     }
     
     var documentID = ""

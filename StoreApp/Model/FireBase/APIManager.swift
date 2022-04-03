@@ -149,6 +149,16 @@ class APIManager{
         return docs
     }
     
+    func getDocForID(id: String) -> Document?{
+        
+        for doc in docs {
+            if doc.documentID == id{
+                return doc
+            }
+        }
+        return nil
+    }
+    
 //    MARK: - Registration $ Authorization
     
     func signIn(email: String, password: String){

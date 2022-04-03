@@ -14,15 +14,19 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    let fireAPI = APIManager()
+    private let fireAPI = APIManager()
     
     var docID = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let doc = fireAPI.getDocForID(id: docID)
 
         image.image =  UIImage(named: "11")
-        nameLabel.text = docID
+        nameLabel.text = doc?.name
+        priceLabel.text = "\(doc?.price ?? 0)"
+        descriptionLabel.text = doc?.description
     }
     
 
