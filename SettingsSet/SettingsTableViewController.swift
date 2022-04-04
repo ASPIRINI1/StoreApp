@@ -11,8 +11,14 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var companySiteButton: UIView!
     @IBOutlet weak var mapView: UIView!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var accountLabel: UILabel!
+    @IBOutlet weak var appThemeSegmentedControl: UISegmentedControl!
     
-    let webView = WEBViewController()
+    
+    let appSettings = AppSettings()
+    let fireAPI = APIManager()
+    var WEBurl = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +27,15 @@ class SettingsTableViewController: UITableViewController {
 
     
 // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         print(indexPath)
         
         switch indexPath {
         case [2, 0]: // about company
-            webView.openWEBForURl(url: "https://www.google.com")
+            WEBurl = "https://www.google.com"
         case [2, 2]: // about dev
-            webView.openWEBForURl(url: "https://github.com/ASPIRINI1")
+            WEBurl = "https://github.com/ASPIRINI1"
         case [0, 1]:  // pass restore
             break
         case [0, 2]: // exit
@@ -37,7 +43,7 @@ class SettingsTableViewController: UITableViewController {
         default:
             break
         }
-        
+        return indexPath
     }
 
     /*

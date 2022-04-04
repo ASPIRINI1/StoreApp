@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1153190184F41A04520FC300 /* Pods_StoreApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5453D5AA268F39F9A806095 /* Pods_StoreApp.framework */; };
+		DE26705B27FB34DD0063A84D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */; };
 		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
 		DE8397DF27EFD7400064E2DF /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8397DE27EFD7400064E2DF /* CoreData.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		1E463D655AC7F74C63862EA3 /* Pods-StoreApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreApp.release.xcconfig"; path = "Target Support Files/Pods-StoreApp/Pods-StoreApp.release.xcconfig"; sourceTree = "<group>"; };
 		797B9853F2B09805D5F110A6 /* Pods-StoreApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreApp.debug.xcconfig"; path = "Target Support Files/Pods-StoreApp/Pods-StoreApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE8397DE27EFD7400064E2DF /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */,
 				DEBF989527F67645004DAD4C /* StoreSet */,
 				DEC7719F27F9EBCA006DB6D6 /* SettingsSet */,
+				DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */,
 			);
 			name = ViewControllers;
 			path = ..;
@@ -313,6 +316,7 @@
 				DEBF989427F6761F004DAD4C /* StoreCollectionViewCell.swift in Sources */,
 				DEC7719E27F9EB1B006DB6D6 /* WEBViewController.swift in Sources */,
 				DEC7719827F9D3F4006DB6D6 /* CategoryVC.swift in Sources */,
+				DE26705B27FB34DD0063A84D /* RegistrationViewController.swift in Sources */,
 				DEE68ADA27ED0C6400BA6A55 /* AppSettings.swift in Sources */,
 				DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */,
 				DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */,

@@ -14,7 +14,7 @@ class APIManager{
     //    MARK: - Property
     
     static let shared = APIManager()
-    private var docs: [Document] = []
+    var docs: [Document] = []
     var appSettings = AppSettings()
     var categories = [""]
     
@@ -101,28 +101,28 @@ class APIManager{
 //        NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
 //   }
     
-    func updateDocument(id: String, text:String){
-        
-       let db = configureFB()
-        
-        
-       if text != ""{
-           db.collection(appSettings.userID).document(id).updateData(["text": text]) { err in
-                
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                for docIndex in 0...self.docs.count-1{
-//                    if self.docs[docIndex].id == id{
-//                        self.docs[docIndex].text = text
-//                    }
-                }
-                NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
-                print("Document successfully updated")
-            }
-           }
-       }
-    }
+//    func updateDocument(id: String, text:String){
+//        
+//       let db = configureFB()
+//        
+//        
+//       if text != ""{
+//           db.collection(appSettings.userID).document(id).updateData(["text": text]) { err in
+//                
+//            if let err = err {
+//                print("Error updating document: \(err)")
+//            } else {
+//                for docIndex in 0...self.docs.count-1{
+////                    if self.docs[docIndex].id == id{
+////                        self.docs[docIndex].text = text
+////                    }
+//                }
+//                NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
+//                print("Document successfully updated")
+//            }
+//           }
+//       }
+//    }
     
 //    func deleteDocument(id: String){
 //
