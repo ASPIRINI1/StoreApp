@@ -795,6 +795,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Registration"/>
+                                        <connections>
+                                            <action selector="registrationButton:" destination="bdJ-q8-feJ" eventType="touchUpInside" id="hfd-Gh-kal"/>
+                                        </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfK-gM-U68">
                                         <rect key="frame" x="8" y="14" width="358" height="50"/>
@@ -830,6 +833,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelButtonAction:" destination="bdJ-q8-feJ" eventType="touchUpInside" id="P9S-Ag-Lw2"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -879,6 +885,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hJ9-RD-Hlm"/>
+                    <connections>
+                        <outlet property="addressTextField" destination="T4w-o6-US9" id="LEi-n4-RZu"/>
+                        <outlet property="emailTextField" destination="ggJ-MX-4Wb" id="fD9-Ol-0Ks"/>
+                        <outlet property="fullNameTextFiedl" destination="7pQ-yC-4F7" id="pKE-BL-aU0"/>
+                        <outlet property="passwordTextField" destination="9FO-sq-w3t" id="Rg3-Mo-6Fv"/>
+                        <outlet property="validationLabel" destination="cfK-gM-U68" id="9JI-Ig-7rB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfp-wf-GhJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
