@@ -92,23 +92,22 @@ class APIManager{
 
     //    MARK: - Create,Update,Delete documents
     
-//    func createNewDocument(text: String){
-//        let db = configureFB()
-////        if appSettings.userID != ""{
-//            let doc = db.collection("appSettings.userID").addDocument(data: ["text": text])
-//            docs.append(Document(id:doc.documentID , text: text))
-////        }
-//        NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
-//   }
+    func createNewDocument(text: String){
+        let db = configureFB()
+        if appSettings.userID != ""{
+        db.collection("Users").addDocument(data: [appSettings.userID : ":"])
+        }
+        NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
+   }
     
 //    func updateDocument(id: String, text:String){
-//        
+//
 //       let db = configureFB()
-//        
-//        
+//
+//
 //       if text != ""{
 //           db.collection(appSettings.userID).document(id).updateData(["text": text]) { err in
-//                
+//
 //            if let err = err {
 //                print("Error updating document: \(err)")
 //            } else {
@@ -161,20 +160,21 @@ class APIManager{
     
 //    MARK: - Registration $ Authorization
     
-    func signIn(email: String, password: String){
+    func signIn(email: String, password: String, completion: (Bool) -> ()...){
         
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+        Auth.auth().signIn(withEmail: email, password: password) { [] authResult, error in
             if error != nil {
                 print("SignIn error")
+                completion[0](false)
             } else {
-//                self?.appSettings.userID = authResult?.user.uid ?? ""
-//                self!.appSettings.signedIn = true
-//                self?.appSettings.userEmail = email
-//                self?.getDocuments()
+                self.appSettings.userID = authResult?.user.uid ?? ""
+                self.appSettings.signedIn = true
+                self.appSettings.userEmail = email
+                self.getDocuments()
+                completion[0](true)
                 
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
             }
-          guard let strongSelf = self else { return }
         }
     }
     
@@ -212,11 +212,11 @@ class APIManager{
 //                self.appSettings.signedIn = true
                 
                 completion[0](true)
-                
                 //uploading local docs to Firebase
-                for doc in self.docs {
-//                    db.collection(self.appSettings.userID).addDocument(data: ["text": doc.text])
-                }
+//                for doc in self.docs {
+////                    db.collection(self.appSettings.userID).addDocument(data: ["text": doc.text])
+//                }
+                self.createNewDocument(text: "")
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
             }
         }
