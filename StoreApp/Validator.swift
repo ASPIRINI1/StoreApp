@@ -24,6 +24,7 @@ class Validator {
 
 // Email checking
 extension String {
+    
     func isValidEmail() -> Bool {
         let regex = try! NSRegularExpression(pattern: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\\.[a-zA-Z.]{2,64}", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
@@ -31,6 +32,16 @@ extension String {
     
     func isValidPass() -> Bool {
         let regex = try! NSRegularExpression(pattern: "[a-zA-Z0-9._-]{8,20}", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
+    
+    func isValidFullName() -> Bool {
+        let regex = try! NSRegularExpression(pattern: "[a-zA-Zа-яА-Я-]{8,60}", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
+    
+    func isValidCardNum() -> Bool {
+        let regex = try! NSRegularExpression(pattern: "[0-9]{16}", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
 }
