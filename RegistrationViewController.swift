@@ -14,6 +14,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var fullNameTextFiedl: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var validationLabel: UILabel!
+    @IBOutlet weak var registrationButton: UIButton!
     
     let validator = Validator()
     let fireAPI = APIManager()
@@ -21,9 +22,16 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.validationLabel.isHidden = true
+        
+        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapScreen)
+
     }
     
-    @IBAction func registrationButton(_ sender: Any) {
+//    MARK: - actions
+    
+    @IBAction func registrationButton(_ sender: Any) { // add user data!!
         
         if validator.userDataIsCurrect(email: emailTextField.text, pass: emailTextField.text) {
 
@@ -48,5 +56,37 @@ class RegistrationViewController: UIViewController {
     @IBAction func cancelButtonAction(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
+    
+//    MARK: - additional funcs
  
+    @objc func dismissKeyboard(Sender: UITapGestureRecognizer){
+       view.endEditing(true)
+    }
+    
+}
+
+extension RegistrationViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("dsafds")
+
+        if addressTextField.isFirstResponder {
+            registrationButton.sendActions(for: .touchUpInside)
+        }
+        if fullNameTextFiedl.isFirstResponder {
+            addressTextField.becomeFirstResponder()
+        }
+        if passwordTextField.isFirstResponder {
+            fullNameTextFiedl.becomeFirstResponder()
+        }
+        if emailTextField.isFirstResponder{
+            passwordTextField.becomeFirstResponder()
+        }
+
+
+
+        return true
+    }
+    
+    
 }

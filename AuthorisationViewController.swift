@@ -16,6 +16,7 @@ class AuthorisationViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var substrateView: UIView!
+    @IBOutlet weak var signInButton: UIButton!
     
     override func viewDidLoad() {
         
@@ -47,17 +48,17 @@ class AuthorisationViewController: UIViewController {
         
         if validator.userDataIsCurrect(email: emailTextField.text!, pass: passwordTextField.text!) {
             
-            fireAPI.registration(email: emailTextField.text!, password: passwordTextField.text!) { regSuccess in
-                
-                if !regSuccess {
-                    let alert = UIAlertController(title: NSLocalizedString("Registration Error", comment: ""), message: NSLocalizedString("Network unable or email already exist.", comment: ""), preferredStyle: .alert)
-                    
-                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    
-                    alert.addAction(alertAction)
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
+//            fireAPI.registration(email: emailTextField.text!, password: passwordTextField.text!) { regSuccess in
+//
+//                if !regSuccess {
+//                    let alert = UIAlertController(title: NSLocalizedString("Registration Error", comment: ""), message: NSLocalizedString("Network unable or email already exist.", comment: ""), preferredStyle: .alert)
+//
+//                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//
+//                    alert.addAction(alertAction)
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            }
         }
     }
     
@@ -75,6 +76,9 @@ class AuthorisationViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
             }
+        } else {
+            validationLabel.isHidden = false
+            validationLabel.text = NSLocalizedString("Error. Check your email or password.", comment: "")
         }
     }
     
@@ -125,6 +129,9 @@ extension AuthorisationViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if emailTextField.isFirstResponder{
             passwordTextField.becomeFirstResponder()
+        }
+        if passwordTextField.isFirstResponder {
+            signInButton.sendActions(for: .touchUpInside)
         }
         return true
     }

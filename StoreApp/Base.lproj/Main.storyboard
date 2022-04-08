@@ -23,14 +23,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Cqb-Oy-kxD" customClass="CategoryTableViewCell" customModule="StoreApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cqb-Oy-kxD" id="0bg-Sr-jdP">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRZ-L4-In1">
-                                                    <rect key="frame" x="20" y="11" width="374" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -637,6 +637,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="755-9p-VVQ" id="BKd-gx-y59"/>
                         <outlet property="passwordTextField" destination="teg-tU-SFJ" id="6aK-GO-Krl"/>
+                        <outlet property="signInButton" destination="3Hl-mI-Zf5" id="n7x-m0-opo"/>
                         <outlet property="substrateView" destination="7Jn-Hs-bPi" id="Tk9-bI-hEj"/>
                         <outlet property="validationLabel" destination="Ss5-QB-6gl" id="sf0-Fs-elD"/>
                     </connections>
@@ -890,6 +891,7 @@
                         <outlet property="emailTextField" destination="ggJ-MX-4Wb" id="fD9-Ol-0Ks"/>
                         <outlet property="fullNameTextFiedl" destination="7pQ-yC-4F7" id="pKE-BL-aU0"/>
                         <outlet property="passwordTextField" destination="9FO-sq-w3t" id="Rg3-Mo-6Fv"/>
+                        <outlet property="registrationButton" destination="7JZ-PO-5Dg" id="xLT-sb-ssc"/>
                         <outlet property="validationLabel" destination="cfK-gM-U68" id="9JI-Ig-7rB"/>
                     </connections>
                 </viewController>
