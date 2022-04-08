@@ -123,9 +123,9 @@
 		DEA8FE9927EA6A0300084595 /* StoreApp */ = {
 			isa = PBXGroup;
 			children = (
-				DEE68AD327ED093E00BA6A55 /* Model */,
 				DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */,
 				DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */,
+				DEE68AD327ED093E00BA6A55 /* Model */,
 				DE50B23727EBC0A80072B3BC /* ViewControllers */,
 				DEA8FEA027EA6A0300084595 /* Main.storyboard */,
 				DE2B526D27FC7745009F22AB /* Validator.swift */,
