@@ -11,6 +11,7 @@ class CategoryVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    
     let fireAPI = APIManager()
     let cat = ["1","2","3","4"]
     

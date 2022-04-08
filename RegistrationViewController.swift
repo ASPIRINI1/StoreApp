@@ -15,14 +15,17 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var validationLabel: UILabel!
     @IBOutlet weak var registrationButton: UIButton!
-    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var substrateView: UIView!
     
     let validator = Validator()
     let fireAPI = APIManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.validationLabel.isHidden = true
+        
+        substrateView.layer.cornerRadius = 20
         
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapScreen.cancelsTouchesInView = false
@@ -71,8 +74,7 @@ class RegistrationViewController: UIViewController {
     
     func registerNotifications() {
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [self] notif in
-            let keyboardSize = (notif.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-//            self.scrollView.contentOffset = CGPoint(x: 0, y: keyboardSize?.height as! Int)
+//            let keyboardSize = (notif.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
 //            self.view.frame.origin.y -= keyboardSize!.height
             if self.addressTextField.isFirstResponder {
                 self.view.frame.origin.y -= self.addressTextField.frame.height * 2 //?????????
@@ -81,7 +83,6 @@ class RegistrationViewController: UIViewController {
         
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { notif in
             let keyboardSize = (notif.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-//            self.scrollView.contentOffset = CGPoint(x: 0, y: keyboardSize?.height as! Int)
             self.view.frame.origin.y = 0
             
         }
