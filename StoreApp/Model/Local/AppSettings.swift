@@ -15,7 +15,7 @@ class AppSettings{
         case userEmail = "userEmail"
         case appTheme = "AppTheme"
         case isSignIn = "signedIn"
-//        case language = "Language"
+        case userAddress = "userAddress"
         case userID = "userID"
     }
     
@@ -70,6 +70,15 @@ class AppSettings{
         }
         set{
             userDefaults.set(newValue, forKey: SettingsKeys.userID.rawValue)
+        }
+    }
+    
+    var userAdress: String{
+        get {
+            return userDefaults.string(forKey: SettingsKeys.userAddress.rawValue ) ?? ""
+        }
+        set {
+            userDefaults.set(newValue, forKey: SettingsKeys.userAddress.rawValue)
         }
     }
     

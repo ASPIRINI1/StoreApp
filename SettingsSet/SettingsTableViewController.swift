@@ -82,7 +82,6 @@ class SettingsTableViewController: UITableViewController {
 // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        print(indexPath)
         
         switch indexPath {
         case [2, 0]: // about company
@@ -97,6 +96,38 @@ class SettingsTableViewController: UITableViewController {
             break
         }
         return indexPath
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let userInfoChangeVC = storyboard?.instantiateViewController(withIdentifier: "UserInfoVC") as! UserInfoChangeViewController
+        
+//        Creating Alert
+        if indexPath == [0, 1] {
+            let userInfoChangeActionSheet = UIAlertController(title: NSLocalizedString("Select user info to change", comment: ""), message: nil, preferredStyle: .actionSheet)
+            
+//            Creating aletr action
+            let changeEmailAction = UIAlertAction(title: NSLocalizedString("Change Email", comment: ""), style: .default) { _ in
+                userInfoChangeVC.setViewType(viewType: .email)
+                self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
+            }
+            let chanePassAction = UIAlertAction(title: NSLocalizedString("Change password", comment: ""), style: .default) { _ in
+                userInfoChangeVC.setViewType(viewType: .password)
+                self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
+            }
+            let changeAddressAction = UIAlertAction(title: NSLocalizedString("Change Address", comment: ""), style: .default) { _ in
+                userInfoChangeVC.setViewType(viewType: .address)
+                self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
+            }
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+            
+            userInfoChangeActionSheet.addAction(changeEmailAction)
+            userInfoChangeActionSheet.addAction(chanePassAction)
+            userInfoChangeActionSheet.addAction(changeAddressAction)
+            userInfoChangeActionSheet.addAction(cancel)
+            
+            present(userInfoChangeActionSheet, animated: true)
+        }
     }
 
     /*
