@@ -25,6 +25,7 @@
 		DEC7719A27F9E8B4006DB6D6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */; };
 		DEC7719C27F9EB0C006DB6D6 /* AuthorisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC7719B27F9EB0C006DB6D6 /* AuthorisationViewController.swift */; };
 		DEC7719E27F9EB1B006DB6D6 /* WEBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC7719D27F9EB1B006DB6D6 /* WEBViewController.swift */; };
+		DEC83E6728032C6500ADE83C /* UserInfoChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC83E6628032C6500ADE83C /* UserInfoChangeViewController.swift */; };
 		DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */; };
 		DEE68AD627ED096500BA6A55 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD527ED096500BA6A55 /* APIManager.swift */; };
 		DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD727ED09EC00BA6A55 /* Document.swift */; };
@@ -53,6 +54,7 @@
 		DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		DEC7719B27F9EB0C006DB6D6 /* AuthorisationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorisationViewController.swift; sourceTree = "<group>"; };
 		DEC7719D27F9EB1B006DB6D6 /* WEBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WEBViewController.swift; sourceTree = "<group>"; };
+		DEC83E6628032C6500ADE83C /* UserInfoChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoChangeViewController.swift; sourceTree = "<group>"; };
 		DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewController.swift; sourceTree = "<group>"; };
 		DEE68AD527ED096500BA6A55 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		DEE68AD727ED09EC00BA6A55 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				DEC7719D27F9EB1B006DB6D6 /* WEBViewController.swift */,
 				DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */,
+				DEC83E6628032C6500ADE83C /* UserInfoChangeViewController.swift */,
 			);
 			path = SettingsSet;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				DEA8FE9B27EA6A0300084595 /* AppDelegate.swift in Sources */,
 				DEC7719C27F9EB0C006DB6D6 /* AuthorisationViewController.swift in Sources */,
 				DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */,
+				DEC83E6728032C6500ADE83C /* UserInfoChangeViewController.swift in Sources */,
 				DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */,
 				DE8397DF27EFD7400064E2DF /* CoreData.swift in Sources */,
 				DEBF989427F6761F004DAD4C /* StoreCollectionViewCell.swift in Sources */,

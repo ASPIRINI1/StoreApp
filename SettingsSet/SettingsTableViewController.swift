@@ -71,8 +71,11 @@ class SettingsTableViewController: UITableViewController {
 //    MARK: - Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let webView = segue.destination as! WEBViewController
-        webView.openWEBForURl(url: WEBurl)
+        
+        if segue.destination is WEBViewController {
+            let webView = segue.destination as! WEBViewController
+            webView.openWEBForURl(url: WEBurl)
+        }
     }
 
     
