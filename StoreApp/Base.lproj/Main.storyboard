@@ -52,14 +52,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Cqb-Oy-kxD" customClass="CategoryTableViewCell" customModule="StoreApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cqb-Oy-kxD" id="0bg-Sr-jdP">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRZ-L4-In1">
-                                                    <rect key="frame" x="20" y="11" width="374" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -770,12 +770,12 @@
                     <navigationItem key="navigationItem" id="oM3-Kj-baY"/>
                     <connections>
                         <outlet property="firstLabel" destination="0aK-BO-7AX" id="gll-pQ-Qwj"/>
-                        <outlet property="firstTextBox" destination="UlD-j9-cZQ" id="N4d-8G-Pny"/>
+                        <outlet property="firstTextField" destination="UlD-j9-cZQ" id="J6i-2N-Fqs"/>
                         <outlet property="headerLAbel" destination="di5-XD-BNg" id="cgJ-w2-qKZ"/>
                         <outlet property="secondLabel" destination="XHr-20-d5A" id="XdF-Qx-0jO"/>
-                        <outlet property="secondTextBox" destination="FIG-5l-TRm" id="6HU-m8-17z"/>
+                        <outlet property="secondTextField" destination="FIG-5l-TRm" id="glU-dR-0C5"/>
                         <outlet property="thirdLabel" destination="hrs-2Z-i5V" id="d6J-Ca-0Mt"/>
-                        <outlet property="thirdTextBox" destination="X8l-Hr-qRn" id="DgG-3p-dXb"/>
+                        <outlet property="thirdTextField" destination="X8l-Hr-qRn" id="fKy-z5-7kP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5H-NS-oM4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
