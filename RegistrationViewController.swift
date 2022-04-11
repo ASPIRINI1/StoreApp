@@ -46,8 +46,29 @@ class RegistrationViewController: UIViewController {
     
     @IBAction func registrationButton(_ sender: Any) { // add user data!!
         
+        validationLabel.isHidden = false
+        if !emailTextField.text!.isValidEmail() {
+            validationLabel.text = NSLocalizedString("This email is uncurrect.", comment: "")
+            return
+        }
+        
+        if !passwordTextField.text!.isValidPass() {
+            validationLabel.text = NSLocalizedString("Uncurrect password.", comment: "")
+            return
+        }
+        
+        if addressTextField.text != nil && !addressTextField.text!.isEmpty {
+            validationLabel.text = NSLocalizedString("Check your address.", comment: "")
+            return
+        }
+        if fullNameTextFiedl.text != nil && !fullNameTextFiedl.text!.isEmpty {
+            validationLabel.text = NSLocalizedString("Check your fullname.", comment: "")
+            return
+        }
+        
         if validator.userDataIsCurrect(email: emailTextField.text, pass: emailTextField.text) {
-
+            
+            validationLabel.isHidden = true
             fireAPI.registration(email: emailTextField.text!, password: passwordTextField.text!) { regSuccess in
 
                 if !regSuccess {
