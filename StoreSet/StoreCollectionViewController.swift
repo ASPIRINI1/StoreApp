@@ -12,8 +12,22 @@ private let reuseIdentifier = "Cell"
 class StoreCollectionViewController: UICollectionViewController {
     
     let categoryVC = CategoryVC()
+//    let categoryVC = CategoryTableViewController()
     let fireAPI = APIManager()
     var products: [Document] = []
+    
+//  searchBar variables
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var filtredProducts: [Document] = []
+    
+    private var searchBarIsEmpty: Bool{
+        guard let text = searchController.searchBar.text else {return false}
+        return text.isEmpty
+    }
+    
+    private var isFiltering: Bool{
+        return searchController.isActive && !searchBarIsEmpty
+    }
     
     
     
@@ -23,6 +37,7 @@ class StoreCollectionViewController: UICollectionViewController {
         
         super.viewDidLoad()
         
+        notificationsSetUp()
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         fireAPI.getProductsForCategory(category: "keyboards", subCategories: "keyboards")
@@ -33,6 +48,14 @@ class StoreCollectionViewController: UICollectionViewController {
 //            print(self.products.first)
 //            self.collectionView.reloadData()
 //        }
+        
+        //MARK: setUP searchController
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "")
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         
         products.removeAll()
         for i in 0...10{
@@ -51,7 +74,8 @@ class StoreCollectionViewController: UICollectionViewController {
         func showMenu(){
             UIView.animate(withDuration: 0.3){
                 self.categoryVC.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-                self.addChild(self.categoryVC)
+//                self.addChild(self.categoryVC)
+//                self.categoryVC.viewDidLoad()
                 self.view.addSubview(self.categoryVC.view)
                 AppDelegate.isCategoryVC = false
             }
@@ -85,27 +109,49 @@ class StoreCollectionViewController: UICollectionViewController {
         
         navigationController?.pushViewController(detailVC, animated: true)
     }
-
-
-// MARK: - UICollectionViewDataSource
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+//    MARK: - Notifications
+    private func notificationsSetUp() {
         
-        return 1
+        let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: view.center.x, y: view.center.y, width: 10.0, height: 10.0))
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("LoadingNotes"), object: nil, queue: nil) { _ in
+            self.view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("NotesLoaded"), object: nil, queue: nil) { _ in
+//            self.notes = self.FireAPI.getAllNotes()
+//            self.notesTableView.reloadData()
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+        }
     }
 
 
+// MARK: - UICollectionViewDataSource
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+        if isFiltering {
+            return filtredProducts.count
+        }
         return products.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoreCell", for: indexPath) as! StoreCollectionViewCell
     
-        cell.name.text = products[indexPath.row].name
-        cell.price.text = "\(products[indexPath.row].price)"
-        cell.image.image = UIImage(named: "11")
+        if isFiltering {
+            cell.name.text = filtredProducts[indexPath.row].name
+            cell.price.text = "\(filtredProducts[indexPath.row].price)"
+            cell.image.image = UIImage(named: "11")
+        } else {
+            cell.name.text = products[indexPath.row].name
+            cell.price.text = "\(products[indexPath.row].price)"
+            cell.image.image = UIImage(named: "11")
+        }
+        
+
     
         return cell
     }
@@ -117,4 +163,20 @@ class StoreCollectionViewController: UICollectionViewController {
         selectedIndex.1 = indexPath.row
     }
     
+}
+
+//MARK: - UISearchResultsUpdating, UISearchControllerDelegate
+
+extension StoreCollectionViewController: UISearchResultsUpdating, UISearchControllerDelegate{
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String){
+        filtredProducts = products.filter({ document in
+            return document.name.lowercased().contains(searchText.lowercased())
+        })
+        collectionView.reloadData()
+    }
 }
