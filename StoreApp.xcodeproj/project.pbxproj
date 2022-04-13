@@ -98,8 +98,8 @@
 		DE50B23727EBC0A80072B3BC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DEC83E682804C5C300ADE83C /* CartSet */,
 				DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */,
+				DEC83E682804C5C300ADE83C /* CartSet */,
 				DEBF989527F67645004DAD4C /* StoreSet */,
 				DEC7719F27F9EBCA006DB6D6 /* SettingsSet */,
 				DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */,
