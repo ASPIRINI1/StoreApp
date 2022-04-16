@@ -7,16 +7,18 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class StoreCollectionViewController: UICollectionViewController {
     
-    let categoryVC = CategoryVC()
-//    let categoryVC = CategoryTableViewController()
     let fireAPI = APIManager()
     var products: [Document] = []
     
-//  searchBar variables
+//    CategoryMenu variables
+    let categoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryTVC") as! CategoryTableViewController
+    
+//     variable for opening detaleVC
+    var selectedIndex = (-1,-1)
+    
+//     searchBar variables
     private let searchController = UISearchController(searchResultsController: nil)
     private var filtredProducts: [Document] = []
     
@@ -30,15 +32,13 @@ class StoreCollectionViewController: UICollectionViewController {
     }
     
     
-    
-    var selectedIndex = (-1,-1)
+
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         notificationsSetUp()
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         fireAPI.getProductsForCategory(category: "keyboards", subCategories: "keyboards")
         
@@ -57,6 +57,9 @@ class StoreCollectionViewController: UICollectionViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        
+        fireAPI.getImageForProduct(category: "keyboards", subCategory: "office")
+        
         products.removeAll()
         for i in 0...10{
             products.append(Document(documentID: "prod"+"\(i)", name:  "product"+"\(i)", price: 100+i, img: "11", description:  "description of product: "+"\(i)"))
@@ -73,18 +76,23 @@ class StoreCollectionViewController: UICollectionViewController {
         
         func showMenu(){
             UIView.animate(withDuration: 0.3){
-                self.categoryVC.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-//                self.addChild(self.categoryVC)
-//                self.categoryVC.viewDidLoad()
+                
+                self.categoryVC.view.frame = CGRect(x: 0,
+                                                    y: self.view.safeAreaLayoutGuide.layoutFrame.minY,
+                                                    width: UIScreen.main.bounds.size.width/1.5,
+                                                    height: self.categoryVC.view.frame.height)
+                
                 self.view.addSubview(self.categoryVC.view)
                 AppDelegate.isCategoryVC = false
             }
 
         }
-        
+
         func hideMenu(){
+            
             UIView.animate(withDuration: 0.3, animations: {
                 self.categoryVC.view.frame = CGRect(x: -UIScreen.main.bounds.size.width, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+                
             }) { (finished) in
                 self.categoryVC.view.removeFromSuperview()
                 AppDelegate.isCategoryVC = true
