@@ -8,15 +8,12 @@
 import UIKit
 
 class CategoryTableViewController: UITableViewController {
+    
+    let fireAPI = APIManager()
+    let appSettings = AppSettings()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -26,20 +23,18 @@ class CategoryTableViewController: UITableViewController {
 //        return 0
 //    }
 //
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return appSettings.categories.count
+    }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
 
-        // Configure the cell...
-
+        cell.label.text = appSettings.categories[indexPath.row].first
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

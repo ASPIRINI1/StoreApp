@@ -16,7 +16,8 @@ class APIManager{
     static let shared = APIManager()
     var docs: [Document] = []
     var appSettings = AppSettings()
-    var categories = [""]
+//    var categories: [(String, [String])] = []
+    var categories: [[String]] = []
     
     init() {
         getDocuments()
@@ -52,7 +53,7 @@ class APIManager{
 //                                                   price: document.get("price") as! Int,
 //                                                   img: "",
 //                                                   description: document.get("description") as! String))
-                         self.categories.append(document.documentID)
+//                         self.categories.append(document.documentID)
                      }
                      NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
                  }
@@ -88,6 +89,36 @@ class APIManager{
                 NotificationCenter.default.post(name: NSNotification.Name( "DocsLoaded"), object: nil)
             }
          }
+    }
+    
+
+    
+    func getCategories() {
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
+        storageRef.listAll { storageListResult, err in
+            
+            if err == nil {
+                for category in storageListResult.prefixes {
+                    
+                    self.categories.append([category.name])
+                    
+                    storageRef.child(self.categories.last!.first!).listAll { result, err in
+                        if err != nil { print("Error getting SubCategory") ; return}
+                        
+                        for subCategory in result.prefixes {
+                            self.categories[self.categories.endIndex-1].append(subCategory.name)
+                            self.appSettings.categories = self.categories
+                        }
+                    }
+                }
+                
+            } else {
+                print("Getting category error : ", err!)
+            }
+        }
     }
 
     //    MARK: - Create,Update,Delete documents

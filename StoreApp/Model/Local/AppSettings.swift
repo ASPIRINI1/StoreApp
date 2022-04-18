@@ -17,6 +17,7 @@ class AppSettings{
         case isSignIn = "signedIn"
         case userAddress = "userAddress"
         case userID = "userID"
+        case categories = "categories"
     }
     
     var userEmail: String{
@@ -79,6 +80,20 @@ class AppSettings{
         }
         set {
             userDefaults.set(newValue, forKey: SettingsKeys.userAddress.rawValue)
+        }
+    }
+    
+    var categories: [[String]]{
+        get {
+            if userDefaults.value(forKey: SettingsKeys.categories.rawValue) != nil { // ??
+                
+                return userDefaults.value(forKey: SettingsKeys.categories.rawValue) as! [[String]]
+            } else {
+                return [[""]]
+            }
+        }
+        set {
+            userDefaults.set(newValue, forKey: SettingsKeys.categories.rawValue)
         }
     }
     
