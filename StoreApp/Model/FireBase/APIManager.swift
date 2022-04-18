@@ -275,4 +275,12 @@ class APIManager{
         }
     }
     
+    func deleteAccount() {
+        let user = Auth.auth().currentUser
+
+        user?.delete { error in
+            if error != nil { print("Error deleting user: ",error ?? ""); return}
+        }
+    }
+    
 }
