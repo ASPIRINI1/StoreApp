@@ -91,7 +91,29 @@ class APIManager{
          }
     }
     
-
+    func getImageForProduct(category: String, subCategory: String, completion: @escaping ([UIImage]?) -> ()) {
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let productsRef = storageRef.child(category + "/" + subCategory).child("first")
+        var images: [UIImage]? = []
+        
+        productsRef.listAll(completion: { imageList, error in
+            if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
+            
+            for image in imageList.items {
+                image.getData(maxSize: 99 * 1024 * 1024) { data, error in //??
+                    
+                    if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
+                    
+                    if data != nil {
+                        images?.append(UIImage(data: data!)!)
+                        completion(images)
+                    }
+                }
+            }
+        })
+    }
     
     func getCategories() {
         
