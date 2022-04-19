@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class AppSettings{
     
@@ -18,6 +19,7 @@ class AppSettings{
         case userAddress = "userAddress"
         case userID = "userID"
         case categories = "categories"
+        case shopList = "shopList"
     }
     
     var userEmail: String{
@@ -50,20 +52,6 @@ class AppSettings{
             userDefaults.set(newValue, forKey: SettingsKeys.appTheme.rawValue)
         }
     }
-//    var language: String{
-//        get{
-//            if let data = userDefaults.string(forKey: SettingsKeys.language.rawValue){
-//                return data
-//            } else {
-//                return ""
-//            }
-//        }
-//        set{
-//            if newValue != ""{
-//                userDefaults.set(newValue, forKey: SettingsKeys.language.rawValue)
-//            }
-//        }
-//    }
     
     var userID: String{
         get{
@@ -94,6 +82,15 @@ class AppSettings{
         }
         set {
             userDefaults.set(newValue, forKey: SettingsKeys.categories.rawValue)
+        }
+    }
+    
+    var shopList: [CLLocation]{
+        get {
+            return userDefaults.value(forKey: SettingsKeys.shopList.rawValue) as! [CLLocation]
+        }
+        set {
+            userDefaults.set(newValue, forKey: SettingsKeys.shopList.rawValue)
         }
     }
     
