@@ -6,24 +6,33 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
     
     @IBOutlet weak var companySiteButton: UIView!
-    @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var appThemeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var mapView: MKMapView!
     
     
     let appSettings = AppSettings()
     let fireAPI = APIManager()
+    var mapV = SettingsMapView()
     var WEBurl = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        mapV = mapView as! SettingsMapView
+        mapV.configureMapView()
+
         
     }
+    
+
     
     //    MARK:  App theme
     
@@ -82,16 +91,14 @@ class SettingsTableViewController: UITableViewController {
 // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        
         switch indexPath {
         case [2, 0]: // about company
             WEBurl = "https://www.google.com"
+        case [2, 1]: // mapView
+            mapV.checkPermissions()
+            mapV.route(to: CLLocation(latitude: 48.002655, longitude: 37.840235))
         case [2, 2]: // about dev
             WEBurl = "https://github.com/ASPIRINI1"
-        case [0, 1]:  // pass restore
-            break
-        case [0, 2]: // exit
-            break
         default:
             break
         }
@@ -103,7 +110,7 @@ class SettingsTableViewController: UITableViewController {
         let userInfoChangeVC = storyboard?.instantiateViewController(withIdentifier: "UserInfoVC") as! UserInfoChangeViewController
         
 //        Creating actionSheet
-        if indexPath == [0, 1] {
+        if indexPath == [0, 1] { // user info change cell
             
             let userInfoChangeActionSheet = UIAlertController(title: NSLocalizedString("Select user info to change", comment: ""), message: nil, preferredStyle: .actionSheet)
             
@@ -148,7 +155,9 @@ class SettingsTableViewController: UITableViewController {
             userInfoChangeActionSheet.addAction(cancel)
             
             present(userInfoChangeActionSheet, animated: true)
+            
+            tableView.cellForRow(at: indexPath)?.isSelected = false
         }
     }
-
 }
+
