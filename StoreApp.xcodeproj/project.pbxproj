@@ -12,9 +12,9 @@
 		DE2B526E27FC7745009F22AB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B526D27FC7745009F22AB /* Validator.swift */; };
 		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
-		DE6A9147280B0ED5005820E3 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6A9146280B0ED5005820E3 /* ContainerViewController.swift */; };
 		DE6A9149280B2284005820E3 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6A9148280B2284005820E3 /* CategoryTableViewController.swift */; };
-		DE8397DF27EFD7400064E2DF /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8397DE27EFD7400064E2DF /* CoreData.swift */; };
+		DE8397DF27EFD7400064E2DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8397DE27EFD7400064E2DF /* CoreDataManager.swift */; };
+		DE93F2DE280F23D900132E6A /* SettingsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93F2DD280F23D900132E6A /* SettingsMapView.swift */; };
 		DEA8FE9B27EA6A0300084595 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */; };
 		DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */; };
 		DEA8FEA227EA6A0300084595 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA8FEA027EA6A0300084595 /* Main.storyboard */; };
@@ -43,9 +43,9 @@
 		DE2B526D27FC7745009F22AB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DE6A9146280B0ED5005820E3 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		DE6A9148280B2284005820E3 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
-		DE8397DE27EFD7400064E2DF /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		DE8397DE27EFD7400064E2DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		DE93F2DD280F23D900132E6A /* SettingsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMapView.swift; sourceTree = "<group>"; };
 		DEA8FE9727EA6A0300084595 /* StoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,7 +156,6 @@
 				DEC3F1D327F8C20D00EE6572 /* CategoryMenu */,
 				DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */,
 				DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */,
-				DE6A9146280B0ED5005820E3 /* ContainerViewController.swift */,
 			);
 			path = StoreSet;
 			sourceTree = "<group>";
@@ -165,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				DEE68AD927ED0C6400BA6A55 /* AppSettings.swift */,
-				DE8397DE27EFD7400064E2DF /* CoreData.swift */,
+				DE8397DE27EFD7400064E2DF /* CoreDataManager.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -185,6 +184,7 @@
 				DEC7719D27F9EB1B006DB6D6 /* WEBViewController.swift */,
 				DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */,
 				DEC83E6628032C6500ADE83C /* UserInfoChangeViewController.swift */,
+				DE93F2DD280F23D900132E6A /* SettingsMapView.swift */,
 			);
 			path = SettingsSet;
 			sourceTree = "<group>";
@@ -342,10 +342,10 @@
 				DEE46F442808A3290045941E /* OrderingVC.swift in Sources */,
 				DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */,
 				DEC83E6C2804C5ED00ADE83C /* CartTableViewCell.swift in Sources */,
-				DE8397DF27EFD7400064E2DF /* CoreData.swift in Sources */,
+				DE8397DF27EFD7400064E2DF /* CoreDataManager.swift in Sources */,
 				DEBF989427F6761F004DAD4C /* StoreCollectionViewCell.swift in Sources */,
+				DE93F2DE280F23D900132E6A /* SettingsMapView.swift in Sources */,
 				DEC7719E27F9EB1B006DB6D6 /* WEBViewController.swift in Sources */,
-				DE6A9147280B0ED5005820E3 /* ContainerViewController.swift in Sources */,
 				DE6A9149280B2284005820E3 /* CategoryTableViewController.swift in Sources */,
 				DE26705B27FB34DD0063A84D /* RegistrationViewController.swift in Sources */,
 				DEE68ADA27ED0C6400BA6A55 /* AppSettings.swift in Sources */,

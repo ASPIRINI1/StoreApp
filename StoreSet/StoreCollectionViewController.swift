@@ -58,8 +58,6 @@ class StoreCollectionViewController: UICollectionViewController {
         definesPresentationContext = true
         
         
-        fireAPI.getImageForProduct(category: "keyboards", subCategory: "office")
-        
         products.removeAll()
         for i in 0...10{
             products.append(Document(documentID: "prod"+"\(i)", name:  "product"+"\(i)", price: 100+i, img: "11", description:  "description of product: "+"\(i)"))
