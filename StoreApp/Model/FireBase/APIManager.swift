@@ -145,13 +145,25 @@ class APIManager{
 
     //    MARK: - Create,Update,Delete documents
     
-    func createNewDocument(text: String){
+    func createNewUserFiles(fullname: String, address: String){
+        
         let db = configureFB()
         if appSettings.userID != ""{
-        db.collection("Users").addDocument(data: [appSettings.userID : ":"])
+            
+            let data: [String : Any] = ["fullName": fullname,
+                                        "address" : address,
+                                        "cart" : [""],
+                                        "reviews" : [""]]
+            
+            db.collection("Users").document(appSettings.userID).setData(data)
         }
-        NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
    }
+    
+    func deleteUserFiles(){
+        let db = configureFB()
+        db.collection("Users").document(appSettings.userID).delete()
+        db.collection("Reviews").document(appSettings.userID).delete()
+    }
     
 //    func updateDocument(id: String, text:String){
 //
@@ -241,10 +253,9 @@ class APIManager{
            return
        }
         
-//        self.docs.removeAll()
-//        self.appSettings.signedIn = false
-//        self.appSettings.userEmail = ""
-//        self.appSettings.userID = ""
+        self.appSettings.signedIn = false
+        self.appSettings.userEmail = ""
+        self.appSettings.userID = ""
         
         NotificationCenter.default.post(name: NSNotification.Name("SignedOut"), object: nil)
     }
@@ -260,16 +271,13 @@ class APIManager{
                 completion[0](false)
                 
             } else {
-//                self.appSettings.userID = authResult?.user.uid ?? ""
-//                self.appSettings.userEmail = email
-//                self.appSettings.signedIn = true
+                self.appSettings.userID = authResult?.user.uid ?? ""
+                self.appSettings.userEmail = email
+                self.appSettings.signedIn = true
                 
                 completion[0](true)
-                //uploading local docs to Firebase
-//                for doc in self.docs {
-////                    db.collection(self.appSettings.userID).addDocument(data: ["text": doc.text])
-//                }
-                self.createNewDocument(text: "")
+
+                self.createNewUserFiles(fullname: "fullname", address: "address")
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
             }
         }
@@ -281,6 +289,8 @@ class APIManager{
         user?.delete { error in
             if error != nil { print("Error deleting user: ",error ?? ""); return}
         }
+        deleteUserFiles()
+        signOut()
     }
     
 }
