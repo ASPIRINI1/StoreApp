@@ -142,6 +142,20 @@ class APIManager{
             }
         }
     }
+    
+    func getUserCart() {
+        
+        if appSettings.userID != "" {
+            let db = configureFB()
+            
+            db.collection("Users").document(appSettings.userID).getDocument { documentSnapshot, error in
+                if error != nil { print("Error getting user cart: ", error!)}
+                if documentSnapshot != nil {
+                    self.appSettings.userCart = documentSnapshot?.get("cart") as! [String]
+                }
+            }
+        }
+    }
 
     //    MARK: - Create,Update,Delete documents
     
