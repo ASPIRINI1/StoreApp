@@ -47,6 +47,7 @@ class RegistrationViewController: UIViewController {
     @IBAction func registrationButton(_ sender: Any) { // add user data!!
         
         validationLabel.isHidden = false
+        
         if !emailTextField.text!.isValidEmail() {
             validationLabel.text = NSLocalizedString("This email is uncurrect.", comment: "")
             return
@@ -57,11 +58,11 @@ class RegistrationViewController: UIViewController {
             return
         }
         
-        if addressTextField.text != nil && !addressTextField.text!.isEmpty {
+        if addressTextField.text != nil && addressTextField.text!.isEmpty {
             validationLabel.text = NSLocalizedString("Check your address.", comment: "")
             return
         }
-        if fullNameTextFiedl.text != nil && !fullNameTextFiedl.text!.isEmpty {
+        if fullNameTextFiedl.text != nil && fullNameTextFiedl.text!.isEmpty {
             validationLabel.text = NSLocalizedString("Check your fullname.", comment: "")
             return
         }
