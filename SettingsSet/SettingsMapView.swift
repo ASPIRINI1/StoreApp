@@ -122,10 +122,19 @@ class SettingsMapView: MKMapView, MKMapViewDelegate {
             if responce.routes.count > 0 {
                 let route = responce.routes.first!
                 self.addOverlay(route.polyline, level: .aboveRoads)
-                let rect = route.polyline.boundingMapRect
-                self.setRegion(MKCoordinateRegion(rect), animated: true)
+//                let rect = route.polyline.boundingMapRect
+//                self.setRegion(MKCoordinateRegion(rect), animated: true)
+                self.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets.init(top: 80.0, left: 20.0, bottom: 100.0, right: 20.0), animated: true)
             }
         })
+    }
+    
+    
+//    MARK: Opening Navigation App
+    
+    func openInNavigationApp(to: CLLocation){
+        let toPointItem = MKMapItem(placemark: MKPlacemark(coordinate: to.coordinate))
+        toPointItem.openInMaps()
     }
     
 //    MARK: - MKMapViewDelegate

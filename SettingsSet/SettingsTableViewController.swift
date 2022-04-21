@@ -22,6 +22,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
     let fireAPI = APIManager()
     var mapV = SettingsMapView()
     var WEBurl = ""
+    var routeEnabled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,12 +92,33 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
 // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+
         switch indexPath {
         case [2, 0]: // about company
             WEBurl = "https://www.google.com"
         case [2, 1]: // mapView
+            
+            if routeEnabled {
+                let alert = UIAlertController(title: NSLocalizedString("Do you want to open maps?", comment: ""), message: NSLocalizedString("Another app will be open.", comment: ""), preferredStyle: .alert)
+                
+                let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
+                    self.mapV.openInNavigationApp(to: CLLocation(latitude: 48.002655, longitude: 37.840235))
+                }
+                
+                alert.addAction(yesAction)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .destructive))
+                
+                present(alert, animated: true)
+                break
+            }
+            
             mapV.checkPermissions()
             mapV.route(to: CLLocation(latitude: 48.002655, longitude: 37.840235))
+            routeEnabled = true
+            
+
+            
+
         case [2, 2]: // about dev
             WEBurl = "https://github.com/ASPIRINI1"
         default:
