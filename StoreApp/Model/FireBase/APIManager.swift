@@ -263,11 +263,10 @@ class APIManager{
     func registration(email: String, password: String, completion: (Bool) -> ()...){
         
         let firebaseAuth = Auth.auth()
-        let db = configureFB()
         
         firebaseAuth.createUser(withEmail: email, password: password) { authResult, error in
             if  (error != nil){
-                print("Registration error")
+                print("Registration error:", error!)
                 completion[0](false)
                 
             } else {
@@ -278,6 +277,7 @@ class APIManager{
                 completion[0](true)
 
                 self.createNewUserFiles(fullname: "fullname", address: "address")
+                
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
             }
         }
