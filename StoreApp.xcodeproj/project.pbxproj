@@ -29,6 +29,7 @@
 		DEC83E6728032C6500ADE83C /* UserInfoChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC83E6628032C6500ADE83C /* UserInfoChangeViewController.swift */; };
 		DEC83E6C2804C5ED00ADE83C /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC83E6B2804C5ED00ADE83C /* CartTableViewCell.swift */; };
 		DEC83E6E2804C5FE00ADE83C /* CartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC83E6D2804C5FE00ADE83C /* CartTableViewController.swift */; };
+		DED66FCA2812FA7100305FBA /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED66FC92812FA7100305FBA /* CoreDataModel.swift */; };
 		DEE46F442808A3290045941E /* OrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE46F432808A3290045941E /* OrderingVC.swift */; };
 		DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */; };
 		DEE68AD627ED096500BA6A55 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD527ED096500BA6A55 /* APIManager.swift */; };
@@ -62,6 +63,7 @@
 		DEC83E6628032C6500ADE83C /* UserInfoChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoChangeViewController.swift; sourceTree = "<group>"; };
 		DEC83E6B2804C5ED00ADE83C /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		DEC83E6D2804C5FE00ADE83C /* CartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewController.swift; sourceTree = "<group>"; };
+		DED66FC92812FA7100305FBA /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		DEE46F432808A3290045941E /* OrderingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingVC.swift; sourceTree = "<group>"; };
 		DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewController.swift; sourceTree = "<group>"; };
 		DEE68AD527ED096500BA6A55 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				DEA8FEAB27EA6A0400084595 /* Info.plist */,
 				DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */,
 				DEA8FEA327EA6A0300084595 /* StoreApp.xcdatamodeld */,
+				DED66FC92812FA7100305FBA /* CoreDataModel.swift */,
 			);
 			path = StoreApp;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */,
 				DEC83E6728032C6500ADE83C /* UserInfoChangeViewController.swift in Sources */,
 				DEE46F442808A3290045941E /* OrderingVC.swift in Sources */,
+				DED66FCA2812FA7100305FBA /* CoreDataModel.swift in Sources */,
 				DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */,
 				DEC83E6C2804C5ED00ADE83C /* CartTableViewCell.swift in Sources */,
 				DE8397DF27EFD7400064E2DF /* CoreDataManager.swift in Sources */,

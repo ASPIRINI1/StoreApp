@@ -61,7 +61,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
             let alertYesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { UIAlertAction in
                 self.fireAPI.signOut()
                 self.signInButton.setTitle(NSLocalizedString("Sign in", comment: ""), for: .normal)
-                self.accountLabel.text = NSLocalizedString("authorization", comment: "")
+                self.accountLabel.text = NSLocalizedString("Authorization", comment: "")
             }
             
             let alertCancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)

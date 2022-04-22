@@ -91,7 +91,7 @@ class APIManager{
          }
     }
     
-    func getImageForProduct(category: String, subCategory: String, completion: @escaping ([UIImage]?) -> ()) {
+    func getImageForProductIntoMemory(category: String, subCategory: String, completion: @escaping ([UIImage]?) -> ()) {
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
@@ -113,6 +113,16 @@ class APIManager{
                 }
             }
         })
+    }
+    
+    func getImageForProduct(){
+//         Reference to an image file in Firebase Storage
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let reference = storageRef.child("keyboards/office/first/IMG_0315.JPG")
+        let placeholderImage = UIImage(named: "placeholder.jpg")
+
+        
     }
     
     func getCategories() {
