@@ -11,14 +11,15 @@ import Foundation
 import CoreData
 import UIKit
 
-class Goods: NSManagedObject {
+@objc(Goods)
+public class Goods: NSManagedObject {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Goods> {
         return NSFetchRequest<Goods>(entityName: "Goods")
     }
 
-    @NSManaged public var image: [UIImage]?
-    @NSManaged public var name: String?
+    @NSManaged public var image: [UIImage]
+    @NSManaged public var name: String
     @NSManaged public var price: Int64
 
 }
@@ -26,3 +27,8 @@ class Goods: NSManagedObject {
 extension Goods : Identifiable {
 
 }
+
+
+import Foundation
+import CoreData
+

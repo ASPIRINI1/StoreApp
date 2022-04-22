@@ -30,15 +30,26 @@ class CoreDataManager {
         do{
             try context.save()
         } catch {
-            print("Saving error")
+            print("Saving to CoreData error")
         }
     }
     
     func addToCorData(name: String, price: Int, images: [UIImage]) {
+        
         let product = Goods(context: context)
         product.name = name
         product.price = Int64(price)
         product.image = images
+        saveChanges()
+    }
+    
+    func getImage() -> UIImage{
+        var image: [UIImage] = []
+        for img in model {
+            image = img.image
+        }
+        
+        return image[0]
     }
     
 }

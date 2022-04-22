@@ -145,10 +145,9 @@
 				DE2B526D27FC7745009F22AB /* Validator.swift */,
 				DEA8FEA627EA6A0400084595 /* Assets.xcassets */,
 				DEA8FEA827EA6A0400084595 /* LaunchScreen.storyboard */,
+				DEA8FEA327EA6A0300084595 /* StoreApp.xcdatamodeld */,
 				DEA8FEAB27EA6A0400084595 /* Info.plist */,
 				DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */,
-				DEA8FEA327EA6A0300084595 /* StoreApp.xcdatamodeld */,
-				DED66FC92812FA7100305FBA /* CoreDataModel.swift */,
 			);
 			path = StoreApp;
 			sourceTree = "<group>";
@@ -168,6 +167,7 @@
 			children = (
 				DEE68AD927ED0C6400BA6A55 /* AppSettings.swift */,
 				DE8397DE27EFD7400064E2DF /* CoreDataManager.swift */,
+				DED66FC92812FA7100305FBA /* CoreDataModel.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
