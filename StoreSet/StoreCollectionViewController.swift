@@ -60,7 +60,8 @@ class StoreCollectionViewController: UICollectionViewController {
         
         products.removeAll()
         for i in 0...10{
-            products.append(Document(documentID: "prod"+"\(i)", name:  "product"+"\(i)", price: 100+i, img: "11", description:  "description of product: "+"\(i)"))
+//            products.append(Document(documentID: "prod"+"\(i)", name:  "product"+"\(i)", price: 100+i, img: "11", description:  "description of product: "+"\(i)"))
+            products.append(Document(documentID: "prod" + "(\(i)", name: "name" + "(\(i)", price: 100 + i, description: "description of product" + "(\(i)"))
         }
         fireAPI.docs.removeAll()
         fireAPI.docs = products
@@ -117,6 +118,7 @@ class StoreCollectionViewController: UICollectionViewController {
     }
     
 //    MARK: - Notifications
+    
     private func notificationsSetUp() {
         
         let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: view.center.x, y: view.center.y, width: 10.0, height: 10.0))
@@ -146,6 +148,8 @@ class StoreCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoreCell", for: indexPath) as! StoreCollectionViewCell
+        
+        cell.layer.cornerRadius = CGFloat(5)
     
         if isFiltering {
             cell.name.text = filtredProducts[indexPath.row].name

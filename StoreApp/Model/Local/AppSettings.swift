@@ -25,11 +25,7 @@ class AppSettings{
     
     var userEmail: String{
         get{
-            if let data = userDefaults.string(forKey: SettingsKeys.userEmail.rawValue){
-                return data
-            }else{
-                return ""
-            }
+                return userDefaults.string(forKey: SettingsKeys.userEmail.rawValue) ?? ""
         }
         set{
             userDefaults.set(newValue, forKey: SettingsKeys.userEmail.rawValue)

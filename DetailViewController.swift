@@ -9,7 +9,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    @IBOutlet weak var image: UIImageView!
+    
+    @IBOutlet weak var imageScrollView: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -25,16 +26,18 @@ class DetailViewController: UIViewController {
         
         let doc = fireAPI.getDocForID(id: docID)
         
-        let images: [UIImage] = [UIImage(named: "11")!, UIImage(named: "22")!,UIImage(named: "33")!,UIImage(named: "44")!,UIImage(named: "55")!]
+        let images: [UIImage] = [UIImage(named: "111")!, UIImage(named: "222")!,UIImage(named: "33")!,UIImage(named: "44")!,UIImage(named: "55")!]
 
         for image in images {
             
             let imageView = UIImageView(image: image)
+            imageView.backgroundColor = self.view.backgroundColor
             imageView.frame = CGRect(x: scrollView.contentSize.width, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
-            imageView.contentMode = .scaleToFill
+            imageView.contentMode = .scaleAspectFit
             
             scrollView.contentSize.width += imageView.frame.width
             scrollView.addSubview(imageView)
+            imageScrollView.backgroundColor = self.view.backgroundColor
         }
         
 //        nameLabel.text = doc?.name
