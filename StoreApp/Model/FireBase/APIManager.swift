@@ -61,11 +61,12 @@ class APIManager{
 //        }
      }
     
+//    MARK: - Getters/Setters
     
-    func getProductsForCategory(category: String, subCategories: String){
+    func getProductsForCategory(category: String, subCategoriy: String, completion: @escaping ([Document]) -> () ) {
         
         let db = configureFB()
-        db.collection("Products").document(category).collection(subCategories).getDocuments() { querySnapshot, error in
+        db.collection("Products").document(category).collection(subCategoriy).getDocuments() { querySnapshot, error in
             
             if let err = error{
                 
@@ -73,36 +74,41 @@ class APIManager{
                 NotificationCenter.default.post(name: NSNotification.Name( "DocsNotLoaded"), object: nil)
                 
             } else {
+                var products: [Document] = []
                 
                 for document in querySnapshot!.documents{
                     
                     NotificationCenter.default.post(name: NSNotification.Name( "LoadingDocs"), object: nil)
                     self.docs.removeAll()
                     
-                    self.docs.append(Document(documentID: document.documentID,
-                                              name: document.get("name") as! String,
-                                              price: document.get("price") as! Int,
-                                              img: "",
-                                              description: document.get("description") as! String))
+//                    self.docs.append(Document(documentID: document.documentID,
+//                                              name: document.get("name") as! String,
+//                                              price: document.get("price") as! Int,
+//                                              description: document.get("description") as! String))
+                    
+                    products.append(Document(documentID: document.documentID ,
+                                             name: document.get("name") as! String,
+                                             price: document.get("price") as! Int,
+                                             description: document.get("description") as? String ?? "no description"))
                 }
-                
+                completion(products)
                 NotificationCenter.default.post(name: NSNotification.Name( "DocsLoaded"), object: nil)
             }
          }
     }
     
-    func getImageForProductIntoMemory(category: String, subCategory: String, completion: @escaping ([UIImage]?) -> ()) {
+    func getImageForProductIntoMemory(docID: String ,category: String, subCategory: String, completion: @escaping ([UIImage]?) -> ()) {
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let productsRef = storageRef.child(category + "/" + subCategory).child("first")
+        let productsRef = storageRef.child(category + "/" + subCategory).child(docID)
         var images: [UIImage]? = []
         
         productsRef.listAll(completion: { imageList, error in
             if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
             
             for image in imageList.items {
-                image.getData(maxSize: 99 * 1024 * 1024) { data, error in //??
+                image.getData(maxSize: 1 * 1024 * 1024) { data, error in //??
                     
                     if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
                     
@@ -115,6 +121,25 @@ class APIManager{
         })
     }
     
+    func getOneImage(category: String, subCategory: String, docID: String, completion: @escaping (UIImage) -> ()) {
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let productsRef = storageRef.child(category + "/" + subCategory).child(docID)
+        var image = UIImage()
+        
+        productsRef.listAll(completion: { imageList, error in
+            if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
+            
+            imageList.items[0].getData(maxSize: 99 * 1024 * 1024) { data, error in
+                image = UIImage(data: data!)!
+                completion(image)
+            }
+        })
+    }
+    
+
+    
     func getImageForProduct(){
 //         Reference to an image file in Firebase Storage
         let storage = Storage.storage()
@@ -125,7 +150,7 @@ class APIManager{
         
     }
     
-    func getCategories() {
+    func getCategories(completion: @escaping ([[String]]) -> ()) {
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
@@ -138,12 +163,13 @@ class APIManager{
                     self.categories.append([category.name])
                     
                     storageRef.child(self.categories.last!.first!).listAll { result, err in
-                        if err != nil { print("Error getting SubCategory") ; return}
+                        if err != nil { print("Error getting SubCategory") ; return }
                         
                         for subCategory in result.prefixes {
                             self.categories[self.categories.endIndex-1].append(subCategory.name)
                             self.appSettings.categories = self.categories
                         }
+                        completion(self.appSettings.categories)
                     }
                 }
                 

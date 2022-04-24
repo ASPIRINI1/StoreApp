@@ -279,6 +279,7 @@
                     <navigationItem key="navigationItem" id="qdt-tY-MKM"/>
                     <connections>
                         <outlet property="descriptionLabel" destination="wMa-SV-WHv" id="uCN-FK-zhV"/>
+                        <outlet property="imageScrollView" destination="GTL-dm-mIc" id="1lS-jW-AhX"/>
                         <outlet property="nameLabel" destination="GTL-dm-mIc" id="rga-f2-aVg"/>
                         <outlet property="pageControl" destination="IXa-z9-wg2" id="nTC-Eb-Sru"/>
                         <outlet property="priceLabel" destination="4NL-j5-1vQ" id="ag0-yj-YP6"/>
@@ -1174,7 +1175,7 @@
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="p8F-z6-deK"/>
                                     <barButtonItem title="Forward" image="chevron.right" catalog="system" id="jf5-Xy-DN9">
                                         <connections>
-                                            <action selector="forward:" destination="0fK-Bg-1F1" id="NSQ-75-jiF"/>
+                                            <action selector="forwardButton:" destination="0fK-Bg-1F1" id="MQ0-Ib-BEN"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Zvf-Ig-Frx"/>
