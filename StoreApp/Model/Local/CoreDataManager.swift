@@ -34,22 +34,32 @@ class CoreDataManager {
         }
     }
     
-    func addToCorData(name: String, price: Int, images: [UIImage]) {
+    func addToCorData(id: String, name: String, price: Int, image: UIImage) {
         
         let product = Goods(context: context)
+        product.id = id
         product.name = name
         product.price = Int64(price)
-        product.image = images
+        product.image = image
         saveChanges()
     }
     
+//    func getProductForID(Id: String) {
+//        do {
+//            model = try context.existingObject(with: id)
+//            
+//        } catch {
+//            print("Error getting product from CoreData")
+//        }
+//    }
+    
     func getImage() -> UIImage{
-        var image: [UIImage] = []
+        
+        var image = UIImage()
         for img in model {
             image = img.image
         }
-        
-        return image[0]
+        return image
     }
     
 }

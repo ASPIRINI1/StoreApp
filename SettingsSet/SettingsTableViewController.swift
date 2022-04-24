@@ -29,8 +29,16 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
 
         mapV = mapView as! SettingsMapView
         mapV.configureMapView()
-
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if appSettings.signedIn {
+            accountLabel.text = appSettings.userEmail
+            signInButton.titleLabel?.text = NSLocalizedString("Sign Out", comment: "")
+        } else {
+            accountLabel.text = NSLocalizedString("Authorization", comment: "")
+            signInButton.titleLabel?.text = NSLocalizedString("Sign In", comment: "")
+        }
     }
     
 
@@ -60,8 +68,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
             
             let alertYesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { UIAlertAction in
                 self.fireAPI.signOut()
-                self.signInButton.setTitle(NSLocalizedString("Sign in", comment: ""), for: .normal)
-                self.accountLabel.text = NSLocalizedString("Authorization", comment: "")
+                self.viewWillAppear(false)
             }
             
             let alertCancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
@@ -157,8 +164,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
 //                confirming alert actions
                 let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { _ in
                     self.fireAPI.deleteAccount()
-                    self.signInButton.setTitle(NSLocalizedString("Sign in", comment: ""), for: .normal)
-                    self.accountLabel.text = NSLocalizedString("authorization", comment: "")
+                    self.viewWillAppear(false)
                 }
                 let cancelAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default)
                 
