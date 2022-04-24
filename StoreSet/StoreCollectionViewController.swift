@@ -10,6 +10,7 @@ import UIKit
 class StoreCollectionViewController: UICollectionViewController {
     
     let fireAPI = APIManager()
+    let coreData = CoreDataManager()
     var products: [Document] = []
     
 //    CategoryMenu variables
@@ -40,7 +41,7 @@ class StoreCollectionViewController: UICollectionViewController {
         notificationsSetUp()
 //        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        fireAPI.getProductsForCategory(category: "keyboards", subCategories: "keyboards")
+//        fireAPI.getProductsForCategory(category: "keyboards", subCategoriy: "keyboards")
         
 //        NotificationCenter.default.addObserver(forName: NSNotification.Name("DocsLoaded"), object: nil, queue: nil) { _ in
 //            self.products = self.fireAPI.getAllDocs()
@@ -143,7 +144,8 @@ class StoreCollectionViewController: UICollectionViewController {
         if isFiltering {
             return filtredProducts.count
         }
-        return products.count
+//        return products.count
+        return coreData.getAllItems().count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -156,11 +158,14 @@ class StoreCollectionViewController: UICollectionViewController {
             cell.price.text = "\(filtredProducts[indexPath.row].price)"
             cell.image.image = UIImage(named: "11")
         } else {
-            cell.name.text = products[indexPath.row].name
-            cell.price.text = "\(products[indexPath.row].price)"
-            cell.image.image = UIImage(named: "11")
+            
+//            cell.name.text = products[indexPath.row].name
+//            cell.price.text = "\(products[indexPath.row].price)"
+//            cell.image.image = UIImage(named: "11")
+            cell.name.text = coreData.getAllItems()[indexPath.row].name
+            cell.price.text = String(coreData.getAllItems()[indexPath.row].price)
+            cell.image.image = coreData.getAllItems()[indexPath.row].image
         }
-        
 
     
         return cell
