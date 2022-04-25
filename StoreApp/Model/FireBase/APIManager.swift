@@ -15,12 +15,11 @@ class APIManager{
     
     static let shared = APIManager()
     var docs: [Document] = []
-    var appSettings = AppSettings()
-//    var categories: [(String, [String])] = []
-    var categories: [[String]] = []
+    private var appSettings = AppSettings()
+    private var categories: [[String]] = []
     
     init() {
-        getDocuments()
+//        getDocuments()
     }
     
     
@@ -34,32 +33,25 @@ class APIManager{
         return db
     }
     
-    private func getDocuments(){
-        
-//        if appSettings.userID != ""{
-            
-            let db = configureFB()
-        db.collection("Products").getDocuments()  { (querySnapshot, err) in
-                 
-                 if let err = err {
-                     print("Error getting documents: \(err)")
-                 } else {
-                     for document in querySnapshot!.documents {
-                         NotificationCenter.default.post(name: NSNotification.Name("LoadingNotes"), object: nil)
-//                         self.docs.append(Document(id: document.documentID, text: document.get("text") as! String))
-                         
-//                         self.docs.append(Document(documentID: document.documentID,
-//                                                   name: document.get("name") as! String,
-//                                                   price: document.get("price") as! Int,
-//                                                   img: "",
-//                                                   description: document.get("description") as! String))
-//                         self.categories.append(document.documentID)
-                     }
-                     NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
-                 }
-             }
-//        }
-     }
+//    private func getDocuments(){
+//
+////        if appSettings.userID != ""{
+//
+//            let db = configureFB()
+//        db.collection("Products").getDocuments()  { (querySnapshot, err) in
+//
+//                 if let err = err {
+//                     print("Error getting documents: \(err)")
+//                 } else {
+//                     for document in querySnapshot!.documents {
+//                         NotificationCenter.default.post(name: NSNotification.Name("LoadingNotes"), object: nil)
+//
+//                     }
+//                     NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
+//                 }
+//             }
+////        }
+//     }
     
 //    MARK: - Getters/Setters
     
@@ -74,17 +66,12 @@ class APIManager{
                 NotificationCenter.default.post(name: NSNotification.Name( "DocsNotLoaded"), object: nil)
                 
             } else {
-                var products: [Document] = []
                 
+                var products: [Document] = []
                 for document in querySnapshot!.documents{
                     
                     NotificationCenter.default.post(name: NSNotification.Name( "LoadingDocs"), object: nil)
-                    self.docs.removeAll()
-                    
-//                    self.docs.append(Document(documentID: document.documentID,
-//                                              name: document.get("name") as! String,
-//                                              price: document.get("price") as! Int,
-//                                              description: document.get("description") as! String))
+//                    self.docs.removeAll()
                     
                     products.append(Document(documentID: document.documentID ,
                                              name: document.get("name") as! String,
@@ -137,18 +124,7 @@ class APIManager{
             }
         })
     }
-    
 
-    
-    func getImageForProduct(){
-//         Reference to an image file in Firebase Storage
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let reference = storageRef.child("keyboards/office/first/IMG_0315.JPG")
-        let placeholderImage = UIImage(named: "placeholder.jpg")
-
-        
-    }
     
     func getCategories(completion: @escaping ([[String]]) -> ()) {
         
@@ -192,73 +168,7 @@ class APIManager{
             }
         }
     }
-
-    //    MARK: - Create,Update,Delete documents
     
-    func createNewUserFiles(fullname: String, address: String){
-        
-        let db = configureFB()
-        if appSettings.userID != ""{
-            
-            let data: [String : Any] = ["fullName": fullname,
-                                        "address" : address,
-                                        "cart" : [""],
-                                        "reviews" : [""]]
-            
-            db.collection("Users").document(appSettings.userID).setData(data)
-        }
-   }
-    
-    func deleteUserFiles(){
-        let db = configureFB()
-        db.collection("Users").document(appSettings.userID).delete()
-        db.collection("Reviews").document(appSettings.userID).delete()
-    }
-    
-//    func updateDocument(id: String, text:String){
-//
-//       let db = configureFB()
-//
-//
-//       if text != ""{
-//           db.collection(appSettings.userID).document(id).updateData(["text": text]) { err in
-//
-//            if let err = err {
-//                print("Error updating document: \(err)")
-//            } else {
-//                for docIndex in 0...self.docs.count-1{
-////                    if self.docs[docIndex].id == id{
-////                        self.docs[docIndex].text = text
-////                    }
-//                }
-//                NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
-//                print("Document successfully updated")
-//            }
-//           }
-//       }
-//    }
-    
-//    func deleteDocument(id: String){
-//
-//        let db = configureFB()
-//
-//        db.collection(appSettings.userID).document(id).delete() { err in
-//            if let err = err {
-//                print("Error removing document: \(err)")
-//            } else {
-//                print("Document successfully removed!")
-//            }
-//        }
-//
-//        //removing document from local docs
-//        for doc in 0...self.docs.count-1 {
-//            if docs[doc].id == id{
-//                self.docs.remove(at: doc)
-//                break
-//            }
-//        }
-//    }
-
     func getAllDocs() -> [Document]{
         return docs
     }
@@ -272,6 +182,31 @@ class APIManager{
         }
         return nil
     }
+
+    //    MARK: - Create,Update,Delete documents
+    
+    private func createNewUserFiles(fullname: String, address: String){
+        
+        let db = configureFB()
+        if appSettings.userID != ""{
+            
+            let data: [String : Any] = ["fullName": fullname,
+                                        "address" : address,
+                                        "cart" : [""],
+                                        "reviews" : [""]]
+            
+            db.collection("Users").document(appSettings.userID).setData(data)
+        }
+   }
+    
+    private func deleteUserFiles(){
+        let db = configureFB()
+        db.collection("Users").document(appSettings.userID).delete()
+        db.collection("Reviews").document(appSettings.userID).delete()
+    }
+    
+
+
     
 //    MARK: - Registration $ Authorization
     
@@ -285,7 +220,6 @@ class APIManager{
                 self.appSettings.userID = authResult?.user.uid ?? ""
                 self.appSettings.signedIn = true
                 self.appSettings.userEmail = email
-                self.getDocuments()
                 completion[0](true)
                 
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
