@@ -9,46 +9,60 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    
-    @IBOutlet weak var imageScrollView: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    private let fireAPI = APIManager()
+//    var docID = ""
+    var doc = Document(category: "", subCategory: "", documentID: "", name: "", price: 0, description: "")
     
-    var docID = ""
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let doc = fireAPI.getDocForID(id: docID)
+//                var images: [UIImage] = []
+//
+//                for image in images {
+//
+//                    let imageView = UIImageView(image: image)
+//                    imageView.backgroundColor = self.view.backgroundColor
+//                    imageView.frame = CGRect(x: imageScrollView.contentSize.width, y: 0, width: imageScrollView.frame.width, height: imageScrollView.frame.height)
+//                    imageView.contentMode = .scaleAspectFit
+//
+//                    imageScrollView.contentSize.width += imageView.frame.width
+//                    imageScrollView.addSubview(imageView)
+//                    imageScrollView.backgroundColor = self.view.backgroundColor
+//                }
         
-        let images: [UIImage] = [UIImage(named: "111")!, UIImage(named: "222")!,UIImage(named: "33")!,UIImage(named: "44")!,UIImage(named: "55")!]
-
-        for image in images {
-            
-            let imageView = UIImageView(image: image)
-            imageView.backgroundColor = self.view.backgroundColor
-            imageView.frame = CGRect(x: scrollView.contentSize.width, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
-            imageView.contentMode = .scaleAspectFit
-            
-            scrollView.contentSize.width += imageView.frame.width
-            scrollView.addSubview(imageView)
-            imageScrollView.backgroundColor = self.view.backgroundColor
-        }
         
-//        nameLabel.text = doc?.name
-//        priceLabel.text = "\(doc?.price ?? 0)"
-//        descriptionLabel.text = doc?.description
-        nameLabel.text = "namelabel"
-        priceLabel.text = "pricelabel"
-        descriptionLabel.text = "text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample"
+                    nameLabel.text = doc.name
+                    priceLabel.text = String(doc.price)
+                    descriptionLabel.text = doc.description
+        
+        
+                APIManager.shared.getProductImages(category: doc.category, subCategory: doc.subCategory, docID: doc.documentID) { images in
+                    print(images?.count)
+                    print(self.doc.category)
+                    for image in images! {
+                        print("iuiouiouiouio")
+                        let imageView = UIImageView(image: image)
+                        imageView.backgroundColor = .white
+                        imageView.frame = CGRect(x: self.imageScrollView.contentSize.width, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+                        imageView.contentMode = .scaleAspectFit
+            
+                        self.imageScrollView.contentSize.width += imageView.frame.width
+                        self.imageScrollView.addSubview(imageView)
+                    }
+                }
+        
     }
-    
+       
+    func configureVC(doc: Document) {
+        self.doc = doc
+    }
 
+    
 }
 
 extension DetailViewController: UIScrollViewDelegate {

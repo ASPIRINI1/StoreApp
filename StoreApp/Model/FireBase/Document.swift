@@ -10,13 +10,17 @@ import UIKit
 
 class Document {
     
-    init(documentID: String, name: String, price: Int, description: String){
+    init(category: String, subCategory: String, documentID: String, name: String, price: Int, description: String){
+        self.category = category
+        self.subCategory = subCategory
         self.documentID = documentID
         self.name = name
         self.price = price
         self.description = description
     }
     
+    var category = ""
+    var subCategory = ""
     var documentID = ""
     var name = ""
     var price = 0

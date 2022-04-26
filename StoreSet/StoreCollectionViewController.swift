@@ -9,6 +9,7 @@ import UIKit
 
 class StoreCollectionViewController: UICollectionViewController {
     
+    
     private var products: [Document] = []
     private var prodImages: [UIImage] = []
     
@@ -47,23 +48,20 @@ class StoreCollectionViewController: UICollectionViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
 
-        
+         
         APIManager.shared.getProducts(category: "phones", subCategoriy: "smartphones", completion: { docs in
             
             self.products = docs
             
             for doc in docs {
-                APIManager.shared.getOneImage(category: "phones", subCategory: "smartphones", docID: doc.documentID) { image in
+                APIManager.shared.getFirstImage(category: "phones", subCategory: "smartphones", docID: doc.documentID) {
+                    
+                    image in
                     doc.img = image
                     self.collectionView.reloadData()
                 }
             }
         })
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print(products.count)
-        print(prodImages.count)
     }
     
 //    MARK: - CategoryButton
@@ -106,12 +104,9 @@ class StoreCollectionViewController: UICollectionViewController {
     
 //    MARK: - Seque
     
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-        
-        let detailVC = DetailViewController()
-        detailVC.docID = products[selectedIndex.1].documentID
-        
-        navigationController?.pushViewController(detailVC, animated: true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailVC = segue.destination as! DetailViewController
+        detailVC.configureVC(doc: products[selectedIndex.1])
     }
     
 //    MARK: - Notifications
@@ -167,9 +162,9 @@ class StoreCollectionViewController: UICollectionViewController {
     
 //    MARK: - UICollectionViewDelegate
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndex.0 = indexPath.section
+    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool { selectedIndex.0 = indexPath.section
         selectedIndex.1 = indexPath.row
+        return true
     }
     
 }

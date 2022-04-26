@@ -50,20 +50,20 @@ class APIManager{
                 for document in querySnapshot!.documents{
                     
                     NotificationCenter.default.post(name: NSNotification.Name( "LoadingDocs"), object: nil)
-//                    self.docs.removeAll()
+    //                   self.docs.removeAll()
                     
-                    products.append(Document(documentID: document.documentID ,
-                                             name: document.get("name") as! String,
-                                             price: document.get("price") as! Int,
-                                             description: document.get("description") as? String ?? "no description"))
+                    products.append(Document(category: category, subCategory: subCategoriy, documentID:document.documentID ,
+                                                name: document.get("name") as! String,
+                                                price: document.get("price") as! Int,
+                                                description: document.get("description") as? String ?? "no description"))
                 }
                 completion(products)
                 NotificationCenter.default.post(name: NSNotification.Name( "DocsLoaded"), object: nil)
             }
-         }
+            }
     }
     
-    func getImageForProductIntoMemory(docID: String ,category: String, subCategory: String, completion: @escaping ([UIImage]?) -> ()) {
+    func getProductImages(category: String, subCategory: String, docID: String, completion: @escaping ([UIImage]?) -> ()) {
         
         
         let productsRef = storageRef.child(category + "/" + subCategory).child(docID)
@@ -71,7 +71,6 @@ class APIManager{
         
         productsRef.listAll(completion: { imageList, error in
             if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
-            
             for image in imageList.items {
                 image.getData(maxSize: 1 * 1024 * 1024) { data, error in //??
                     
@@ -79,14 +78,14 @@ class APIManager{
                     
                     if data != nil {
                         images?.append(UIImage(data: data!)!)
-                        completion(images)
                     }
                 }
             }
+            
         })
     }
     
-    func getOneImage(category: String, subCategory: String, docID: String, completion: @escaping (UIImage) -> ()) {
+    func getFirstImage(category: String, subCategory: String, docID: String, completion: @escaping (UIImage) -> ()) {
         
         let productsRef = storageRef.child(category + "/" + subCategory).child(docID)
         
