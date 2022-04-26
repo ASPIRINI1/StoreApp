@@ -9,15 +9,14 @@ import UIKit
 
 class StoreCollectionViewController: UICollectionViewController {
     
-    let fireAPI = APIManager()
-    let coreData = CoreDataManager()
-    var products: [Document] = []
+    private var products: [Document] = []
+    private var prodImages: [UIImage] = []
     
 //    CategoryMenu variables
-    let categoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryTVC") as! CategoryTableViewController
+    private let categoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryTVC") as! CategoryTableViewController
     
 //     variable for opening detaleVC
-    var selectedIndex = (-1,-1)
+    private var selectedIndex = (-1,-1)
     
 //     searchBar variables
     private let searchController = UISearchController(searchResultsController: nil)

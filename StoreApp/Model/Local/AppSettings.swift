@@ -11,6 +11,11 @@ import CoreLocation
 class AppSettings{
     
     let userDefaults = UserDefaults.standard
+    static let shared = AppSettings()
+    
+    init (){
+        
+    }
     
     private enum SettingsKeys: String{
         case userEmail = "userEmail"
@@ -20,7 +25,6 @@ class AppSettings{
         case userID = "userID"
         case categories = "categories"
         case shopList = "shopList"
-        case userCart = "userCart"
     }
     
     var userEmail: String{
@@ -88,15 +92,6 @@ class AppSettings{
         }
         set {
             userDefaults.set(newValue, forKey: SettingsKeys.shopList.rawValue)
-        }
-    }
-    
-    var userCart: [String]{
-        get {
-            return userDefaults.stringArray(forKey: SettingsKeys.userCart.rawValue) ?? [""]
-        }
-        set {
-            userDefaults.set(newValue, forKey: SettingsKeys.userCart.rawValue)
         }
     }
     

@@ -14,12 +14,11 @@ class APIManager{
     //    MARK: - Property
     
     static let shared = APIManager()
-    var docs: [Document] = []
-    private var appSettings = AppSettings()
-    private var categories: [[String]] = []
+    private lazy var db = configureFB()
+    private lazy var storage = Storage.storage()
+    private lazy var storageRef = storage.reference()
     
     init() {
-//        getDocuments()
     }
     
     
@@ -33,31 +32,11 @@ class APIManager{
         return db
     }
     
-//    private func getDocuments(){
-//
-////        if appSettings.userID != ""{
-//
-//            let db = configureFB()
-//        db.collection("Products").getDocuments()  { (querySnapshot, err) in
-//
-//                 if let err = err {
-//                     print("Error getting documents: \(err)")
-//                 } else {
-//                     for document in querySnapshot!.documents {
-//                         NotificationCenter.default.post(name: NSNotification.Name("LoadingNotes"), object: nil)
-//
-//                     }
-//                     NotificationCenter.default.post(name: NSNotification.Name("NotesLoaded"), object: nil)
-//                 }
-//             }
-////        }
-//     }
     
 //    MARK: - Getters/Setters
     
-    func getProductsForCategory(category: String, subCategoriy: String, completion: @escaping ([Document]) -> () ) {
+    func getProducts(category: String, subCategoriy: String, completion: @escaping ([Document]) -> () ) {
         
-        let db = configureFB()
         db.collection("Products").document(category).collection(subCategoriy).getDocuments() { querySnapshot, error in
             
             if let err = error{
@@ -86,8 +65,7 @@ class APIManager{
     
     func getImageForProductIntoMemory(docID: String ,category: String, subCategory: String, completion: @escaping ([UIImage]?) -> ()) {
         
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
+        
         let productsRef = storageRef.child(category + "/" + subCategory).child(docID)
         var images: [UIImage]? = []
         
@@ -110,42 +88,40 @@ class APIManager{
     
     func getOneImage(category: String, subCategory: String, docID: String, completion: @escaping (UIImage) -> ()) {
         
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
         let productsRef = storageRef.child(category + "/" + subCategory).child(docID)
-        var image = UIImage()
         
         productsRef.listAll(completion: { imageList, error in
             if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
             
-            imageList.items[0].getData(maxSize: 99 * 1024 * 1024) { data, error in
-                image = UIImage(data: data!)!
-                completion(image)
+            if !imageList.items.isEmpty {
+                
+                imageList.items[0].getData(maxSize: 99 * 1024 * 1024) { data, error in
+                    completion(UIImage(data: data!)!)
+                }
             }
         })
     }
 
     
     func getCategories(completion: @escaping ([[String]]) -> ()) {
-        
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
+
+        var categories: [[String]] = []
         
         storageRef.listAll { storageListResult, err in
             
             if err == nil {
                 for category in storageListResult.prefixes {
                     
-                    self.categories.append([category.name])
+                    categories.append([category.name])
                     
-                    storageRef.child(self.categories.last!.first!).listAll { result, err in
+                    self.storageRef.child(categories.last!.first!).listAll { result, err in
                         if err != nil { print("Error getting SubCategory") ; return }
                         
                         for subCategory in result.prefixes {
-                            self.categories[self.categories.endIndex-1].append(subCategory.name)
-                            self.appSettings.categories = self.categories
+                            categories[categories.endIndex-1].append(subCategory.name)
                         }
-                        completion(self.appSettings.categories)
+                        AppSettings.shared.categories = categories
+                        completion(AppSettings.shared.categories)
                     }
                 }
                 
@@ -157,52 +133,50 @@ class APIManager{
     
     func getUserCart() {
         
-        if appSettings.userID != "" {
-            let db = configureFB()
+        if AppSettings.shared.userID != "" {
             
-            db.collection("Users").document(appSettings.userID).getDocument { documentSnapshot, error in
+            db.collection("Users").document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
                 if error != nil { print("Error getting user cart: ", error!)}
                 if documentSnapshot != nil {
-                    self.appSettings.userCart = documentSnapshot?.get("cart") as! [String]
+//                    self.appSettings.userCart = documentSnapshot?.get("cart") as! [String]
                 }
             }
         }
     }
     
-    func getAllDocs() -> [Document]{
-        return docs
-    }
+//    func getAllDocs() -> [Document]{
+//        return docs
+//    }
     
-    func getDocForID(id: String) -> Document?{
-        
-        for doc in docs {
-            if doc.documentID == id{
-                return doc
-            }
-        }
-        return nil
-    }
+//    func getDocForID(id: String) -> Document?{
+//
+//        for doc in docs {
+//            if doc.documentID == id{
+//                return doc
+//            }
+//        }
+//        return nil
+//    }
 
     //    MARK: - Create,Update,Delete documents
     
     private func createNewUserFiles(fullname: String, address: String){
         
-        let db = configureFB()
-        if appSettings.userID != ""{
+        if AppSettings.shared.userID != ""{
             
             let data: [String : Any] = ["fullName": fullname,
                                         "address" : address,
                                         "cart" : [""],
                                         "reviews" : [""]]
             
-            db.collection("Users").document(appSettings.userID).setData(data)
+            db.collection("Users").document(AppSettings.shared.userID).setData(data)
         }
    }
     
     private func deleteUserFiles(){
-        let db = configureFB()
-        db.collection("Users").document(appSettings.userID).delete()
-        db.collection("Reviews").document(appSettings.userID).delete()
+        
+        db.collection("Users").document(AppSettings.shared.userID).delete()
+        db.collection("Reviews").document(AppSettings.shared.userID).delete()
     }
     
 
@@ -213,13 +187,15 @@ class APIManager{
     func signIn(email: String, password: String, completion: (Bool) -> ()...){
         
         Auth.auth().signIn(withEmail: email, password: password) { [] authResult, error in
+            
             if error != nil {
                 print("SignIn error")
                 completion[0](false)
+                
             } else {
-                self.appSettings.userID = authResult?.user.uid ?? ""
-                self.appSettings.signedIn = true
-                self.appSettings.userEmail = email
+                AppSettings.shared.userID = authResult?.user.uid ?? ""
+                AppSettings.shared.signedIn = true
+                AppSettings.shared.userEmail = email
                 completion[0](true)
                 
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
@@ -229,34 +205,30 @@ class APIManager{
     
     func signOut(){
         
-        let firebaseAuth = Auth.auth()
        do {
-         try firebaseAuth.signOut()
-       } catch let signOutError as NSError {
-         print("Error signing out: %@", signOutError)
-           return
-       }
+           
+           try Auth.auth().signOut()
+           
+       } catch let signOutError as NSError { print("Error signing out: %@", signOutError); return }
         
-        self.appSettings.signedIn = false
-        self.appSettings.userEmail = ""
-        self.appSettings.userID = ""
+        AppSettings.shared.signedIn = false
+        AppSettings.shared.userEmail = ""
+        AppSettings.shared.userID = ""
         
         NotificationCenter.default.post(name: NSNotification.Name("SignedOut"), object: nil)
     }
     
     func registration(email: String, password: String, completion: (Bool) -> ()...){
         
-        let firebaseAuth = Auth.auth()
-        
-        firebaseAuth.createUser(withEmail: email, password: password) { authResult, error in
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if  (error != nil){
                 print("Registration error:", error!)
                 completion[0](false)
                 
             } else {
-                self.appSettings.userID = authResult?.user.uid ?? ""
-                self.appSettings.userEmail = email
-                self.appSettings.signedIn = true
+                AppSettings.shared.userID = authResult?.user.uid ?? ""
+                AppSettings.shared.userEmail = email
+                AppSettings.shared.signedIn = true
                 
                 completion[0](true)
 
@@ -268,6 +240,7 @@ class APIManager{
     }
     
     func deleteAccount() {
+        
         let user = Auth.auth().currentUser
 
         user?.delete { error in
