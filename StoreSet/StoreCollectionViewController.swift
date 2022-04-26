@@ -38,16 +38,6 @@ class StoreCollectionViewController: UICollectionViewController {
         
         super.viewDidLoad()
         notificationsSetUp()
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
-//        fireAPI.getProductsForCategory(category: "keyboards", subCategoriy: "keyboards")
-        
-//        NotificationCenter.default.addObserver(forName: NSNotification.Name("DocsLoaded"), object: nil, queue: nil) { _ in
-//            self.products = self.fireAPI.getAllDocs()
-//            print(self.products.count)
-//            print(self.products.first)
-//            self.collectionView.reloadData()
-//        }
         
         //MARK: setUP searchController
         
@@ -56,17 +46,24 @@ class StoreCollectionViewController: UICollectionViewController {
         searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "")
         navigationItem.searchController = searchController
         definesPresentationContext = true
+
         
-        
-        products.removeAll()
-        for i in 0...10{
-//            products.append(Document(documentID: "prod"+"\(i)", name:  "product"+"\(i)", price: 100+i, img: "11", description:  "description of product: "+"\(i)"))
-            products.append(Document(documentID: "prod" + "(\(i)", name: "name" + "(\(i)", price: 100 + i, description: "description of product" + "(\(i)"))
-        }
-        fireAPI.docs.removeAll()
-        fireAPI.docs = products
-        self.collectionView.reloadData()
-        
+        APIManager.shared.getProducts(category: "phones", subCategoriy: "smartphones", completion: { docs in
+            
+            self.products = docs
+            
+            for doc in docs {
+                APIManager.shared.getOneImage(category: "phones", subCategory: "smartphones", docID: doc.documentID) { image in
+                    doc.img = image
+                    self.collectionView.reloadData()
+                }
+            }
+        })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print(products.count)
+        print(prodImages.count)
     }
     
 //    MARK: - CategoryButton
@@ -143,11 +140,11 @@ class StoreCollectionViewController: UICollectionViewController {
         if isFiltering {
             return filtredProducts.count
         }
-//        return products.count
-        return coreData.getAllItems().count
+        return products.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoreCell", for: indexPath) as! StoreCollectionViewCell
         
         cell.layer.cornerRadius = CGFloat(5)
@@ -158,12 +155,10 @@ class StoreCollectionViewController: UICollectionViewController {
             cell.image.image = UIImage(named: "11")
         } else {
             
-//            cell.name.text = products[indexPath.row].name
-//            cell.price.text = "\(products[indexPath.row].price)"
-//            cell.image.image = UIImage(named: "11")
-            cell.name.text = coreData.getAllItems()[indexPath.row].name
-            cell.price.text = String(coreData.getAllItems()[indexPath.row].price)
-            cell.image.image = coreData.getAllItems()[indexPath.row].image
+            cell.name.text = products[indexPath.row].name
+            cell.price.text = "\(products[indexPath.row].price)"
+            cell.image.image = products[indexPath.row].img
+            
         }
 
     

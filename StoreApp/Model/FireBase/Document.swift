@@ -14,18 +14,17 @@ class Document {
         self.documentID = documentID
         self.name = name
         self.price = price
-//        self.img = img
         self.description = description
     }
     
     var documentID = ""
     var name = ""
     var price = 0
-    var img: [UIImage] = []
+    var img = UIImage()
     var description = ""
     
-    func setImage(images:[UIImage]) {
-        img = images
+    func setImage(image: UIImage) {
+        img = image
     }
 
 }

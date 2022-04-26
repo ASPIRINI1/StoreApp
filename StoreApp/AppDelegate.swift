@@ -11,48 +11,38 @@ import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-
 
     static var isCategoryVC = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
-        let coreData = CoreDataManager()
-        let fireAPI = APIManager()
-        
-        fireAPI.getCategories { categories in
-            
-            for category in categories {
-                for subCategory in category {
-                    
-                    if subCategory == category[0] {
-                        continue
-                    }
-                    
-                    fireAPI.getProductsForCategory(category: category[0], subCategoriy: subCategory) { documents in
-                        
-                        for doc in documents {
-                            
-                            fireAPI.getOneImage(category: category[0], subCategory: subCategory, docID: doc.documentID) { image in
-                                
-                                coreData.addToCorData(id: doc.documentID, name: doc.name, price: doc.price, category: category[0], subCategory: subCategory, image: image)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        
-        
-//        for doc in fireAPI.getAllDocs() {
-//            fireAPI.getOneImage(category: "keyboards", subCategory: "office", docID: "first") { image in
-////                coreData.addToCorData(id: doc.documentID, name: doc.name, price: doc.price, image: (image ?? UIImage(named: "NoImageIcon"))!)
-////                coreData.addToCorData(id: doc.documentID, name: doc.name, price: doc.price, category: , subCategory: <#T##String?#>, image: <#T##UIImage#>)
+//        let coreData = CoreDataManager()
+//        let fireAPI = APIManager()
+//
+//        fireAPI.getCategories { categories in
+//
+//            for category in categories {
+//                for subCategory in category {
+//
+//                    if subCategory == category[0] {
+//                        continue
+//                    }
+//
+//                    fireAPI.getProductsForCategory(category: category[0], subCategoriy: subCategory) { documents in
+//
+//                        for doc in documents {
+//
+//                            fireAPI.getOneImage(category: category[0], subCategory: subCategory, docID: doc.documentID) { image in
+//
+//                                coreData.addToCorData(id: doc.documentID, name: doc.name, price: doc.price, category: category[0], subCategory: subCategory, image: image)
+//                            }
+//                        }
+//                    }
+//                }
 //            }
 //        }
+        
         return true
     }
 
