@@ -15,54 +15,46 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-//    var docID = ""
     var doc = Document(category: "", subCategory: "", documentID: "", name: "", price: 0, description: "")
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-//                var images: [UIImage] = []
-//
-//                for image in images {
-//
-//                    let imageView = UIImageView(image: image)
-//                    imageView.backgroundColor = self.view.backgroundColor
-//                    imageView.frame = CGRect(x: imageScrollView.contentSize.width, y: 0, width: imageScrollView.frame.width, height: imageScrollView.frame.height)
-//                    imageView.contentMode = .scaleAspectFit
-//
-//                    imageScrollView.contentSize.width += imageView.frame.width
-//                    imageScrollView.addSubview(imageView)
-//                    imageScrollView.backgroundColor = self.view.backgroundColor
-//                }
-        
-        
-                    nameLabel.text = doc.name
-                    priceLabel.text = String(doc.price)
+        nameLabel.text = doc.name
+        priceLabel.text = String(doc.price)
         
         APIManager.shared.getDecscription(doc: doc, completion: { description in
             self.descriptionLabel.text = description
         })
         
-        let firstImage = UIImageView(frame: CGRect(x: imageScrollView.contentSize.width,
-                                                   y: 0, width: imageScrollView.frame.width,
-                                                   height: imageScrollView.frame.height))
-        firstImage.contentMode = .scaleAspectFit
-        firstImage.image = doc.img
-        imageScrollView.addSubview(firstImage)
+        let firstImageView = UIImageView(image: doc.image)
+        
+        
+        firstImageView.backgroundColor = .white
+        firstImageView.contentMode = .scaleAspectFit
+        
+        imageScrollView.contentSize.width += imageScrollView.frame.width
+        imageScrollView.addSubview(firstImageView)
+
+        
         
                     APIManager.shared.getProductImages(doc: doc) { images in
                         
+                        
+                        
                     for image in images! {
+                        
                         let imageView = UIImageView(image: image)
-                        imageView.backgroundColor = .white
+                        
                         imageView.frame = CGRect(x: self.imageScrollView.contentSize.width, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+                        imageView.backgroundColor = .white
                         imageView.contentMode = .scaleAspectFit
-            
+                        
                         self.imageScrollView.contentSize.width += imageView.frame.width
                         self.imageScrollView.addSubview(imageView)
                     }
                 }
-        
     }
        
     func configureVC(doc: Document) {

@@ -57,7 +57,7 @@ class StoreCollectionViewController: UICollectionViewController {
                 APIManager.shared.getFirstImage(category: "phones", subCategory: "smartphones", docID: doc.documentID) {
                     
                     image in
-                    doc.img = image
+                    doc.image = image
                     self.collectionView.reloadData()
                 }
             }
@@ -152,7 +152,7 @@ class StoreCollectionViewController: UICollectionViewController {
             
             cell.name.text = products[indexPath.row].name
             cell.price.text = "\(products[indexPath.row].price)"
-            cell.image.image = products[indexPath.row].img
+            cell.image.image = products[indexPath.row].image
             
         }
 
