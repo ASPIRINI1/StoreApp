@@ -54,12 +54,10 @@ class StoreCollectionViewController: UICollectionViewController {
             self.products = docs
             
             for doc in docs {
-                APIManager.shared.getFirstImage(category: "phones", subCategory: "smartphones", docID: doc.documentID) {
-                    
-                    image in
+                APIManager.shared.getFirstImage(document: doc, completion:{ image in
                     doc.image = image
                     self.collectionView.reloadData()
-                }
+                })
             }
         })
     }
@@ -106,7 +104,7 @@ class StoreCollectionViewController: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailVC = segue.destination as! DetailViewController
-        detailVC.configureVC(doc: products[selectedIndex.1])
+        detailVC.setDocument(docoment: products[selectedIndex.1])
     }
     
 //    MARK: - Notifications

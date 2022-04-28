@@ -99,9 +99,9 @@ class APIManager{
         })
     }
     
-    func getFirstImage(category: String, subCategory: String, docID: String, completion: @escaping (UIImage) -> ()) {
+    func getFirstImage(document: Document, completion: @escaping (UIImage) -> ()) {
         
-        let productsRef = storageRef.child(category + "/" + subCategory).child(docID)
+        let productsRef = storageRef.child(document.category + "/" + document.subCategory).child(document.documentID)
         
         productsRef.listAll(completion: { imageList, error in
             if (error != nil) { print("Error getting image for product: ", error ?? ""); return }

@@ -213,6 +213,9 @@
                                                             <imageReference key="image" image="cart.badge.plus" catalog="system" renderingMode="original"/>
                                                             <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="addToCartButtonAction:" destination="lfK-JM-0Dx" eventType="touchUpInside" id="c9Z-AR-oQ4"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tC-t8-Gb2">
                                                         <rect key="frame" x="139.5" y="0.0" width="119" height="48"/>
@@ -220,6 +223,7 @@
                                                             <color key="baseBackgroundColor" red="0.94328004119999997" green="0.46559740999999999" blue="0.1769228803" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </buttonConfiguration>
                                                         <connections>
+                                                            <action selector="byNowButtonAction:" destination="lfK-JM-0Dx" eventType="touchUpInside" id="TqP-Mq-lQZ"/>
                                                             <segue destination="zSy-kL-IHK" kind="push" id="5ne-in-wHc"/>
                                                         </connections>
                                                     </button>
@@ -231,6 +235,9 @@
                                                                 <color key="backgroundColor" systemColor="systemCyanColor"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="reviewsButtonAction:" destination="lfK-JM-0Dx" eventType="touchUpInside" id="MHr-WZ-qsw"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -278,6 +285,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="qdt-tY-MKM"/>
                     <connections>
+                        <outlet property="addToCartButton" destination="exM-kE-SZ8" id="rBp-Tf-coP"/>
                         <outlet property="descriptionLabel" destination="wMa-SV-WHv" id="uCN-FK-zhV"/>
                         <outlet property="imageScrollView" destination="sM3-mR-l6j" id="bb6-OT-S3i"/>
                         <outlet property="nameLabel" destination="GTL-dm-mIc" id="rga-f2-aVg"/>
