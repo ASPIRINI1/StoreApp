@@ -62,11 +62,21 @@ class APIManager{
             }
             }
     }
+    func getDecscription(doc: Document, completion: @escaping (String) -> ()) {
+        
+        db.collection("Products").document(doc.category).collection(doc.subCategory).document(doc.documentID).getDocument { documentSnapshot, error in
+            if error != nil { print("Getting description error: ", error!)}
+            
+            if documentSnapshot != nil {
+                completion(documentSnapshot?.get("decription") as! String)
+            }
+        }
+    }
     
-    func getProductImages(category: String, subCategory: String, docID: String, completion: @escaping ([UIImage]?) -> ()) {
+    func getProductImages(doc: Document, completion: @escaping ([UIImage]?) -> ()) {
         
         
-        let productsRef = storageRef.child(category + "/" + subCategory).child(docID)
+        let productsRef = storageRef.child(doc.category + "/" + doc.subCategory).child(doc.documentID)
         var images: [UIImage]? = []
         
         productsRef.listAll(completion: { imageList, error in
@@ -78,6 +88,10 @@ class APIManager{
                     
                     if data != nil {
                         images?.append(UIImage(data: data!)!)
+                        
+                    }
+                    if imageList.items.count == images?.count {
+                        completion(images)
                     }
                 }
             }

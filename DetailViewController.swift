@@ -38,14 +38,21 @@ class DetailViewController: UIViewController {
         
                     nameLabel.text = doc.name
                     priceLabel.text = String(doc.price)
-                    descriptionLabel.text = doc.description
         
+        APIManager.shared.getDecscription(doc: doc, completion: { description in
+            self.descriptionLabel.text = description
+        })
         
-                APIManager.shared.getProductImages(category: doc.category, subCategory: doc.subCategory, docID: doc.documentID) { images in
-                    print(images?.count)
-                    print(self.doc.category)
+        let firstImage = UIImageView(frame: CGRect(x: imageScrollView.contentSize.width,
+                                                   y: 0, width: imageScrollView.frame.width,
+                                                   height: imageScrollView.frame.height))
+        firstImage.contentMode = .scaleAspectFit
+        firstImage.image = doc.img
+        imageScrollView.addSubview(firstImage)
+        
+                    APIManager.shared.getProductImages(doc: doc) { images in
+                        
                     for image in images! {
-                        print("iuiouiouiouio")
                         let imageView = UIImageView(image: image)
                         imageView.backgroundColor = .white
                         imageView.frame = CGRect(x: self.imageScrollView.contentSize.width, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
