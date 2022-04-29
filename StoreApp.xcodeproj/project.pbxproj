@@ -186,8 +186,8 @@
 		DEC3F1D327F8C20D00EE6572 /* CategoryMenu */ = {
 			isa = PBXGroup;
 			children = (
-				DEC3F1D627F8C23900EE6572 /* CategoryTableViewCell.swift */,
 				DE6A9148280B2284005820E3 /* CategoryTableViewController.swift */,
+				DEC3F1D627F8C23900EE6572 /* CategoryTableViewCell.swift */,
 			);
 			path = CategoryMenu;
 			sourceTree = "<group>";
@@ -206,8 +206,8 @@
 		DEC83E682804C5C300ADE83C /* CartSet */ = {
 			isa = PBXGroup;
 			children = (
-				DEC83E6B2804C5ED00ADE83C /* CartTableViewCell.swift */,
 				DEC83E6D2804C5FE00ADE83C /* CartTableViewController.swift */,
+				DEC83E6B2804C5ED00ADE83C /* CartTableViewCell.swift */,
 			);
 			path = CartSet;
 			sourceTree = "<group>";

@@ -14,6 +14,7 @@ class APIManager{
     //    MARK: - Property
     
     static let shared = APIManager()
+    
     private lazy var db = configureFB()
     private lazy var storage = Storage.storage()
     private lazy var storageRef = storage.reference()
@@ -108,7 +109,7 @@ class APIManager{
             
             if !imageList.items.isEmpty {
                 
-                imageList.items[0].getData(maxSize: 99 * 1024 * 1024) { data, error in
+                imageList.items[0].getData(maxSize: 1 * 1024 * 1024) { data, error in
                     completion(UIImage(data: data!)!)
                 }
             }
@@ -144,32 +145,70 @@ class APIManager{
         }
     }
     
-    func getUserCart() {
+    func addToCart(document: Document) {
+        
+        db.collection("Users").document(AppSettings.shared.userID).updateData(
+            ["cart" : FieldValue.arrayUnion(
+                [document.category + "/" + document.subCategory  + "/" + document.documentID]
+            )]) { err in
+                
+            if let err = err {
+                print("Error writing document: \(err)")
+            }
+        }
+    }
+    
+    func getUserCart(completion: @escaping ([Document]) -> ()) {
         
         if AppSettings.shared.userID != "" {
             
-            db.collection("Users").document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
+            db.collection("Users").document(AppSettings.shared.userID).getDocument { cartSnapshot, error in
                 if error != nil { print("Error getting user cart: ", error!)}
-                if documentSnapshot != nil {
-//                    self.appSettings.userCart = documentSnapshot?.get("cart") as! [String]
+                var cart: [String] = []
+                
+                if cartSnapshot != nil {
+                    cart = cartSnapshot!.get("cart") as! [String]
+                    var docs: [Document] = []
+//                    let c = cart.first?.firstIndex(of: "/").hashValue
+//                    let category = cart.prefix(upTo: c)
+//                    let s = cart.lastIndex(of: "/")
+//                    let subcategory = cart.suffix(from: s!)
+                    
+                    for path in cart {
+                        self.db.collection("Products").document(path).getDocument { doc, error in
+                            
+                            if error != nil { print("Error getting docs for user cart: ", error!)}
+                            
+                            if doc != nil {
+                                docs.append(Document(category: category as! String,
+                                                     subCategory: subcategory as! String,
+                                                     documentID: doc!.documentID,
+                                                     name: doc!.get("name") as! String,
+                                                     price: doc!.get("price") as! Int,
+                                                     description: doc!.get("decription") as! String))
+                            }
+                            
+                            if docs.count == cart.count {
+                                completion(docs)
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     
-//    func getAllDocs() -> [Document]{
-//        return docs
-//    }
-    
-//    func getDocForID(id: String) -> Document?{
-//
-//        for doc in docs {
-//            if doc.documentID == id{
-//                return doc
-//            }
-//        }
-//        return nil
-//    }
+    func removeFromCart(document: Document) {
+        
+        db.collection("Users").document(AppSettings.shared.userID).updateData(
+            ["cart" : FieldValue.arrayRemove([document.category + "/" + document.subCategory  + "/" + document.documentID])]) { err in
+                
+                if let err = err {
+                    print("Error writing document: \(err)")
+                }
+            }
+    }
+
 
     //    MARK: - Create,Update,Delete documents
     

@@ -40,7 +40,7 @@ class StoreCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         notificationsSetUp()
         
-        //MARK: setUP searchController
+        //MARK: Setup searchController
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
