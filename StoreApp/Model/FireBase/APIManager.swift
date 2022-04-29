@@ -36,6 +36,8 @@ class APIManager{
     
 //    MARK: - Getters/Setters
     
+//    MARK: Products
+    
     func getProducts(category: String, subCategoriy: String, completion: @escaping ([Document]) -> () ) {
         
         db.collection("Products").document(category).collection(subCategoriy).getDocuments() { querySnapshot, error in
@@ -63,6 +65,7 @@ class APIManager{
             }
             }
     }
+    
     func getDecscription(doc: Document, completion: @escaping (String) -> ()) {
         
         db.collection("Products").document(doc.category).collection(doc.subCategory).document(doc.documentID).getDocument { documentSnapshot, error in
@@ -73,6 +76,8 @@ class APIManager{
             }
         }
     }
+    
+//    MARK: Images
     
     func getProductImages(doc: Document, completion: @escaping ([UIImage]?) -> ()) {
         
@@ -117,6 +122,8 @@ class APIManager{
     }
 
     
+//    MARK: Categories
+    
     func getCategories(completion: @escaping ([[String]]) -> ()) {
 
         var categories: [[String]] = []
@@ -144,6 +151,8 @@ class APIManager{
             }
         }
     }
+    
+//    MARK: Cart
     
     func addToCart(document: Document) {
         
@@ -180,8 +189,8 @@ class APIManager{
                             if error != nil { print("Error getting docs for user cart: ", error!)}
                             
                             if doc != nil {
-                                docs.append(Document(category: category as! String,
-                                                     subCategory: subcategory as! String,
+                                docs.append(Document(category: "",
+                                                     subCategory: "",
                                                      documentID: doc!.documentID,
                                                      name: doc!.get("name") as! String,
                                                      price: doc!.get("price") as! Int,
@@ -215,7 +224,6 @@ class APIManager{
     private func createNewUserFiles(fullname: String, address: String){
         
         if AppSettings.shared.userID != ""{
-            
             let data: [String : Any] = ["fullName": fullname,
                                         "address" : address,
                                         "cart" : [""],
@@ -258,7 +266,6 @@ class APIManager{
     func signOut(){
         
        do {
-           
            try Auth.auth().signOut()
            
        } catch let signOutError as NSError { print("Error signing out: %@", signOutError); return }
