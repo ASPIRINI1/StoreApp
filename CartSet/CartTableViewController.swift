@@ -8,15 +8,25 @@
 import UIKit
 
 class CartTableViewController: UITableViewController {
+    
+    private var cart: [Document] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        if AppSettings.shared.userID != "" {
+            APIManager.shared.getUserCart { docs in
+                self.cart = docs
+                self.tableView.reloadData()
+                for product in self.cart {
+                    APIManager.shared.getFirstImage(document: product) { image in
+                        product.image = image
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+       
     }
 
     @IBAction func checkoutButtonAction(_ sender: Any) {
@@ -35,18 +45,17 @@ class CartTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return cart.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartTableViewCell
         
-//        cell.prodImage.image =
-//        cell.nameLabel.text =
-//        cell.priceAlbel.text =
-//        cell.countLabel.text =
+        cell.prodImage.image = cart[indexPath.row].image
+        cell.nameLabel.text = cart[indexPath.row].name
+        cell.priceAlbel.text = String(cart[indexPath.row].price)
+        cell.countLabel.text = "0"
         
-
         return cell
     }
 
