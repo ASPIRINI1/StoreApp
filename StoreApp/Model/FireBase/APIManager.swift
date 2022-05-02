@@ -178,10 +178,7 @@ class APIManager{
                 if cartSnapshot != nil {
                     cart = cartSnapshot!.get("cart") as! [String]
                     var docs: [Document] = []
-//                    let c = cart.first?.firstIndex(of: "/").hashValue
-//                    let category = cart.prefix(upTo: c)
-//                    let s = cart.lastIndex(of: "/")
-//                    let subcategory = cart.suffix(from: s!)
+                   
                     
                     for path in cart {
                         self.db.collection("Products").document(path).getDocument { doc, error in
@@ -189,8 +186,23 @@ class APIManager{
                             if error != nil { print("Error getting docs for user cart: ", error!)}
                             
                             if doc != nil {
-                                docs.append(Document(category: "",
-                                                     subCategory: "",
+                                
+                                var category = ""
+                                var subCategory = ""
+                                
+                                if var stringIndex = path.firstIndex(of: "/") {
+                                    category = String(path.prefix(upTo: stringIndex))
+                                    var sub = path.suffix(from: stringIndex)
+                                    sub.removeFirst()
+                                    
+                                    if let subU = sub.firstIndex(of: "/") {
+                                        stringIndex = subU
+                                        subCategory = String(sub.prefix(upTo: stringIndex))
+                                    }
+                                }
+                                
+                                docs.append(Document(category: category,
+                                                     subCategory: subCategory,
                                                      documentID: doc!.documentID,
                                                      name: doc!.get("name") as! String,
                                                      price: doc!.get("price") as! Int,
