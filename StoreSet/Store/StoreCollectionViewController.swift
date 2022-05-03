@@ -119,8 +119,6 @@ class StoreCollectionViewController: UICollectionViewController {
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("NotesLoaded"), object: nil, queue: nil) { _ in
-//            self.notes = self.FireAPI.getAllNotes()
-//            self.notesTableView.reloadData()
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
         }
@@ -144,12 +142,12 @@ class StoreCollectionViewController: UICollectionViewController {
     
         if isFiltering {
             cell.name.text = filtredProducts[indexPath.row].name
-            cell.price.text = "\(filtredProducts[indexPath.row].price)"
-            cell.image.image = UIImage(named: "11")
+            cell.price.text = "\(filtredProducts[indexPath.row].price)" + NSLocalizedString("Rub", comment: "")
+            cell.image.image = filtredProducts[indexPath.row].image
         } else {
             
             cell.name.text = products[indexPath.row].name
-            cell.price.text = "\(products[indexPath.row].price)"
+            cell.price.text = "\(products[indexPath.row].price)" + NSLocalizedString("Rub", comment: "")
             cell.image.image = products[indexPath.row].image
             
         }
