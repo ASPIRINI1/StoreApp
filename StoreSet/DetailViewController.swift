@@ -29,10 +29,13 @@ class DetailViewController: UIViewController {
         
         if AppSettings.shared.userID != "" {
             APIManager.shared.addToCart(document: doc)
+            
         } else {
+            
             let alert = UIAlertController(title: NSLocalizedString("You must register to add items to your shopping cart.", comment: ""), message: nil, preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .default,handler: { alertAction in
+                
                 self.navigationController?.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthorisationViewController"), animated: true)
             }))
             

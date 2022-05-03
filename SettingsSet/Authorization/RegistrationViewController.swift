@@ -96,15 +96,12 @@ class RegistrationViewController: UIViewController {
     
     func registerNotifications() {
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [self] notif in
-//            let keyboardSize = (notif.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-//            self.view.frame.origin.y -= keyboardSize!.height
             if self.addressTextField.isFirstResponder {
                 self.view.frame.origin.y -= self.addressTextField.frame.height * 2 //?????????
             }
         }
         
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { notif in
-            let keyboardSize = (notif.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
             self.view.frame.origin.y = 0
             
         }
