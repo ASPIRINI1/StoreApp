@@ -1,34 +1,25 @@
 //
-//  OrderingVC.swift
+//  ReviewAddingViewController.swift
 //  StoreApp
 //
-//  Created by Станислав Зверьков on 14.04.2022.
+//  Created by Станислав Зверьков on 03.05.2022.
 //
 
 import UIKit
 
-class OrderingVC: UIViewController {
+class ReviewAddingViewController: UIViewController {
 
-    @IBOutlet weak var fullnameLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var goodsListTableView: UITableView!
-    
-    @IBOutlet weak var paymentMethodsTableView: UITableView!
-    
-    
-    
+    @IBOutlet weak var reviewTextFiled: UITextField!
+    @IBOutlet weak var markSegmentedControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func byButtonAction(_ sender: Any) {
-        
+    @IBAction func addReviewButtonAction(_ sender: Any) {
     }
     
-    @IBAction func changeUserDataButtonAction(_ sender: Any) {
-    }
     /*
     // MARK: - Navigation
 
