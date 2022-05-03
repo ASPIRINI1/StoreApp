@@ -53,7 +53,6 @@ class APIManager{
                 for document in querySnapshot!.documents{
                     
                     NotificationCenter.default.post(name: NSNotification.Name( "LoadingDocs"), object: nil)
-    //                   self.docs.removeAll()
                     
                     products.append(Document(category: category, subCategory: subCategoriy, documentID:document.documentID ,
                                                 name: document.get("name") as! String,
@@ -81,9 +80,9 @@ class APIManager{
     
     func getProductImages(doc: Document, completion: @escaping ([UIImage]?) -> ()) {
         
-        
         let productsRef = storageRef.child(doc.category + "/" + doc.subCategory).child(doc.documentID)
         var images: [UIImage]? = []
+        
         
         productsRef.listAll(completion: { imageList, error in
             if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
@@ -115,7 +114,11 @@ class APIManager{
             if !imageList.items.isEmpty {
                 
                 imageList.items[0].getData(maxSize: 1 * 1024 * 1024) { data, error in
-                    completion(UIImage(data: data!)!)
+                    if error != nil { print("Error getting first image: ",error!); return }
+                    
+                    if data != nil {
+                        completion(UIImage(data: data!)!)
+                    }
                 }
             }
         })
@@ -187,6 +190,7 @@ class APIManager{
                             
                             if doc != nil {
                                 
+                                //getting category
                                 var category = ""
                                 var subCategory = ""
                                 
@@ -206,7 +210,7 @@ class APIManager{
                                                      documentID: doc!.documentID,
                                                      name: doc!.get("name") as! String,
                                                      price: doc!.get("price") as! Int,
-                                                     description: doc!.get("decription") as! String))
+                                                     description: ""))
                             }
                             
                             if docs.count == cart.count {
