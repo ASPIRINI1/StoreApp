@@ -12,6 +12,7 @@
 		DE2B526E27FC7745009F22AB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B526D27FC7745009F22AB /* Validator.swift */; };
 		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
+		DE5ED33C2820A16C00D46098 /* OrderingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5ED33B2820A16C00D46098 /* OrderingTableViewCell.swift */; };
 		DE6A9149280B2284005820E3 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6A9148280B2284005820E3 /* CategoryTableViewController.swift */; };
 		DE8397DF27EFD7400064E2DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8397DE27EFD7400064E2DF /* CoreDataManager.swift */; };
 		DE93F2DE280F23D900132E6A /* SettingsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93F2DD280F23D900132E6A /* SettingsMapView.swift */; };
@@ -45,6 +46,7 @@
 		DE2B526D27FC7745009F22AB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DE5ED33B2820A16C00D46098 /* OrderingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingTableViewCell.swift; sourceTree = "<group>"; };
 		DE6A9148280B2284005820E3 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		DE8397DE27EFD7400064E2DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DE93F2DD280F23D900132E6A /* SettingsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMapView.swift; sourceTree = "<group>"; };
@@ -106,16 +108,66 @@
 		DE50B23727EBC0A80072B3BC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */,
 				DEBF989527F67645004DAD4C /* StoreSet */,
-				DEC83E682804C5C300ADE83C /* CartSet */,
+				DE5ED33F2820A46700D46098 /* CartSet */,
 				DEC7719F27F9EBCA006DB6D6 /* SettingsSet */,
-				DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */,
-				DEC7719B27F9EB0C006DB6D6 /* AuthorisationViewController.swift */,
-				DEE46F432808A3290045941E /* OrderingVC.swift */,
 			);
 			name = ViewControllers;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		DE5ED33D2820A41300D46098 /* SettingsAdd's */ = {
+			isa = PBXGroup;
+			children = (
+				DEC7719D27F9EB1B006DB6D6 /* WEBViewController.swift */,
+				DEC83E6628032C6500ADE83C /* UserInfoChangeViewController.swift */,
+				DE93F2DD280F23D900132E6A /* SettingsMapView.swift */,
+			);
+			path = "SettingsAdd's";
+			sourceTree = "<group>";
+		};
+		DE5ED33E2820A42D00D46098 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */,
+				DEC7719B27F9EB0C006DB6D6 /* AuthorisationViewController.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		DE5ED33F2820A46700D46098 /* CartSet */ = {
+			isa = PBXGroup;
+			children = (
+				DEC83E682804C5C300ADE83C /* Cart */,
+				DE5ED3402820A47400D46098 /* Ordering */,
+			);
+			path = CartSet;
+			sourceTree = "<group>";
+		};
+		DE5ED3402820A47400D46098 /* Ordering */ = {
+			isa = PBXGroup;
+			children = (
+				DEE46F432808A3290045941E /* OrderingVC.swift */,
+				DE5ED33B2820A16C00D46098 /* OrderingTableViewCell.swift */,
+			);
+			path = Ordering;
+			sourceTree = "<group>";
+		};
+		DE5ED3412820A4F400D46098 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */,
+				DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		DE5ED3422820A52D00D46098 /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				DE2B526D27FC7745009F22AB /* Validator.swift */,
+			);
+			path = Additional;
 			sourceTree = "<group>";
 		};
 		DE96C9572815CA35008127FF /* CoreData */ = {
@@ -152,8 +204,8 @@
 				DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */,
 				DEE68AD327ED093E00BA6A55 /* Model */,
 				DE50B23727EBC0A80072B3BC /* ViewControllers */,
+				DE5ED3422820A52D00D46098 /* Additional */,
 				DEA8FEA027EA6A0300084595 /* Main.storyboard */,
-				DE2B526D27FC7745009F22AB /* Validator.swift */,
 				DEA8FEA627EA6A0400084595 /* Assets.xcassets */,
 				DEA8FEA827EA6A0400084595 /* LaunchScreen.storyboard */,
 				DEA8FEA327EA6A0300084595 /* StoreApp.xcdatamodeld */,
@@ -166,9 +218,9 @@
 		DEBF989527F67645004DAD4C /* StoreSet */ = {
 			isa = PBXGroup;
 			children = (
+				DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */,
+				DE5ED3412820A4F400D46098 /* Store */,
 				DEC3F1D327F8C20D00EE6572 /* CategoryMenu */,
-				DEE68AD127ECFD5F00BA6A55 /* StoreCollectionViewController.swift */,
-				DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */,
 			);
 			path = StoreSet;
 			sourceTree = "<group>";
@@ -195,21 +247,20 @@
 		DEC7719F27F9EBCA006DB6D6 /* SettingsSet */ = {
 			isa = PBXGroup;
 			children = (
-				DEC7719D27F9EB1B006DB6D6 /* WEBViewController.swift */,
+				DE5ED33E2820A42D00D46098 /* Authorization */,
+				DE5ED33D2820A41300D46098 /* SettingsAdd's */,
 				DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */,
-				DEC83E6628032C6500ADE83C /* UserInfoChangeViewController.swift */,
-				DE93F2DD280F23D900132E6A /* SettingsMapView.swift */,
 			);
 			path = SettingsSet;
 			sourceTree = "<group>";
 		};
-		DEC83E682804C5C300ADE83C /* CartSet */ = {
+		DEC83E682804C5C300ADE83C /* Cart */ = {
 			isa = PBXGroup;
 			children = (
 				DEC83E6D2804C5FE00ADE83C /* CartTableViewController.swift */,
 				DEC83E6B2804C5ED00ADE83C /* CartTableViewCell.swift */,
 			);
-			path = CartSet;
+			path = Cart;
 			sourceTree = "<group>";
 		};
 		DEE68AD327ED093E00BA6A55 /* Model */ = {
@@ -356,6 +407,7 @@
 				DEE46F442808A3290045941E /* OrderingVC.swift in Sources */,
 				DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */,
 				DEC83E6C2804C5ED00ADE83C /* CartTableViewCell.swift in Sources */,
+				DE5ED33C2820A16C00D46098 /* OrderingTableViewCell.swift in Sources */,
 				DE8397DF27EFD7400064E2DF /* CoreDataManager.swift in Sources */,
 				DEBF989427F6761F004DAD4C /* StoreCollectionViewCell.swift in Sources */,
 				DE96C95F2815D909008127FF /* Goods+CoreDataClass copy.swift in Sources */,
