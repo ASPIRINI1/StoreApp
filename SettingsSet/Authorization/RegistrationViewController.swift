@@ -70,7 +70,7 @@ class RegistrationViewController: UIViewController {
         if validator.userDataIsCurrect(email: emailTextField.text, pass: emailTextField.text) {
             
             validationLabel.isHidden = true
-            fireAPI.registration(email: emailTextField.text!, password: passwordTextField.text!) { regSuccess in
+            fireAPI.registration(email: emailTextField.text!, password: passwordTextField.text!, userName: fullNameTextFiedl.text!, adress: addressTextField.text!) { regSuccess in
 
                 if !regSuccess {
                     let alert = UIAlertController(title: NSLocalizedString("Registration Error", comment: ""), message: NSLocalizedString("Network unable or email already exist.", comment: ""), preferredStyle: .alert)
