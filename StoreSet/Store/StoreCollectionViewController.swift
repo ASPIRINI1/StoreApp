@@ -52,6 +52,7 @@ class StoreCollectionViewController: UICollectionViewController {
         APIManager.shared.getProducts(category: "phones", subCategoriy: "smartphones", completion: { docs in
             
             self.products = docs
+            self.collectionView.reloadData()
             
             for doc in docs {
                 APIManager.shared.getFirstImage(document: doc, completion:{ image in
@@ -60,6 +61,8 @@ class StoreCollectionViewController: UICollectionViewController {
                 })
             }
         })
+        
+        
     }
     
 //    MARK: - CategoryButton

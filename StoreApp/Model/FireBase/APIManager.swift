@@ -237,9 +237,9 @@ class APIManager{
 
     //    MARK: - Create,Update,Delete documents
     
-    private func createNewUserFiles(fullname: String, address: String){
+    private func createNewUserFiles(fullname: String, address: String) {
         
-        if AppSettings.shared.userID != ""{
+        if AppSettings.shared.signedIn {
             let data: [String : Any] = ["fullName": fullname,
                                         "address" : address,
                                         "cart" : [""],
@@ -250,7 +250,7 @@ class APIManager{
    }
     
     private func deleteUserFiles(){
-        
+
         db.collection("Users").document(AppSettings.shared.userID).delete()
         db.collection("Reviews").document(AppSettings.shared.userID).delete()
     }
@@ -301,13 +301,47 @@ class APIManager{
                 completion[0](false)
                 
             } else {
-                AppSettings.shared.userID = authResult?.user.uid ?? ""
-                AppSettings.shared.signedIn = true
-                AppSettings.shared.userEmail = email
+                
+                self.setUser(userID: authResult?.user.uid, email: email)
                 completion[0](true)
+                
+                self.db.collection("Users").document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
+                    if error != nil { print("Error getting user data: ", error!); return }
+                    
+                    if documentSnapshot != nil {
+                        AppSettings.shared.userFullName = documentSnapshot?.get("fullName") as! String
+                        AppSettings.shared.userAdress = documentSnapshot?.get("address") as! String
+                    }
+                }
                 
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
             }
+        }
+    }
+    
+    private func setUser(userID: String?, email: String) {
+        
+        if userID != nil {
+            AppSettings.shared.signedIn = true
+            AppSettings.shared.userID = userID!
+            AppSettings.shared.userEmail = email
+            
+            db.collection("Users").document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
+                if error != nil { print("Error getting user data: ", error!); return }
+                
+                if documentSnapshot != nil {
+                    AppSettings.shared.userFullName = documentSnapshot?.get("fullName") as! String
+                    AppSettings.shared.userAdress = documentSnapshot?.get("address") as! String
+                }
+            }
+            
+        } else {
+            
+            AppSettings.shared.signedIn = false
+            AppSettings.shared.userEmail = ""
+            AppSettings.shared.userID = ""
+            AppSettings.shared.userAdress = ""
+            AppSettings.shared.userFullName = ""
         }
     }
     
@@ -318,14 +352,12 @@ class APIManager{
            
        } catch let signOutError as NSError { print("Error signing out: %@", signOutError); return }
         
-        AppSettings.shared.signedIn = false
-        AppSettings.shared.userEmail = ""
-        AppSettings.shared.userID = ""
+        setUser(userID: nil, email: "")
         
         NotificationCenter.default.post(name: NSNotification.Name("SignedOut"), object: nil)
     }
     
-    func registration(email: String, password: String, completion: (Bool) -> ()...){
+    func registration(email: String, password: String, userName: String, adress: String, completion: (Bool) -> ()...){
         
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if  (error != nil){
@@ -333,13 +365,12 @@ class APIManager{
                 completion[0](false)
                 
             } else {
-                AppSettings.shared.userID = authResult?.user.uid ?? ""
-                AppSettings.shared.userEmail = email
-                AppSettings.shared.signedIn = true
                 
                 completion[0](true)
 
-                self.createNewUserFiles(fullname: "fullname", address: "address")
+                self.createNewUserFiles(fullname: userName, address: adress)
+                AppSettings.shared.userFullName = userName
+                AppSettings.shared.userAdress = adress
                 
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
             }

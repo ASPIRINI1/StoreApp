@@ -24,7 +24,9 @@ class DetailViewController: UIViewController {
         configureVC()
         
     }
-       
+    
+    //MARK: - Actions
+    
     @IBAction func addToCartButtonAction(_ sender: Any) {
         
         if AppSettings.shared.userID != "" {
@@ -48,8 +50,11 @@ class DetailViewController: UIViewController {
         
     }
     @IBAction func reviewsButtonAction(_ sender: Any) {
-        
+        let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsTableViewController") as! ReviewsTableViewController
+        reviewVC.setDocID(ID: doc.documentID)
     }
+    
+    //MARK: - Additional Funcs
     
     private func configureVC() {
         
@@ -91,6 +96,9 @@ class DetailViewController: UIViewController {
 
     
 }
+
+
+//MARK: - UIScrollViewDelegate
 
 extension DetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
