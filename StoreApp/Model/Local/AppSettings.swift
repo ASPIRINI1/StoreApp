@@ -18,21 +18,50 @@ class AppSettings{
     }
     
     private enum SettingsKeys: String{
-        case userEmail = "userEmail"
-        case appTheme = "AppTheme"
-        case isSignIn = "signedIn"
-        case userAddress = "userAddress"
         case userID = "userID"
+        case userEmail = "userEmail"
+        case userFullName = "userFullName"
+        case userAddress = "userAddress"
+        case isSignIn = "signedIn"
+        case appTheme = "AppTheme"
         case categories = "categories"
-        case shopList = "shopList"
+//        case shopList = "shopList"
     }
     
-    var userEmail: String{
+    
+    var userID: String{
+        get{
+            return userDefaults.string(forKey: SettingsKeys.userID.rawValue) ?? ""
+        }
+        set{
+            userDefaults.set(newValue, forKey: SettingsKeys.userID.rawValue)
+        }
+    }
+    
+    var userEmail: String {
         get{
                 return userDefaults.string(forKey: SettingsKeys.userEmail.rawValue) ?? ""
         }
         set{
             userDefaults.set(newValue, forKey: SettingsKeys.userEmail.rawValue)
+        }
+    }
+    
+    var userFullName: String {
+        get {
+            return userDefaults.string(forKey: SettingsKeys.userFullName.rawValue) ?? ""
+        }
+        set {
+            userDefaults.set(newValue, forKey: SettingsKeys.userFullName.rawValue)
+        }
+    }
+    
+    var userAdress: String{
+        get {
+            return userDefaults.string(forKey: SettingsKeys.userAddress.rawValue ) ?? ""
+        }
+        set {
+            userDefaults.set(newValue, forKey: SettingsKeys.userAddress.rawValue)
         }
     }
     
@@ -54,24 +83,6 @@ class AppSettings{
         }
     }
     
-    var userID: String{
-        get{
-            return userDefaults.string(forKey: SettingsKeys.userID.rawValue) ?? ""
-        }
-        set{
-            userDefaults.set(newValue, forKey: SettingsKeys.userID.rawValue)
-        }
-    }
-    
-    var userAdress: String{
-        get {
-            return userDefaults.string(forKey: SettingsKeys.userAddress.rawValue ) ?? ""
-        }
-        set {
-            userDefaults.set(newValue, forKey: SettingsKeys.userAddress.rawValue)
-        }
-    }
-    
     var categories: [[String]]{
         get {
             if userDefaults.value(forKey: SettingsKeys.categories.rawValue) != nil { // ??
@@ -86,13 +97,13 @@ class AppSettings{
         }
     }
     
-    var shopList: [CLLocation]{
-        get {
-            return userDefaults.value(forKey: SettingsKeys.shopList.rawValue) as! [CLLocation]
-        }
-        set {
-            userDefaults.set(newValue, forKey: SettingsKeys.shopList.rawValue)
-        }
-    }
+//    var shopList: [CLLocation]{
+//        get {
+//            return userDefaults.value(forKey: SettingsKeys.shopList.rawValue) as! [CLLocation]
+//        }
+//        set {
+//            userDefaults.set(newValue, forKey: SettingsKeys.shopList.rawValue)
+//        }
+//    }
     
 }
