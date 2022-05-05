@@ -256,6 +256,38 @@ class APIManager{
     }
     
 
+    
+    func addReview(documentID: String ,text: String, mark: Int) {
+        
+        db.collection("Reviews").addDocument(data: ["product" : documentID,
+                                                    "authorName" : AppSettings.shared.userFullName,
+                                                    "text" : text,
+                                                    "mark" : mark])
+    }
+    
+    func getReviews(documentID: String, completion: @escaping (_ reviews: [Review]) -> ()) {
+        
+        db.collection("Reviews").whereField("product", isEqualTo: documentID).getDocuments { querySnapshot, error in
+            if error != nil { print("Error getting reviews: ", error!); return }
+            
+            if querySnapshot != nil {
+                
+                var reviews: [Review] = []
+                
+                for doc in querySnapshot!.documents {
+                    
+                    reviews.append(Review(authorName: doc.get("authorName") as! String,
+                                          text: doc.get("text") as! String,
+                                          mark: doc.get("mark") as! Int))
+                }
+                
+                if reviews.count == querySnapshot?.documents.count {
+                    completion(reviews)
+                }
+                
+            }
+        }
+    }
 
     
 //    MARK: - Registration $ Authorization

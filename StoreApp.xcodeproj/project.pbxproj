@@ -28,6 +28,7 @@
 		DEA8FEA727EA6A0400084595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEA8FEA627EA6A0400084595 /* Assets.xcassets */; };
 		DEA8FEAA27EA6A0400084595 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA8FEA827EA6A0400084595 /* LaunchScreen.storyboard */; };
 		DEBF989427F6761F004DAD4C /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */; };
+		DEC050542821EF92004991AA /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC050532821EF92004991AA /* Review.swift */; };
 		DEC3F1D727F8C23900EE6572 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC3F1D627F8C23900EE6572 /* CategoryTableViewCell.swift */; };
 		DEC7719A27F9E8B4006DB6D6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */; };
 		DEC7719C27F9EB0C006DB6D6 /* AuthorisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC7719B27F9EB0C006DB6D6 /* AuthorisationViewController.swift */; };
@@ -67,6 +68,7 @@
 		DEA8FEA927EA6A0400084595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DEA8FEAB27EA6A0400084595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		DEC050532821EF92004991AA /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		DEC3F1D627F8C23900EE6572 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		DEC7719B27F9EB0C006DB6D6 /* AuthorisationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorisationViewController.swift; sourceTree = "<group>"; };
@@ -264,9 +266,9 @@
 		DEC7719F27F9EBCA006DB6D6 /* SettingsSet */ = {
 			isa = PBXGroup;
 			children = (
+				DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */,
 				DE5ED33E2820A42D00D46098 /* Authorization */,
 				DE5ED33D2820A41300D46098 /* SettingsAdd's */,
-				DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */,
 			);
 			path = SettingsSet;
 			sourceTree = "<group>";
@@ -294,6 +296,7 @@
 			children = (
 				DEE68AD527ED096500BA6A55 /* APIManager.swift */,
 				DEE68AD727ED09EC00BA6A55 /* Document.swift */,
+				DEC050532821EF92004991AA /* Review.swift */,
 			);
 			path = FireBase;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				DE6A9149280B2284005820E3 /* CategoryTableViewController.swift in Sources */,
 				DE26705B27FB34DD0063A84D /* RegistrationViewController.swift in Sources */,
 				DEE68ADA27ED0C6400BA6A55 /* AppSettings.swift in Sources */,
+				DEC050542821EF92004991AA /* Review.swift in Sources */,
 				DE2B526E27FC7745009F22AB /* Validator.swift in Sources */,
 				DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */,
 				DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */,

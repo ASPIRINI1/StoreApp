@@ -302,7 +302,7 @@
         <!--Reviews Table View Controller-->
         <scene sceneID="Vhv-lR-WU5">
             <objects>
-                <tableViewController id="xbk-Wy-7C9" customClass="ReviewsTableViewController" customModule="StoreApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ReviewsTableViewController" id="xbk-Wy-7C9" customClass="ReviewsTableViewController" customModule="StoreApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="4ii-Yq-G4V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -371,10 +371,10 @@
                                         <constraint firstAttribute="trailing" secondItem="d7D-MH-SsS" secondAttribute="trailing" constant="20" symbolic="YES" id="y3r-sb-xSR"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <connections>
+                                    <outlet property="authorrNameLabel" destination="d7D-MH-SsS" id="4Mp-Gt-JOK"/>
                                     <outlet property="reviewTextLabel" destination="ivp-SQ-X9m" id="Cie-qK-Fda"/>
-                                    <outlet property="userNameLabel" destination="d7D-MH-SsS" id="4Mp-Gt-JOK"/>
-                                    <segue destination="CEs-WI-30y" kind="push" id="InK-7q-4fY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -386,7 +386,7 @@
                     <navigationItem key="navigationItem" id="Dcd-GZ-pGT">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="TE5-Wj-2Mm">
                             <connections>
-                                <action selector="addReviewAction:" destination="xbk-Wy-7C9" id="HvO-V4-rYc"/>
+                                <segue destination="CEs-WI-30y" kind="push" id="Tqc-UT-bkU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -448,7 +448,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add review"/>
                                 <connections>
-                                    <action selector="addReviewButton:" destination="CEs-WI-30y" eventType="touchUpInside" id="UAM-M1-U6v"/>
+                                    <action selector="addReviewButtonAction:" destination="CEs-WI-30y" eventType="touchUpInside" id="w10-f9-gyV"/>
                                 </connections>
                             </button>
                         </subviews>
