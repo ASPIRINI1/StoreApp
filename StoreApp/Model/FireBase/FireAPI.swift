@@ -92,7 +92,7 @@ class FireAPI {
                     if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
                     
                     if data != nil {
-                        images?.append(UIImage(data: data!)!)
+                        images?.append(UIImage(data: data!) ?? UIImage(named: "NoImageIcon")!)
                         
                     }
                     if imageList.items.count == images?.count {
@@ -117,7 +117,7 @@ class FireAPI {
                     if error != nil { print("Error getting first image: ",error!); return }
                     
                     if data != nil {
-                        completion(UIImage(data: data!)!)
+                        completion((UIImage(data: data!) ?? UIImage(named: "NoImageIcon"))!)
                     }
                 }
             }
@@ -127,7 +127,7 @@ class FireAPI {
     
 //    MARK: Categories
     
-    func getCategories(completion: @escaping ([[String]]) -> ()) {
+    private func getCategories(completion: @escaping ([[String]]) -> ()) {
 
         var categories: [[String]] = []
 
@@ -135,9 +135,7 @@ class FireAPI {
 
             if err == nil {
                 for category in storageListResult.prefixes {
-
                     
-
                     self.storageRef.child(category.name).listAll { result, err in
                         if err != nil { print("Error getting SubCategory") ; return }
                         
@@ -146,9 +144,13 @@ class FireAPI {
                         for subCategory in result.prefixes {
                             categories[categories.endIndex-1].append(subCategory.name)
                         }
-                        AppSettings.shared.categories = categories
-                        completion(AppSettings.shared.categories)
+                        
+                        if categories.count == storageListResult.prefixes.count {
+                            AppSettings.shared.categories = categories
+                            completion(AppSettings.shared.categories)
+                        }
                     }
+                    
                 }
 
             } else {
