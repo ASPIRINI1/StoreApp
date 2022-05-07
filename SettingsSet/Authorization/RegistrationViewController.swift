@@ -17,8 +17,6 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var registrationButton: UIButton!
     @IBOutlet weak var substrateView: UIView!
     
-    let validator = Validator()
-    let fireAPI = APIManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,10 +65,10 @@ class RegistrationViewController: UIViewController {
             return
         }
         
-        if validator.userDataIsCurrect(email: emailTextField.text, pass: emailTextField.text) {
+        if Validator.shared.userDataIsCurrect(email: emailTextField.text, pass: emailTextField.text) {
             
             validationLabel.isHidden = true
-            fireAPI.registration(email: emailTextField.text!, password: passwordTextField.text!, userName: fullNameTextFiedl.text!, adress: addressTextField.text!) { regSuccess in
+            FireAPI.shared.registration(email: emailTextField.text!, password: passwordTextField.text!, userName: fullNameTextFiedl.text!, adress: addressTextField.text!) { regSuccess in
 
                 if !regSuccess {
                     let alert = UIAlertController(title: NSLocalizedString("Registration Error", comment: ""), message: NSLocalizedString("Network unable or email already exist.", comment: ""), preferredStyle: .alert)

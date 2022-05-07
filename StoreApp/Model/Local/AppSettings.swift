@@ -13,7 +13,7 @@ class AppSettings{
     let userDefaults = UserDefaults.standard
     static let shared = AppSettings()
     
-    init (){
+    private init (){
         
     }
     

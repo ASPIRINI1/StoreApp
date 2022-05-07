@@ -49,19 +49,30 @@ class StoreCollectionViewController: UICollectionViewController {
         definesPresentationContext = true
 
          
-        APIManager.shared.getProducts(category: "phones", subCategoriy: "smartphones", completion: { docs in
-            
+//        APIManager.shared.getProducts(category: "phones", subCategoriy: "smartphones", completion: { docs in
+//            
+//            self.products = docs
+//            self.collectionView.reloadData()
+//            
+//            for doc in docs {
+//                APIManager.shared.getFirstImage(document: doc, completion:{ image in
+//                    doc.image = image
+//                    self.collectionView.reloadData()
+//                })
+//            }
+//        })
+        
+        FireAPI.shared.getRandomProducts(count: 10) { docs in
             self.products = docs
             self.collectionView.reloadData()
             
             for doc in docs {
-                APIManager.shared.getFirstImage(document: doc, completion:{ image in
+                FireAPI.shared.getFirstImage(document: doc, completion:{ image in
                     doc.image = image
                     self.collectionView.reloadData()
                 })
             }
-        })
-        
+        }
         
     }
     

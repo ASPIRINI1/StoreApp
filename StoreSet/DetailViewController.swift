@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
     @IBAction func addToCartButtonAction(_ sender: Any) {
         
         if AppSettings.shared.userID != "" {
-            APIManager.shared.addToCart(document: doc)
+            FireAPI.shared.addToCart(document: doc)
             
         } else {
             
@@ -61,7 +61,7 @@ class DetailViewController: UIViewController {
         nameLabel.text = doc.name
         priceLabel.text = String(doc.price)
         
-        APIManager.shared.getDecscription(doc: doc, completion: { description in
+        FireAPI.shared.getDecscription(doc: doc, completion: { description in
             self.descriptionLabel.text = description
         })
         
@@ -74,7 +74,7 @@ class DetailViewController: UIViewController {
         imageScrollView.contentSize.width += imageScrollView.frame.width
         imageScrollView.addSubview(firstImageView)
         
-                    APIManager.shared.getProductImages(doc: doc) { images in
+                    FireAPI.shared.getProductImages(doc: doc) { images in
                         
                     for image in images! {
                         

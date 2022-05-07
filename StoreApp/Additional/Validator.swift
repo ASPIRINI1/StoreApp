@@ -8,6 +8,12 @@
 import Foundation
 
 class Validator {
+    
+    static let shared = Validator()
+    
+    private init() {
+        
+    }
 
     func userDataIsCurrect(email: String?, pass: String?) -> Bool{
         

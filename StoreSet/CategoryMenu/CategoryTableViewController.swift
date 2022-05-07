@@ -8,9 +8,8 @@
 import UIKit
 
 class CategoryTableViewController: UITableViewController {
-    
-    let fireAPI = APIManager()
-    let appSettings = AppSettings()
+ 
+    var selectedCategory = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +23,14 @@ class CategoryTableViewController: UITableViewController {
 //    }
 //
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appSettings.categories.count
+        return AppSettings.shared.categories.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
 
-        cell.label.text = appSettings.categories[indexPath.row].first
+        cell.label.text = AppSettings.shared.categories[indexPath.row].first
         return cell
     }
     

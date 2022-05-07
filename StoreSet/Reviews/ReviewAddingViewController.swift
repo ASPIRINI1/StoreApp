@@ -27,7 +27,7 @@ class ReviewAddingViewController: UIViewController {
         
         if reviewTextFiled.text != ""{
             
-            APIManager.shared.addReview(documentID: docID, text: reviewTextFiled.text!, mark: markSegmentedControl.selectedSegmentIndex + 1)
+            FireAPI.shared.addReview(documentID: docID, text: reviewTextFiled.text!, mark: markSegmentedControl.selectedSegmentIndex + 1)
             
             let reviewTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsTableViewController") as! ReviewsTableViewController
             

@@ -10,16 +10,14 @@ import MapKit
 
 class SettingsMapView: MKMapView, MKMapViewDelegate {
     
-    let appSettings = AppSettings()
-    
     private var shopList: [CLLocation] = []
     
     /*{
         set {
-            appSettings.shopList = newValue
+            AppSettings.shared.shopList = newValue
         }
         get {
-            return appSettings.shopList
+            return AppSettings.shared.shopList
         }
     }*/
     

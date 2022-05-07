@@ -17,23 +17,22 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
     @IBOutlet weak var appThemeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var mapView: MKMapView!
     
-    
-    let appSettings = AppSettings()
-    let fireAPI = APIManager()
     var mapV = SettingsMapView()
     var WEBurl = ""
     var routeEnabled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //configure mapView
         mapV = mapView as! SettingsMapView
         mapV.configureMapView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if appSettings.signedIn {
-            accountLabel.text = appSettings.userEmail
+        
+        if AppSettings.shared.signedIn {
+            accountLabel.text = AppSettings.shared.userEmail
             signInButton.titleLabel?.text = NSLocalizedString("Sign Out", comment: "")
         } else {
             accountLabel.text = NSLocalizedString("Authorization", comment: "")
@@ -46,13 +45,14 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
     //    MARK:  App theme
     
     @IBAction func segmentedControlAction(_ sender: Any) {
+        
         switch appThemeSegmentedControl.selectedSegmentIndex{
         case 0: tabBarController?.overrideUserInterfaceStyle = .unspecified
-            appSettings.appTheme = 0
+            AppSettings.shared.appTheme = 0
         case 1: tabBarController?.overrideUserInterfaceStyle = .dark
-            appSettings.appTheme = 1
+            AppSettings.shared.appTheme = 1
         case 2: tabBarController?.overrideUserInterfaceStyle = .light
-            appSettings.appTheme = 2
+            AppSettings.shared.appTheme = 2
         default:
             tabBarController?.overrideUserInterfaceStyle = .unspecified
         }
@@ -63,11 +63,12 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
     
     @IBAction func signInButtonAction(_ sender: Any) {
         
-        if appSettings.signedIn {
+        if AppSettings.shared.signedIn {
+            
             let alert = UIAlertController(title: NSLocalizedString("Are You shure?", comment: ""), message: NSLocalizedString("Do You want to logOut?", comment: ""), preferredStyle: .alert)
             
             let alertYesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { UIAlertAction in
-                self.fireAPI.signOut()
+                FireAPI.shared.signOut()
                 self.viewWillAppear(false)
             }
             
@@ -163,7 +164,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
                 
 //                confirming alert actions
                 let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { _ in
-                    self.fireAPI.deleteAccount()
+                    FireAPI.shared.deleteAccount()
                     self.viewWillAppear(false)
                 }
                 let cancelAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default)

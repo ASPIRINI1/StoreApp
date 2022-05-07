@@ -18,13 +18,13 @@ class CartTableViewController: UITableViewController {
         super.viewDidLoad()
         
         if AppSettings.shared.userID != "" {
-            APIManager.shared.getUserCart { docs in
+            FireAPI.shared.getUserCart { docs in
                 self.cart = docs
                 self.tableView.reloadData()
                 var totalPrice = 0
                 
                 for product in self.cart {
-                    APIManager.shared.getFirstImage(document: product) { image in
+                    FireAPI.shared.getFirstImage(document: product) { image in
                         product.image = image
                         totalPrice += product.price
                         self.totalPriceLabel.title! = String(totalPrice) + NSLocalizedString("Rub", comment: "")
@@ -105,7 +105,7 @@ class CartTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            APIManager.shared.removeFromCart(document: cart[indexPath.row])
+            FireAPI.shared.removeFromCart(document: cart[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

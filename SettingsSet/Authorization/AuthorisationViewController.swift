@@ -9,8 +9,7 @@ import UIKit
 
 class AuthorisationViewController: UIViewController {
     
-    let fireAPI = APIManager.shared
-    let validator = Validator()
+    let fireAPI = FireAPI.shared
 
     @IBOutlet weak var validationLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
@@ -46,7 +45,7 @@ class AuthorisationViewController: UIViewController {
     
     @IBAction func registrationButtAction(_ sender: Any) {
         
-        if validator.userDataIsCurrect(email: emailTextField.text!, pass: passwordTextField.text!) {
+        if Validator.shared.userDataIsCurrect(email: emailTextField.text!, pass: passwordTextField.text!) {
             
 //            fireAPI.registration(email: emailTextField.text!, password: passwordTextField.text!) { regSuccess in
 //
@@ -65,7 +64,7 @@ class AuthorisationViewController: UIViewController {
     
     @IBAction func signInButtAction(_ sender: Any) {
         
-        if validator.userDataIsCurrect(email: emailTextField.text, pass: passwordTextField.text){
+        if Validator.shared.userDataIsCurrect(email: emailTextField.text, pass: passwordTextField.text){
             
             fireAPI.signIn(email: emailTextField.text!, password: passwordTextField.text!) { Success in
                 if !Success {

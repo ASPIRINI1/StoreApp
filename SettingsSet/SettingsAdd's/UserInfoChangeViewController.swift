@@ -28,8 +28,6 @@ class UserInfoChangeViewController: UIViewController {
 //    MARK: - Properties
     
     private var viewType = changingType.email
-    private let validator = Validator()
-    private let appSettings = AppSettings()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +76,7 @@ class UserInfoChangeViewController: UIViewController {
         case .address:
             print("address")
             if firstTextField.text != nil {
-                appSettings.userAdress = firstTextField.text ?? ""
+                AppSettings.shared.userAdress = firstTextField.text ?? ""
             } else {
                 let alert = UIAlertController(title: NSLocalizedString("Adress changing fail.", comment: ""), message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default))

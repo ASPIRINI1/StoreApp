@@ -9,17 +9,17 @@ import Foundation
 import Firebase
 //import GoogleSignIn
 
-class APIManager{
+class FireAPI {
     
     //    MARK: - Property
     
-    static let shared = APIManager()
+    static let shared = FireAPI()
     
     private lazy var db = configureFB()
     private lazy var storage = Storage.storage()
     private lazy var storageRef = storage.reference()
     
-    init() {
+    private init() {
     }
     
     
