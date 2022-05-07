@@ -64,7 +64,7 @@
         <!--Store Collection View Controller-->
         <scene sceneID="7vZ-qv-LyK">
             <objects>
-                <collectionViewController storyboardIdentifier="StoreCVC" id="6uH-MQ-Nmp" customClass="StoreCollectionViewController" customModule="StoreApp" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="6uH-MQ-Nmp" customClass="StoreCollectionViewController" customModule="StoreApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="t3p-fd-5SC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1725,7 +1725,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="X5c-5S-t1f"/>
         <segue reference="5ne-in-wHc"/>
-        <segue reference="Ew2-Kf-qLi"/>
+        <segue reference="1dQ-cU-GHi"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
