@@ -65,6 +65,50 @@ class FireAPI {
             }
     }
     
+    func getRandomProducts(count: Int,completion: @escaping ([Document]) -> ()) {
+        
+        getCategories { categories in
+            
+//            var docCount = -categories.count
+//
+//            for category in categories {
+//                docCount += category.count
+//            }
+            
+            var docs: [Document] = []
+            for category in categories {
+                for subCategory in category {
+                    
+                    if subCategory == category.first { continue }
+                    
+                    self.db.collection("Products").document(category.first!).collection(subCategory).limit(to: 2).getDocuments { querySnapshot, error in
+                        
+                        if error != nil { print("Error getting random doc: ", error!); return }
+                        
+                        
+                        if querySnapshot != nil {
+                            
+                            for doc in querySnapshot!.documents {
+                                print(doc.documentID)
+                                docs.append(Document(category: category.first!,
+                                                     subCategory: subCategory,
+                                                     documentID: doc.documentID,
+                                                     name: doc.get("name") as! String,
+                                                     price: doc.get("price") as! Int,
+                                                     description: doc.get("decription") as! String))
+                            }
+                        }
+                        
+                        if docs.count == count {
+                            completion(docs)
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    
     func getDecscription(doc: Document, completion: @escaping (String) -> ()) {
         
         db.collection("Products").document(doc.category).collection(doc.subCategory).document(doc.documentID).getDocument { documentSnapshot, error in
