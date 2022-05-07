@@ -34,7 +34,7 @@ class APIManager{
     }
     
     
-//    MARK: - Getters/Setters
+//    MARK: - Getters
     
 //    MARK: Products
     
@@ -130,17 +130,19 @@ class APIManager{
     func getCategories(completion: @escaping ([[String]]) -> ()) {
 
         var categories: [[String]] = []
-        
+
         storageRef.listAll { storageListResult, err in
-            
+
             if err == nil {
                 for category in storageListResult.prefixes {
+
                     
-                    categories.append([category.name])
-                    
-                    self.storageRef.child(categories.last!.first!).listAll { result, err in
+
+                    self.storageRef.child(category.name).listAll { result, err in
                         if err != nil { print("Error getting SubCategory") ; return }
                         
+                        categories.append([category.name])
+
                         for subCategory in result.prefixes {
                             categories[categories.endIndex-1].append(subCategory.name)
                         }
@@ -148,11 +150,12 @@ class APIManager{
                         completion(AppSettings.shared.categories)
                     }
                 }
-                
+
             } else {
                 print("Getting category error : ", err!)
             }
         }
+        
     }
     
 //    MARK: Cart
