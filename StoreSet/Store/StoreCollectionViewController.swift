@@ -7,7 +7,11 @@
 
 import UIKit
 
-class StoreCollectionViewController: UICollectionViewController {
+protocol ConfigureStoreCVCDelegate: class {
+    func setProducts(category: String, subCategory: String?)
+}
+
+class StoreCollectionViewController: UICollectionViewController, ConfigureStoreCVCDelegate {
     
     
     private var products: [Document] = []
@@ -39,6 +43,8 @@ class StoreCollectionViewController: UICollectionViewController {
         
         super.viewDidLoad()
         notificationsSetUp()
+        
+        categoryVC.storeDelegate = self
         
         //MARK: Setup searchController
         
@@ -105,7 +111,7 @@ class StoreCollectionViewController: UICollectionViewController {
             }
         }
         
-            if AppDelegate.isCategoryVC{
+        if AppDelegate.isCategoryVC {
             showMenu()
         } else {
             hideMenu()
@@ -137,6 +143,14 @@ class StoreCollectionViewController: UICollectionViewController {
             activityIndicator.removeFromSuperview()
         }
     }
+    
+//    MARK: - Additional funcs
+    
+    func setProducts(category: String, subCategory: String?) {
+        print(category)
+        print(subCategory)
+    }
+    
 
 
 // MARK: - UICollectionViewDataSource
