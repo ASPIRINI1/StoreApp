@@ -46,14 +46,6 @@ class DetailViewController: UIViewController {
         
     }
     
-    @IBAction func byNowButtonAction(_ sender: Any) {
-        
-    }
-    @IBAction func reviewsButtonAction(_ sender: Any) {
-        let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsTableViewController") as! ReviewsTableViewController
-        reviewVC.setDocID(ID: doc.documentID)
-    }
-    
     //MARK: - Additional Funcs
     
     private func configureVC() {
@@ -94,6 +86,19 @@ class DetailViewController: UIViewController {
         doc = docoment
     }
 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.destination is ReviewsTableViewController {
+            let reviewsTableVC = segue.destination as! ReviewsTableViewController
+            reviewsTableVC.setDocID(ID: doc.documentID)
+        }
+        
+        if segue.destination is OrderingVC {
+            let orderingVC = segue.destination as! OrderingVC
+            orderingVC.setProducts(products: [doc])
+        }
+    }
     
 }
 

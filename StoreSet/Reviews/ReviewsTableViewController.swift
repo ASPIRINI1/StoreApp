@@ -15,7 +15,7 @@ class ReviewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        APIManager.shared.getReviews(documentID: docID) { reviews in
+        FireAPI.shared.getReviews(documentID: docID) { reviews in
             self.reviews = reviews
             
             if reviews.isEmpty {
@@ -56,6 +56,7 @@ class ReviewsTableViewController: UITableViewController {
 
         cell.authorrNameLabel.text = reviews[indexPath.row].authorName
         cell.reviewTextLabel.text = reviews[indexPath.row].text
+        cell.rateLabel.text = String(reviews[indexPath.row].mark)
         
         return cell
     }
