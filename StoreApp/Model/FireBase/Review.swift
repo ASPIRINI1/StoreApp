@@ -9,22 +9,20 @@ import Foundation
 
 class Review {
 
-    init(text: String, mark: Int) {
-        self.authorID = AppSettings.shared.userID
-        self.authorName = AppSettings.shared.userFullName
+    init(ID: String, authorID: String, authorName: String, text: String, mark: Int) {
+        self.reviewID = ID
+        self.authorID = authorID
+        self.authorName = authorName
         self.text = text
         self.mark = mark
     }
 
+    var reviewID = ""
     var authorID = ""
     var authorName = ""
     var text = ""
     var mark = 0
     
-    func setAuthor(ID: String, name: String) {
-        self.authorID = ID
-        self.authorName = name
-    }
 }
 
 

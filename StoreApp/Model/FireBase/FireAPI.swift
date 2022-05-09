@@ -326,9 +326,11 @@ class FireAPI {
                 
                 for doc in querySnapshot!.documents {
                     
-                    reviews.append(Review(text: doc.get("text") as! String,
+                    reviews.append(Review(ID: doc.documentID,
+                                          authorID: doc.get("authorID") as! String,
+                                          authorName: doc.get("authorName") as! String,
+                                          text: doc.get("text") as! String,
                                           mark: doc.get("mark") as! Int))
-                    reviews[reviews.count-1].setAuthor(ID: doc.get("authorID") as! String, name: doc.get("authorName") as! String)
                 }
                 
                 if reviews.count == querySnapshot?.documents.count {
@@ -337,6 +339,11 @@ class FireAPI {
                 
             }
         }
+    }
+    
+    func removeReview(reviewID: String) {
+        
+        db.collection("Reviews").document(reviewID).delete()
     }
 
     

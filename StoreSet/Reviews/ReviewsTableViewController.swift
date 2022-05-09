@@ -44,14 +44,6 @@ class ReviewsTableViewController: UITableViewController {
     func setDocID(ID: String) {
         self.docID = ID
     }
-    
-    func addReview(text: String, mark: Int) {
-        print("AddREview")
-        reviews.append(Review(text: text, mark: mark))
-        reviews[reviews.count-1].setAuthor(ID: AppSettings.shared.userID, name: AppSettings.shared.userFullName)
-        print(reviews.count)
-//        tableView.reloadData()
-    }
         
     
 //    MARK: Table viw Delegate
@@ -65,11 +57,17 @@ class ReviewsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        let cell = tableView.cellForRow(at: indexPath) as! ReviewsTableViewCell
-        if cell.authorrNameLabel.text == AppSettings.shared.userFullName {
-            
+        if reviews[indexPath.section].authorID == AppSettings.shared.userID {
+            return .delete
         }
         return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            FireAPI.shared.removeReview(reviewID: reviews[indexPath.section].reviewID)
+            reviews.remove(at: indexPath.section)
+        }
     }
     
     // MARK: - Table view Data source
