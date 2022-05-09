@@ -37,26 +37,37 @@ class ReviewsTableViewController: UITableViewController {
     }
     
     func addReview(author: String, text: String, mark: Int) {
+
         reviews.append(Review(authorName: author, text: text, mark: mark))
         tableView.reloadData()
     }
         
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(5)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat(5)
+    }
+    
     // MARK: - Table view data source
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return reviews.count
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return reviews.count
+        return 1
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewsTableViewCell
 
-        cell.authorrNameLabel.text = reviews[indexPath.row].authorName
-        cell.reviewTextLabel.text = reviews[indexPath.row].text
-        cell.rateLabel.text = String(reviews[indexPath.row].mark)
+        cell.authorrNameLabel.text = reviews[indexPath.section].authorName
+        cell.reviewTextLabel.text = reviews[indexPath.section].text
+        cell.rateLabel.text = String(reviews[indexPath.section].mark)
         
         return cell
     }

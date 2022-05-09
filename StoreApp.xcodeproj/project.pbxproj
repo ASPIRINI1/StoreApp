@@ -236,8 +236,8 @@
 		DEBF989527F67645004DAD4C /* StoreSet */ = {
 			isa = PBXGroup;
 			children = (
-				DE6916DF28216B8000608D18 /* Reviews */,
 				DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */,
+				DE6916DF28216B8000608D18 /* Reviews */,
 				DE5ED3412820A4F400D46098 /* Store */,
 				DEC3F1D327F8C20D00EE6572 /* CategoryMenu */,
 			);
