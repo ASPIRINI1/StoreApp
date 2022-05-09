@@ -106,7 +106,8 @@ class CartTableViewController: UITableViewController {
         
         if editingStyle == .delete {
             FireAPI.shared.removeFromCart(document: cart[indexPath.row])
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            cart.remove(at: indexPath.row)
+            tableView.reloadData()
         }
     }
     
