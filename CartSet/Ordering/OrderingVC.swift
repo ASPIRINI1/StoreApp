@@ -55,13 +55,13 @@ class OrderingVC: UIViewController {
 
 extension OrderingVC: UITableViewDelegate, UITableViewDataSource {
     
-//  goods spasing
+//  goodsCell spasing
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(1)
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        CGFloat(1)
+       return CGFloat(1)
     }
     
     

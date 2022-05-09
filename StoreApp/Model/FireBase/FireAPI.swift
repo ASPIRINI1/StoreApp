@@ -304,11 +304,12 @@ class FireAPI {
         db.collection("Reviews").document(AppSettings.shared.userID).delete()
     }
     
-
+//MARK: Review
     
     func addReview(documentID: String ,text: String, mark: Int) {
         
-        db.collection("Reviews").addDocument(data: ["product" : documentID,
+        db.collection("Reviews").addDocument(data: ["authorID" : AppSettings.shared.userID,
+                                                    "product" : documentID,
                                                     "authorName" : AppSettings.shared.userFullName,
                                                     "text" : text,
                                                     "mark" : mark])
@@ -325,9 +326,9 @@ class FireAPI {
                 
                 for doc in querySnapshot!.documents {
                     
-                    reviews.append(Review(authorName: doc.get("authorName") as! String,
-                                          text: doc.get("text") as! String,
+                    reviews.append(Review(text: doc.get("text") as! String,
                                           mark: doc.get("mark") as! Int))
+                    reviews[reviews.count-1].setAuthor(ID: doc.get("authorID") as! String, name: doc.get("authorName") as! String)
                 }
                 
                 if reviews.count == querySnapshot?.documents.count {

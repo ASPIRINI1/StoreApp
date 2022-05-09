@@ -18,7 +18,6 @@ class ReviewAddingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
     
 
@@ -28,10 +27,6 @@ class ReviewAddingViewController: UIViewController {
         if reviewTextFiled.text != ""{
             
             FireAPI.shared.addReview(documentID: docID, text: reviewTextFiled.text!, mark: markSegmentedControl.selectedSegmentIndex + 1)
-            
-            let reviewTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsTableViewController") as! ReviewsTableViewController
-            
-            reviewTVC.addReview(author: AppSettings.shared.userFullName, text: reviewTextFiled.text!, mark: markSegmentedControl.selectedSegmentIndex + 1)
             
             self.navigationController?.popViewController(animated: true)
             

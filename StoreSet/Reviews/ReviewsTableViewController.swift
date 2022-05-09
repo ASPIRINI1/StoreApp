@@ -10,11 +10,19 @@ import UIKit
 class ReviewsTableViewController: UITableViewController {
     
     var docID = ""
-    var reviews : [Review] = []
+    var reviews : [Review] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
         FireAPI.shared.getReviews(documentID: docID) { reviews in
             self.reviews = reviews
             
@@ -27,8 +35,9 @@ class ReviewsTableViewController: UITableViewController {
                 
                 self.view.addSubview(noReviewsLabel)
             }
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
         }
+
     }
 
     
@@ -36,12 +45,16 @@ class ReviewsTableViewController: UITableViewController {
         self.docID = ID
     }
     
-    func addReview(author: String, text: String, mark: Int) {
-
-        reviews.append(Review(authorName: author, text: text, mark: mark))
-        tableView.reloadData()
+    func addReview(text: String, mark: Int) {
+        print("AddREview")
+        reviews.append(Review(text: text, mark: mark))
+        reviews[reviews.count-1].setAuthor(ID: AppSettings.shared.userID, name: AppSettings.shared.userFullName)
+        print(reviews.count)
+//        tableView.reloadData()
     }
         
+    
+//    MARK: Table viw Delegate
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(5)
@@ -51,7 +64,15 @@ class ReviewsTableViewController: UITableViewController {
         return CGFloat(5)
     }
     
-    // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        let cell = tableView.cellForRow(at: indexPath) as! ReviewsTableViewCell
+        if cell.authorrNameLabel.text == AppSettings.shared.userFullName {
+            
+        }
+        return .none
+    }
+    
+    // MARK: - Table view Data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return reviews.count
