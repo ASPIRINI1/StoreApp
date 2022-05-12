@@ -83,7 +83,7 @@ class FireAPI {
                     
                     self.db.collection("Products").document(category.first!).collection(subCategory).limit(to: 2).getDocuments { querySnapshot, error in
                         
-                        if error != nil { print("Error getting random doc: ", error!); return }
+                        if let error = error { print("Error getting random doc: ", error); return }
                         
                         
                         if querySnapshot != nil {
@@ -149,12 +149,31 @@ class FireAPI {
     func getDecscription(doc: Document, completion: @escaping (String) -> ()) {
         
         db.collection("Products").document(doc.category).collection(doc.subCategory).document(doc.documentID).getDocument { documentSnapshot, error in
-            if error != nil { print("Getting description error: ", error!)}
+            if let error = error { print("Getting description error: ", error)}
             
             if documentSnapshot != nil {
                 completion(documentSnapshot?.get("decription") as! String)
             }
         }
+    }
+    
+    private func getProductCategory(path: String) -> (category:String, subCategory:String) {
+        
+        var category = ""
+        var subCategory = ""
+        
+        if var stringIndex = path.firstIndex(of: "/") {
+            category = String(path.prefix(upTo: stringIndex))
+            var sub = path.suffix(from: stringIndex)
+            sub.removeFirst()
+            
+            if let subU = sub.firstIndex(of: "/") {
+                stringIndex = subU
+                subCategory = String(sub.prefix(upTo: stringIndex))
+            }
+        }
+        
+        return (category, subCategory)
     }
     
 //    MARK: Images
@@ -195,7 +214,7 @@ class FireAPI {
             if !imageList.items.isEmpty {
                 
                 imageList.items[0].getData(maxSize: 1 * 1024 * 1024) { data, error in
-                    if error != nil { print("Error getting first image: ",error!); return }
+                    if let error = error { print("Error getting first image: ",error); return }
                     
                     if data != nil {
                         completion((UIImage(data: data!) ?? UIImage(named: "NoImageIcon"))!)
@@ -261,7 +280,7 @@ class FireAPI {
         if AppSettings.shared.userID != "" {
             
             db.collection("Users").document(AppSettings.shared.userID).getDocument { cartSnapshot, error in
-                if error != nil { print("Error getting user cart: ", error!)}
+                if let error = error { print("Error getting user cart: ", error)}
                 var cart: [String] = []
                 
                 if cartSnapshot != nil {
@@ -272,27 +291,14 @@ class FireAPI {
                     for path in cart {
                         self.db.collection("Products").document(path).getDocument { doc, error in
                             
-                            if error != nil { print("Error getting docs for user cart: ", error!)}
+                            if let error = error { print("Error getting docs for user cart: ", error)}
                             
                             if doc != nil {
                                 
-                                //getting category
-                                var category = ""
-                                var subCategory = ""
+                                let cat = self.getProductCategory(path: path)
                                 
-                                if var stringIndex = path.firstIndex(of: "/") {
-                                    category = String(path.prefix(upTo: stringIndex))
-                                    var sub = path.suffix(from: stringIndex)
-                                    sub.removeFirst()
-                                    
-                                    if let subU = sub.firstIndex(of: "/") {
-                                        stringIndex = subU
-                                        subCategory = String(sub.prefix(upTo: stringIndex))
-                                    }
-                                }
-                                
-                                docs.append(Document(category: category,
-                                                     subCategory: subCategory,
+                                docs.append(Document(category: cat.category,
+                                                     subCategory: cat.subCategory,
                                                      documentID: doc!.documentID,
                                                      name: doc!.get("name") as! String,
                                                      price: doc!.get("price") as! Int,
@@ -355,7 +361,7 @@ class FireAPI {
     func getReviews(documentID: String, completion: @escaping (_ reviews: [Review]) -> ()) {
         
         db.collection("Reviews").whereField("product", isEqualTo: documentID).getDocuments { querySnapshot, error in
-            if error != nil { print("Error getting reviews: ", error!); return }
+            if let error = error { print("Error getting reviews: ", error); return }
             
             if querySnapshot != nil {
                 
@@ -390,8 +396,8 @@ class FireAPI {
         
         Auth.auth().signIn(withEmail: email, password: password) { [] authResult, error in
             
-            if error != nil {
-                print("SignIn error")
+            if let error = error {
+                print("SignIn error: ", error)
                 completion[0](false)
                 
             } else {
@@ -400,7 +406,7 @@ class FireAPI {
                 completion[0](true)
                 
                 self.db.collection("Users").document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
-                    if error != nil { print("Error getting user data: ", error!); return }
+                    if let error = error { print("Error getting user data: ", error); return }
                     
                     if documentSnapshot != nil {
                         AppSettings.shared.userFullName = documentSnapshot?.get("fullName") as! String
@@ -421,7 +427,7 @@ class FireAPI {
             AppSettings.shared.userEmail = email
             
             db.collection("Users").document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
-                if error != nil { print("Error getting user data: ", error!); return }
+                if let error = error { print("Error getting user data: ", error); return }
                 
                 if documentSnapshot != nil {
                     AppSettings.shared.userFullName = documentSnapshot?.get("fullName") as! String
@@ -476,7 +482,7 @@ class FireAPI {
         let user = Auth.auth().currentUser
 
         user?.delete { error in
-            if error != nil { print("Error deleting user: ",error ?? ""); return}
+            if let error = error { print("Error deleting user: ",error); return}
         }
         deleteUserFiles()
         signOut()

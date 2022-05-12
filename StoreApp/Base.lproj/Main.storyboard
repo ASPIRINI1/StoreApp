@@ -1165,7 +1165,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developer info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wak-GT-Ngq">
-                                                    <rect key="frame" x="20" y="11" width="111" height="21.5"/>
+                                                    <rect key="frame" x="20" y="11" width="357.5" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1175,7 +1175,7 @@
                                                 <constraint firstItem="wak-GT-Ngq" firstAttribute="leading" secondItem="1dt-JZ-MSX" secondAttribute="leadingMargin" id="DfU-6F-tkb"/>
                                                 <constraint firstItem="wak-GT-Ngq" firstAttribute="top" secondItem="1dt-JZ-MSX" secondAttribute="topMargin" id="H7k-cU-RQ2"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="wak-GT-Ngq" secondAttribute="bottom" id="NtS-U2-Nsa"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wak-GT-Ngq" secondAttribute="trailing" constant="246.5" id="Qnn-BN-svy"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wak-GT-Ngq" secondAttribute="trailing" id="Qnn-BN-svy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

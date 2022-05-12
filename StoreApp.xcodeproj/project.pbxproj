@@ -237,8 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */,
-				DE6916DF28216B8000608D18 /* Reviews */,
 				DE5ED3412820A4F400D46098 /* Store */,
+				DE6916DF28216B8000608D18 /* Reviews */,
 				DEC3F1D327F8C20D00EE6572 /* CategoryMenu */,
 			);
 			path = StoreSet;
