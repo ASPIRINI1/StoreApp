@@ -197,6 +197,14 @@ extension StoreCollectionViewController: UISearchResultsUpdating, UISearchContro
             FireAPI.shared.findProduct(name: searchText) { docs in
                 self.filtredProducts += docs
                 self.collectionView.reloadData()
+                
+                for doc in docs {
+                    FireAPI.shared.getFirstImage(document: doc, completion:{ image in
+                        doc.image = image
+                        self.collectionView.reloadData()
+                    })
+                }
+                
             }
         }
         if searchBarIsEmpty {
