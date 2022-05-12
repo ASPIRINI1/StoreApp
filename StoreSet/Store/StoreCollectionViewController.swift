@@ -27,12 +27,12 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
     private let searchController = UISearchController(searchResultsController: nil)
     private var filtredProducts: [Document] = []
     
-    private var searchBarIsEmpty: Bool{
+    private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else {return false}
         return text.isEmpty
     }
     
-    private var isFiltering: Bool{
+    private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
     
@@ -54,19 +54,6 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
         navigationItem.searchController = searchController
         definesPresentationContext = true
 
-         
-//        APIManager.shared.getProducts(category: "phones", subCategoriy: "smartphones", completion: { docs in
-//            
-//            self.products = docs
-//            self.collectionView.reloadData()
-//            
-//            for doc in docs {
-//                APIManager.shared.getFirstImage(document: doc, completion:{ image in
-//                    doc.image = image
-//                    self.collectionView.reloadData()
-//                })
-//            }
-//        })
         
         FireAPI.shared.getRandomProducts(count: 10) { docs in
             self.products = docs
@@ -172,8 +159,8 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
             cell.name.text = filtredProducts[indexPath.row].name
             cell.price.text = "\(filtredProducts[indexPath.row].price)" + NSLocalizedString("Rub", comment: "")
             cell.image.image = filtredProducts[indexPath.row].image
-        } else {
             
+        } else {
             cell.name.text = products[indexPath.row].name
             cell.price.text = "\(products[indexPath.row].price)" + NSLocalizedString("Rub", comment: "")
             cell.image.image = products[indexPath.row].image
@@ -201,10 +188,20 @@ extension StoreCollectionViewController: UISearchResultsUpdating, UISearchContro
         filterContentForSearchText(searchController.searchBar.text!)
     }
     
-    private func filterContentForSearchText(_ searchText: String){
-        filtredProducts = products.filter({ document in
-            return document.name.lowercased().contains(searchText.lowercased())
-        })
-        collectionView.reloadData()
+    private func filterContentForSearchText(_ searchText: String) {
+        
+        filtredProducts.removeAll()
+        
+        if searchText.count > 3 {
+            
+            FireAPI.shared.findProduct(name: searchText) { docs in
+                self.filtredProducts += docs
+                self.collectionView.reloadData()
+            }
+        }
+        if searchBarIsEmpty {
+            collectionView.reloadData()
+        }
     }
+    
 }

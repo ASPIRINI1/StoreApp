@@ -109,6 +109,43 @@ class FireAPI {
 
     }
     
+    func findProduct(name: String, completion: @escaping ([Document]) -> ()) {
+        
+        for category in AppSettings.shared.categories {
+            
+            var docs = [Document]()
+            
+            for subCategory in category {
+                if subCategory == category.first {
+                    continue
+                }
+                
+                db.collection("Products").document(category.first!).collection(subCategory).whereField("name",isGreaterThanOrEqualTo: name).order(by: "name").getDocuments { querySnapshot, error in
+                    if let error = error { print("Error searching product: ", error)}
+                    
+                    
+                    if querySnapshot != nil {
+                    
+                        for doc in querySnapshot!.documents {
+                            docs.append(Document(category: category.first!,
+                                                 subCategory: subCategory,
+                                                 documentID: doc.documentID,
+                                                 name: doc.get("name") as! String,
+                                                 price: doc.get("price") as! Int,
+                                                 description: doc.get("decription") as! String))
+                        }
+                    }
+                    
+                    if docs.count == querySnapshot?.documents.count {
+                        completion(docs)
+                    }
+                }
+            }
+        }
+        
+       
+    }
+    
     func getDecscription(doc: Document, completion: @escaping (String) -> ()) {
         
         db.collection("Products").document(doc.category).collection(doc.subCategory).document(doc.documentID).getDocument { documentSnapshot, error in
