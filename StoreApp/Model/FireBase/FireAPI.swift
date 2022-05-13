@@ -19,6 +19,12 @@ class FireAPI {
     private lazy var storage = Storage.storage()
     private lazy var storageRef = storage.reference()
     
+    private enum RootCollections: String {
+        case products = "Products"
+        case users = "Users"
+        case reviews = "Reviews"
+    }
+    
     private init() {
     }
     
@@ -40,7 +46,7 @@ class FireAPI {
     
     func getProducts(category: String, subCategoriy: String, completion: @escaping ([Document]) -> () ) {
         
-        db.collection("Products").document(category).collection(subCategoriy).getDocuments() { querySnapshot, error in
+        db.collection(RootCollections.products.rawValue).document(category).collection(subCategoriy).getDocuments() { querySnapshot, error in
             
             if let err = error{
                 
@@ -54,10 +60,12 @@ class FireAPI {
                     
                     NotificationCenter.default.post(name: NSNotification.Name( "LoadingDocs"), object: nil)
                     
-                    products.append(Document(category: category, subCategory: subCategoriy, documentID:document.documentID ,
-                                                name: document.get("name") as! String,
-                                                price: document.get("price") as! Int,
-                                                description: document.get("description") as? String ?? "no description"))
+                    products.append(Document(category: category,
+                                             subCategory: subCategoriy,
+                                             documentID:document.documentID,
+                                             name: document.get("name") as! String,
+                                             price: document.get("price") as! Int,
+                                             description: document.get("description") as? String ?? "no description"))
                 }
                 completion(products)
                 NotificationCenter.default.post(name: NSNotification.Name( "DocsLoaded"), object: nil)
@@ -81,7 +89,7 @@ class FireAPI {
                     
                     if subCategory == category.first { continue }
                     
-                    self.db.collection("Products").document(category.first!).collection(subCategory).limit(to: 2).getDocuments { querySnapshot, error in
+                    self.db.collection(RootCollections.products.rawValue).document(category.first!).collection(subCategory).limit(to: 2).getDocuments { querySnapshot, error in
                         
                         if let error = error { print("Error getting random doc: ", error); return }
                         
@@ -120,7 +128,7 @@ class FireAPI {
                     continue
                 }
                 
-                db.collection("Products").document(category.first!).collection(subCategory).whereField("name",isGreaterThanOrEqualTo: name).order(by: "name").getDocuments { querySnapshot, error in
+                db.collection(RootCollections.products.rawValue).document(category.first!).collection(subCategory).whereField("name",isGreaterThanOrEqualTo: name).order(by: "name").getDocuments { querySnapshot, error in
                     if let error = error { print("Error searching product: ", error)}
                     
                     
@@ -148,7 +156,7 @@ class FireAPI {
     
     func getDecscription(doc: Document, completion: @escaping (String) -> ()) {
         
-        db.collection("Products").document(doc.category).collection(doc.subCategory).document(doc.documentID).getDocument { documentSnapshot, error in
+        db.collection(RootCollections.products.rawValue).document(doc.category).collection(doc.subCategory).document(doc.documentID).getDocument { documentSnapshot, error in
             if let error = error { print("Getting description error: ", error)}
             
             if documentSnapshot != nil {
@@ -186,6 +194,7 @@ class FireAPI {
         
         productsRef.listAll(completion: { imageList, error in
             if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
+            
             for image in imageList.items {
                 image.getData(maxSize: 1 * 1024 * 1024) { data, error in //??
                     
@@ -264,9 +273,8 @@ class FireAPI {
     
     func addToCart(document: Document) {
         
-        db.collection("Users").document(AppSettings.shared.userID).updateData(
-            ["cart" : FieldValue.arrayUnion(
-                [document.category + "/" + document.subCategory  + "/" + document.documentID]
+        db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).updateData(
+            ["cart" : FieldValue.arrayUnion( [document.category + "/" + document.subCategory  + "/" + document.documentID]
             )]) { err in
                 
             if let err = err {
@@ -279,7 +287,7 @@ class FireAPI {
         
         if AppSettings.shared.userID != "" {
             
-            db.collection("Users").document(AppSettings.shared.userID).getDocument { cartSnapshot, error in
+            db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).getDocument { cartSnapshot, error in
                 if let error = error { print("Error getting user cart: ", error)}
                 var cart: [String] = []
                 
@@ -289,7 +297,7 @@ class FireAPI {
                    
                     
                     for path in cart {
-                        self.db.collection("Products").document(path).getDocument { doc, error in
+                        self.db.collection(RootCollections.products.rawValue).document(path).getDocument { doc, error in
                             
                             if let error = error { print("Error getting docs for user cart: ", error)}
                             
@@ -317,7 +325,7 @@ class FireAPI {
     
     func removeFromCart(document: Document) {
         
-        db.collection("Users").document(AppSettings.shared.userID).updateData(
+        db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).updateData(
             ["cart" : FieldValue.arrayRemove([document.category + "/" + document.subCategory  + "/" + document.documentID])]) { err in
                 
                 if let err = err {
@@ -337,21 +345,21 @@ class FireAPI {
                                         "cart" : [""],
                                         "reviews" : [""]]
             
-            db.collection("Users").document(AppSettings.shared.userID).setData(data)
+            db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).setData(data)
         }
    }
     
     private func deleteUserFiles(){
 
-        db.collection("Users").document(AppSettings.shared.userID).delete()
-        db.collection("Reviews").document(AppSettings.shared.userID).delete()
+        db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).delete()
+        db.collection(RootCollections.reviews.rawValue).document(AppSettings.shared.userID).delete()
     }
     
 //MARK: Review
     
     func addReview(documentID: String ,text: String, mark: Int) {
         
-        db.collection("Reviews").addDocument(data: ["authorID" : AppSettings.shared.userID,
+        db.collection(RootCollections.reviews.rawValue).addDocument(data: ["authorID" : AppSettings.shared.userID,
                                                     "product" : documentID,
                                                     "authorName" : AppSettings.shared.userFullName,
                                                     "text" : text,
@@ -360,7 +368,7 @@ class FireAPI {
     
     func getReviews(documentID: String, completion: @escaping (_ reviews: [Review]) -> ()) {
         
-        db.collection("Reviews").whereField("product", isEqualTo: documentID).getDocuments { querySnapshot, error in
+        db.collection(RootCollections.reviews.rawValue).whereField("product", isEqualTo: documentID).getDocuments { querySnapshot, error in
             if let error = error { print("Error getting reviews: ", error); return }
             
             if querySnapshot != nil {
@@ -386,7 +394,7 @@ class FireAPI {
     
     func removeReview(reviewID: String) {
         
-        db.collection("Reviews").document(reviewID).delete()
+        db.collection(RootCollections.reviews.rawValue).document(reviewID).delete()
     }
 
     
@@ -405,7 +413,7 @@ class FireAPI {
                 self.setUser(userID: authResult?.user.uid, email: email)
                 completion[0](true)
                 
-                self.db.collection("Users").document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
+                self.db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
                     if let error = error { print("Error getting user data: ", error); return }
                     
                     if documentSnapshot != nil {
@@ -422,11 +430,12 @@ class FireAPI {
     private func setUser(userID: String?, email: String) {
         
         if userID != nil {
+            
             AppSettings.shared.signedIn = true
             AppSettings.shared.userID = userID!
             AppSettings.shared.userEmail = email
             
-            db.collection("Users").document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
+            db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
                 if let error = error { print("Error getting user data: ", error); return }
                 
                 if documentSnapshot != nil {
@@ -486,6 +495,54 @@ class FireAPI {
         }
         deleteUserFiles()
         signOut()
+    }
+    
+    func changeUserEmail(newEmail: String, completion: @escaping (Bool) -> ()) {
+        
+        if !newEmail.isEmpty {
+            Auth.auth().currentUser?.updateEmail(to: newEmail) { error in
+                
+                if let error = error {
+                    print("Error changing user email: ", error)
+                    completion(false)
+                    
+                } else {
+                    completion(true)
+                }
+            }
+        }
+    }
+    
+    func changeUserPassword(newPassword: String, completion: @escaping (Bool) -> ()) {
+        
+        if !newPassword.isEmpty {
+            Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
+                
+                if let error = error {
+                    print("Error changing user password: ", error)
+                    completion(false)
+                    
+                } else {
+                    completion(true)
+                }
+            }
+        }
+    }
+    
+    func changeUserAdress(newAddress: String, completion: @escaping (Bool) -> ()) {
+        
+        if !newAddress.isEmpty {
+            db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).updateData(["address" : newAddress]) { error in
+                
+                if let error = error {
+                    print("Error changing user address: ", error)
+                    completion(false)
+                    
+                } else {
+                    completion(true)
+                }
+            }
+        }
     }
     
 }
