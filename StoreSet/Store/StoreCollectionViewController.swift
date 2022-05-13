@@ -8,10 +8,11 @@
 import UIKit
 
 protocol ConfigureStoreCVCDelegate: class {
-    func setProducts(category: String, subCategory: String?)
+    func setProducts(category: String, subCategory: String)
 }
 
 class StoreCollectionViewController: UICollectionViewController, ConfigureStoreCVCDelegate {
+    
     
     
     private var products: [Document] = []
@@ -73,31 +74,6 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
 
     @IBAction func CategoryButton(_ sender: Any) {
         
-        func showMenu(){
-            UIView.animate(withDuration: 0.3){
-                
-                self.categoryVC.view.frame = CGRect(x: 0,
-                                                    y: self.view.safeAreaLayoutGuide.layoutFrame.minY,
-                                                    width: UIScreen.main.bounds.size.width/1.5,
-                                                    height: self.categoryVC.view.frame.height)
-                
-                self.view.addSubview(self.categoryVC.view)
-                AppDelegate.isCategoryVC = false
-            }
-
-        }
-
-        func hideMenu(){
-            
-            UIView.animate(withDuration: 0.3, animations: {
-                self.categoryVC.view.frame = CGRect(x: -UIScreen.main.bounds.size.width, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-                
-            }) { (finished) in
-                self.categoryVC.view.removeFromSuperview()
-                AppDelegate.isCategoryVC = true
-            }
-        }
-        
         if AppDelegate.isCategoryVC {
             showMenu()
         } else {
@@ -105,6 +81,35 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
         }
     }
     
+    func showMenu() {
+        
+        self.view.addSubview(self.categoryVC.view)
+        
+        UIView.animate(withDuration: 0.3){
+            
+            self.categoryVC.view.frame = CGRect(x: 0,
+                                                y: (self.navigationController?.navigationBar.frame.height)!,
+                                                width: UIScreen.main.bounds.size.width/1.5,
+                                                height: self.categoryVC.view.frame.height)
+            
+            AppDelegate.isCategoryVC = false
+        }
+
+    }
+
+    func hideMenu() {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.categoryVC.view.frame = CGRect(x: -UIScreen.main.bounds.size.width,
+                                                y: (self.navigationController?.navigationBar.frame.height)!,
+                                                width: UIScreen.main.bounds.size.width,
+                                                height: UIScreen.main.bounds.size.height)
+            
+        }) { (finished) in
+            self.categoryVC.view.removeFromSuperview()
+            AppDelegate.isCategoryVC = true
+        }
+    }
 
     
 //    MARK: - Seque
@@ -133,9 +138,24 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
     
 //    MARK: - Additional funcs
     
-    func setProducts(category: String, subCategory: String?) {
-        print(category)
-        print(subCategory)
+    func setProducts(category: String, subCategory: String) {
+        
+        hideMenu()
+        
+        FireAPI.shared.getProducts(category: category, subCategoriy: subCategory) { docs in
+            
+            self.products.removeAll()
+            self.products = docs
+            self.collectionView.reloadData()
+            
+            for product in self.products {
+                FireAPI.shared.getFirstImage(document: product) { image in
+                    
+                    product.image = image
+                    self.collectionView.reloadData()
+                }
+            }
+        }
     }
     
 

@@ -49,6 +49,10 @@ class CategoryTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
 
         cell.label.text = AppSettings.shared.categories[indexPath.section][indexPath.row]
+        
+        if indexPath.row == 0 {
+            cell.backgroundColor = .systemGray5
+        }
         return cell
     }
  
