@@ -342,8 +342,7 @@ class FireAPI {
         if AppSettings.shared.signedIn {
             let data: [String : Any] = ["fullName": fullname,
                                         "address" : address,
-                                        "cart" : [""],
-                                        "reviews" : [""]]
+                                        "cart" : [""]]
             
             db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).setData(data)
         }
@@ -477,9 +476,9 @@ class FireAPI {
                 
                 completion[0](true)
 
+                self.setUser(userID: authResult?.user.uid, email: email)
                 self.createNewUserFiles(fullname: userName, address: adress)
-                AppSettings.shared.userFullName = userName
-                AppSettings.shared.userAdress = adress
+ 
                 
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
             }
@@ -500,32 +499,33 @@ class FireAPI {
     func changeUserEmail(newEmail: String, completion: @escaping (Bool) -> ()) {
         
         if !newEmail.isEmpty {
-            Auth.auth().currentUser?.updateEmail(to: newEmail) { error in
+            Auth.auth().currentUser?.sendEmailVerification(beforeUpdatingEmail: newEmail, completion: { error in
                 
                 if let error = error {
                     print("Error changing user email: ", error)
                     completion(false)
                     
                 } else {
+                    AppSettings.shared.userEmail = newEmail
                     completion(true)
                 }
-            }
+            })
         }
     }
     
     func changeUserPassword(newPassword: String, completion: @escaping (Bool) -> ()) {
         
         if !newPassword.isEmpty {
-            Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
+            Auth.auth().currentUser?.updatePassword(to: newPassword, completion: { error in
                 
                 if let error = error {
                     print("Error changing user password: ", error)
                     completion(false)
-                    
+
                 } else {
                     completion(true)
                 }
-            }
+            })
         }
     }
     
@@ -539,6 +539,7 @@ class FireAPI {
                     completion(false)
                     
                 } else {
+                    AppSettings.shared.userAdress = newAddress
                     completion(true)
                 }
             }
