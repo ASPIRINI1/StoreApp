@@ -151,6 +151,7 @@ class SettingsMapView: MKMapView, MKMapViewDelegate {
 // MARK: - MKMaoView extension
 
 extension MKMapView {
+    
     func setLocation(location: CLLocation, regionRadius: CLLocationDistance = 1000) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         setRegion(coordinateRegion, animated: true)

@@ -27,17 +27,22 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
         //configure mapView
         mapV = mapView as! SettingsMapView
         mapV.configureMapView()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
         if AppSettings.shared.signedIn {
             accountLabel.text = AppSettings.shared.userEmail
-            signInButton.titleLabel?.text = NSLocalizedString("Sign Out", comment: "")
+            signInButton.setTitle(NSLocalizedString("Sign Out", comment: ""), for: .normal)
+            
         } else {
             accountLabel.text = NSLocalizedString("Authorization", comment: "")
-            signInButton.titleLabel?.text = NSLocalizedString("Sign In", comment: "")
+            signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal) 
         }
+        
+        
     }
     
 
