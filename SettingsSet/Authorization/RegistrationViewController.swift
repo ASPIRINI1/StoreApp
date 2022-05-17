@@ -57,7 +57,7 @@ class RegistrationViewController: UIViewController {
             return
         }
         
-        if fullNameTextFiedl.text == nil {
+        if fullNameTextFiedl.text == nil || !fullNameTextFiedl.text!.isValidFullName() {
             validationLabel.text = NSLocalizedString("Check your fullname.", comment: "")
             return
         }

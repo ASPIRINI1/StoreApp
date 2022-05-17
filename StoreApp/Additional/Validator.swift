@@ -28,7 +28,7 @@ class Validator {
     }
 }
 
-// Email checking
+// validation
 extension String {
     
     func isValidEmail() -> Bool {

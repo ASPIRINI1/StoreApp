@@ -15,6 +15,7 @@ class FireAPI {
     
     static let shared = FireAPI()
     
+    var f = FireAPIUserAccount()
     private lazy var db = configureFB()
     private lazy var storage = Storage.storage()
     private lazy var storageRef = storage.reference()
@@ -489,6 +490,8 @@ class FireAPI {
         deleteUserFiles()
         signOut()
     }
+    
+//    MARK: Change user
     
     func changeUser(email: String, completion: @escaping (Bool) -> ()) {
         
