@@ -13,6 +13,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var fullNameTextFiedl: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var phoneNumTextField: UITextField!
     @IBOutlet weak var validationLabel: UILabel!
     @IBOutlet weak var registrationButton: UIButton!
     @IBOutlet weak var substrateView: UIView!
@@ -56,19 +57,24 @@ class RegistrationViewController: UIViewController {
             return
         }
         
-        if addressTextField.text != nil && addressTextField.text!.isEmpty {
-            validationLabel.text = NSLocalizedString("Check your address.", comment: "")
-            return
-        }
-        if fullNameTextFiedl.text != nil && fullNameTextFiedl.text!.isEmpty {
+        if fullNameTextFiedl.text == nil {
             validationLabel.text = NSLocalizedString("Check your fullname.", comment: "")
             return
         }
         
-        if Validator.shared.userDataIsCurrect(email: emailTextField.text, pass: emailTextField.text) {
+        if addressTextField.text == nil {
+            validationLabel.text = NSLocalizedString("Check your address.", comment: "")
+            return
+        }
+
+        if phoneNumTextField.text == nil || !phoneNumTextField.text!.isValidProneNum() {
+            validationLabel.text = NSLocalizedString("Check you phone num.", comment: "")
+            return
+        }
             
             validationLabel.isHidden = true
-            FireAPI.shared.registration(email: emailTextField.text!, password: passwordTextField.text!, userName: fullNameTextFiedl.text!, adress: addressTextField.text!) { regSuccess in
+        
+            FireAPI.shared.registration(email: emailTextField.text!, password: passwordTextField.text!, userName: fullNameTextFiedl.text!, adress: addressTextField.text!, phoneNum: Int(phoneNumTextField.text!)!) { regSuccess in
 
                 if !regSuccess {
                     let alert = UIAlertController(title: NSLocalizedString("Registration Error", comment: ""), message: NSLocalizedString("Network unable or email already exist.", comment: ""), preferredStyle: .alert)
@@ -78,12 +84,10 @@ class RegistrationViewController: UIViewController {
                     alert.addAction(alertAction)
                     self.present(alert, animated: true, completion: nil)
                 }
+                
                 self.navigationController?.popToRootViewController(animated: true)
             }
-        } else {
-            self.validationLabel.isHidden = false
-            self.validationLabel.text = NSLocalizedString("Check your email and password.", comment: "")
-        }
+
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
@@ -116,7 +120,6 @@ class RegistrationViewController: UIViewController {
 extension RegistrationViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("dsafds")
 
         if addressTextField.isFirstResponder {
             registrationButton.sendActions(for: .touchUpInside)

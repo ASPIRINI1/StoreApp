@@ -337,11 +337,12 @@ class FireAPI {
 
     //    MARK: - Create,Update,Delete documents
     
-    private func createNewUserFiles(fullname: String, address: String) {
+    private func createNewUserFiles(fullname: String, address: String, phoneNum: Int) {
         
         if AppSettings.shared.signedIn {
             let data: [String : Any] = ["fullName": fullname,
                                         "address" : address,
+                                        "phoneNum" : phoneNum,
                                         "cart" : [""]]
             
             db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).setData(data)
@@ -412,15 +413,6 @@ class FireAPI {
                 self.setUser(userID: authResult?.user.uid, email: email)
                 completion[0](true)
                 
-                self.db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
-                    if let error = error { print("Error getting user data: ", error); return }
-                    
-                    if documentSnapshot != nil {
-                        AppSettings.shared.userFullName = documentSnapshot?.get("fullName") as! String
-                        AppSettings.shared.userAdress = documentSnapshot?.get("address") as! String
-                    }
-                }
-                
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
             }
         }
@@ -440,6 +432,7 @@ class FireAPI {
                 if documentSnapshot != nil {
                     AppSettings.shared.userFullName = documentSnapshot?.get("fullName") as! String
                     AppSettings.shared.userAdress = documentSnapshot?.get("address") as! String
+                    AppSettings.shared.userPhoneNum = documentSnapshot?.get("phoneNum") as! Int
                 }
             }
             
@@ -450,6 +443,7 @@ class FireAPI {
             AppSettings.shared.userID = ""
             AppSettings.shared.userAdress = ""
             AppSettings.shared.userFullName = ""
+            AppSettings.shared.userPhoneNum = 0
         }
     }
     
@@ -465,7 +459,7 @@ class FireAPI {
         NotificationCenter.default.post(name: NSNotification.Name("SignedOut"), object: nil)
     }
     
-    func registration(email: String, password: String, userName: String, adress: String, completion: (Bool) -> ()...){
+    func registration(email: String, password: String, userName: String, adress: String, phoneNum: Int, completion: (Bool) -> ()...){
         
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if  (error != nil){
@@ -477,7 +471,7 @@ class FireAPI {
                 completion[0](true)
 
                 self.setUser(userID: authResult?.user.uid, email: email)
-                self.createNewUserFiles(fullname: userName, address: adress)
+                self.createNewUserFiles(fullname: userName, address: adress, phoneNum: phoneNum)
  
                 
                 NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)

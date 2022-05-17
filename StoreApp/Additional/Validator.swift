@@ -47,7 +47,12 @@ extension String {
     }
     
     func isValidCardNum() -> Bool {
-        let regex = try! NSRegularExpression(pattern: "[0-9]{16}", options: .caseInsensitive)
+        let regex = try! NSRegularExpression(pattern: "[0-9]{16,16}", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
+    
+    func isValidProneNum() -> Bool {
+        let regex = try! NSRegularExpression(pattern: "[0-9]{10,12}", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
 }

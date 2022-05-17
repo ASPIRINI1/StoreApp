@@ -22,6 +22,7 @@ class AppSettings{
         case userEmail = "userEmail"
         case userFullName = "userFullName"
         case userAddress = "userAddress"
+        case userPhoneNum = "userPhoneNum"
         case isSignIn = "signedIn"
         case appTheme = "AppTheme"
         case categories = "categories"
@@ -94,6 +95,15 @@ class AppSettings{
         }
         set {
             userDefaults.set(newValue, forKey: SettingsKeys.categories.rawValue)
+        }
+    }
+    
+    var userPhoneNum: Int {
+        get {
+            return userDefaults.value(forKey: SettingsKeys.userPhoneNum.rawValue) as! Int
+        }
+        set {
+            userDefaults.set(newValue, forKey: SettingsKeys.userPhoneNum.rawValue)
         }
     }
     
