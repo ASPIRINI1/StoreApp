@@ -23,6 +23,7 @@ class UserInfoChangeViewController: UIViewController {
         case email
         case password
         case address
+        case phoneNum
     }
     
 //    MARK: - Properties
@@ -43,15 +44,15 @@ class UserInfoChangeViewController: UIViewController {
     @IBAction func buttonAction(_ sender: Any) {
         
         switch viewType {
+            
         case .email:
             
-            if ((firstTextField.text?.isValidEmail()) != nil) {
-                
-                FireAPI.shared.changeUserEmail(newEmail: firstTextField.text!, completion: { success in
+            if firstTextField.text != nil && firstLabel.text!.isValidEmail() {
+                FireAPI.shared.changeUser(email: firstTextField.text!, completion: { success in
                 
                     if success {
                         self.navigationController?.popViewController(animated: true)
-                        
+
                     } else {
                         self.showUpdatingErrorAlert()
                     }
@@ -64,6 +65,7 @@ class UserInfoChangeViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                     self.firstTextField.text?.removeAll()
                 }))
+                present(alert, animated: true)
             }
             
         case .password:
@@ -74,12 +76,13 @@ class UserInfoChangeViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                     self.secondTextField.text?.removeAll()
                 }))
+                present(alert, animated: true)
             }
             
             // check password identity
             if thirdTextField.text == secondTextField.text {
                 
-                FireAPI.shared.changeUserPassword(newPassword: secondTextField.text!, completion: { success in
+                FireAPI.shared.changeUser(password: secondTextField.text!, completion: { success in
                     
                     if success {
                         self.navigationController?.popViewController(animated: true)
@@ -96,14 +99,14 @@ class UserInfoChangeViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                     self.thirdTextField.text?.removeAll()
                 }))
+                present(alert, animated: true)
             }
             
         case .address:
             
             if firstTextField.text != nil {
                 
-                AppSettings.shared.userAdress = firstTextField.text!
-                FireAPI.shared.changeUserAdress(newAddress: firstTextField.text!, completion: { success in
+                FireAPI.shared.changeUser(address: firstTextField.text!, completion: { success in
                     
                     if success {
                         self.navigationController?.popViewController(animated: true)
@@ -117,20 +120,47 @@ class UserInfoChangeViewController: UIViewController {
                 
             } else {
                 
-                let alert = UIAlertController(title: NSLocalizedString("Adress changing fail.", comment: ""), message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                let alert = UIAlertController(title: NSLocalizedString("Wrong acddress.", comment: ""), message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                    self.firstTextField.text?.removeAll()
+                }))
+                present(alert, animated: true)
             }
             
+        case .phoneNum:
+            
+            if firstTextField.text != nil && firstTextField.text!.isValidProneNum() {
+                FireAPI.shared.changeUser(phoneNum: Int(firstTextField.text!)!, completion: { success in
+                    
+                    if success {
+                        self.navigationController?.popViewController(animated: true)
+                        
+                    } else {
+                        
+                        self.showUpdatingErrorAlert()
+                    }
+                })
+                
+                
+            } else {
+                
+                let alert = UIAlertController(title: NSLocalizedString("Wrong phone number.", comment: ""), message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                    self.firstTextField.text?.removeAll()
+                }))
+                present(alert, animated: true)
+            }
         }
     }
     
-//    MARK: - Additional funcs
+//    MARK: - Creating view
     
     private func createView() {
         
         switch viewType {
             
         case .email:
+            
             headerLAbel.text = NSLocalizedString("You must confirm the change of email on your new mailbox.", comment: "")
             
             firstLabel.text = NSLocalizedString("Your new email", comment: "")
@@ -141,6 +171,7 @@ class UserInfoChangeViewController: UIViewController {
             secondTextField.isSecureTextEntry = true
             
         case .password:
+            
             headerLAbel.text = NSLocalizedString("You must confirm the change of password on your mailbox.", comment: "")
             
             firstLabel.text = NSLocalizedString("Old password", comment: "")
@@ -159,6 +190,7 @@ class UserInfoChangeViewController: UIViewController {
             
             
         case .address:
+            
             headerLAbel.text = NSLocalizedString("You must confirm the change of address on your mailbox.", comment: "")
             
             firstLabel.text = NSLocalizedString("Adress", comment: "")
@@ -166,8 +198,19 @@ class UserInfoChangeViewController: UIViewController {
             
             secondLabel.isHidden = true
             secondTextField.isHidden = true
+            
+        case .phoneNum:
+            
+            headerLAbel.text = NSLocalizedString("You must confirm the change of phone number on your mailbox.", comment: "")
+            firstLabel.text = NSLocalizedString("New phone num", comment: "")
+            
+            secondLabel.isHidden = true
+            secondTextField.isHidden = true
         }
+        
     }
+    
+//    MARK: - Additional funcs
     
     func setViewType(viewType: changingType) {
         self.viewType = viewType

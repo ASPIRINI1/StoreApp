@@ -57,7 +57,7 @@ class AppSettings{
         }
     }
     
-    var userAdress: String{
+    var userAddress: String{
         get {
             return userDefaults.string(forKey: SettingsKeys.userAddress.rawValue ) ?? ""
         }

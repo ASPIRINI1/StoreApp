@@ -154,14 +154,22 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
                 userInfoChangeVC.setViewType(viewType: .email)
                 self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
             }
+            
             let chanePassAction = UIAlertAction(title: NSLocalizedString("Change password", comment: ""), style: .default) { _ in
                 userInfoChangeVC.setViewType(viewType: .password)
                 self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
             }
-            let changeAddressAction = UIAlertAction(title: NSLocalizedString("Change Address", comment: ""), style: .default) { _ in
+            
+            let changeAddressAction = UIAlertAction(title: NSLocalizedString("Change address", comment: ""), style: .default) { _ in
                 userInfoChangeVC.setViewType(viewType: .address)
                 self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
             }
+            
+            let changePhoneNumAction = UIAlertAction(title: "Change phone number", style: .default) { _ in
+                userInfoChangeVC.setViewType(viewType: .phoneNum)
+                self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
+            }
+            
             let deleteAccountAction = UIAlertAction(title: NSLocalizedString("Delete user account", comment: ""), style: .destructive) { _ in
                 
 //                creating confirming alert
@@ -185,6 +193,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
             userInfoChangeActionSheet.addAction(changeEmailAction)
             userInfoChangeActionSheet.addAction(chanePassAction)
             userInfoChangeActionSheet.addAction(changeAddressAction)
+            userInfoChangeActionSheet.addAction(changePhoneNumAction)
             userInfoChangeActionSheet.addAction(deleteAccountAction)
             userInfoChangeActionSheet.addAction(cancel)
             

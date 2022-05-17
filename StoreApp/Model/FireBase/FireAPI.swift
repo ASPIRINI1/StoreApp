@@ -431,7 +431,7 @@ class FireAPI {
                 
                 if documentSnapshot != nil {
                     AppSettings.shared.userFullName = documentSnapshot?.get("fullName") as! String
-                    AppSettings.shared.userAdress = documentSnapshot?.get("address") as! String
+                    AppSettings.shared.userAddress = documentSnapshot?.get("address") as! String
                     AppSettings.shared.userPhoneNum = documentSnapshot?.get("phoneNum") as! Int
                 }
             }
@@ -441,7 +441,7 @@ class FireAPI {
             AppSettings.shared.signedIn = false
             AppSettings.shared.userEmail = ""
             AppSettings.shared.userID = ""
-            AppSettings.shared.userAdress = ""
+            AppSettings.shared.userAddress = ""
             AppSettings.shared.userFullName = ""
             AppSettings.shared.userPhoneNum = 0
         }
@@ -490,27 +490,27 @@ class FireAPI {
         signOut()
     }
     
-    func changeUserEmail(newEmail: String, completion: @escaping (Bool) -> ()) {
+    func changeUser(email: String, completion: @escaping (Bool) -> ()) {
         
-        if !newEmail.isEmpty {
-            Auth.auth().currentUser?.sendEmailVerification(beforeUpdatingEmail: newEmail, completion: { error in
+        if !email.isEmpty {
+            Auth.auth().currentUser?.sendEmailVerification(beforeUpdatingEmail: email, completion: { error in
                 
                 if let error = error {
                     print("Error changing user email: ", error)
                     completion(false)
                     
                 } else {
-                    AppSettings.shared.userEmail = newEmail
+                    AppSettings.shared.userEmail = email
                     completion(true)
                 }
             })
         }
     }
     
-    func changeUserPassword(newPassword: String, completion: @escaping (Bool) -> ()) {
+    func changeUser(password: String, completion: @escaping (Bool) -> ()) {
         
-        if !newPassword.isEmpty {
-            Auth.auth().currentUser?.updatePassword(to: newPassword, completion: { error in
+        if !password.isEmpty {
+            Auth.auth().currentUser?.updatePassword(to: password, completion: { error in
                 
                 if let error = error {
                     print("Error changing user password: ", error)
@@ -523,21 +523,36 @@ class FireAPI {
         }
     }
     
-    func changeUserAdress(newAddress: String, completion: @escaping (Bool) -> ()) {
+    func changeUser(address: String, completion: @escaping (Bool) -> ()) {
         
-        if !newAddress.isEmpty {
-            db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).updateData(["address" : newAddress]) { error in
+        if !address.isEmpty {
+            db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).updateData(["address" : address]) { error in
                 
                 if let error = error {
                     print("Error changing user address: ", error)
                     completion(false)
                     
                 } else {
-                    AppSettings.shared.userAdress = newAddress
+                    AppSettings.shared.userAddress = address
                     completion(true)
                 }
             }
         }
     }
     
+    func changeUser(phoneNum: Int, completion: @escaping (Bool) -> ()) {
+        
+        db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).updateData(["phoneNum" : phoneNum]) { error in
+            
+            if let error = error {
+                print("Error changing phone num: ",error)
+                completion(false)
+                
+            } else {
+                AppSettings.shared.userPhoneNum = phoneNum
+                completion(true)
+            }
+            
+        }
+    }
 }

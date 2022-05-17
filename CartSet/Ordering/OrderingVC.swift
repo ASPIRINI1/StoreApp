@@ -26,7 +26,7 @@ class OrderingVC: UIViewController {
     
     private func configureVC() {
 //        fullnameLabel.text = AppSettings.shared.
-        addressLabel.text = AppSettings.shared.userAdress
+        addressLabel.text = AppSettings.shared.userAddress
         goodsListTableView.layer.cornerRadius = 10
         
         var totalPrice = 0
