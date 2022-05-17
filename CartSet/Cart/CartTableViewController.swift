@@ -17,29 +17,48 @@ class CartTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
         if AppSettings.shared.userID != "" {
             FireAPI.shared.getUserCart { docs in
                 self.cart = docs
                 self.tableView.reloadData()
-                var totalPrice = 0
                 
                 for product in self.cart {
+                    
                     FireAPI.shared.getFirstImage(document: product) { image in
                         product.image = image
-                        totalPrice += product.price
-                        self.totalPriceLabel.title! = String(totalPrice) + NSLocalizedString("Rub", comment: "")
+                    }
+                    
+                    if product.documentID == self.cart.last?.documentID {
+                        self.getTotalSum()
                         self.tableView.reloadData()
                     }
                 }
             }
         }
-       
     }
 
 //    MARK: - Actions
     
     @IBAction func eidtButtonAction(_ sender: Any) {
         
+    }
+    
+//    MARK: - Additional funcs
+    
+    func getTotalSum(){
+        
+        var sum = 0
+        
+        for product in cart {
+            sum += product.price
+        }
+        totalPriceLabel.title = String(sum) + " " + NSLocalizedString("Rub", comment: "")
     }
     
     // MARK: - Navigation
@@ -54,6 +73,15 @@ class CartTableViewController: UITableViewController {
         }
         
         if segue.destination is OrderingVC {
+            
+            if cart.isEmpty {
+                
+                let alert = UIAlertController(title: NSLocalizedString("Add some goods in cart first.", comment: ""), message: nil, preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                
+                present(alert, animated: true)
+            }
             
             if AppSettings.shared.userID != "" {
                 
@@ -107,6 +135,7 @@ class CartTableViewController: UITableViewController {
         if editingStyle == .delete {
             FireAPI.shared.removeFromCart(document: cart[indexPath.row])
             cart.remove(at: indexPath.row)
+            getTotalSum()
             tableView.reloadData()
         }
     }
