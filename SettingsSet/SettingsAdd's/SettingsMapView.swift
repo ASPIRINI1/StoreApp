@@ -81,7 +81,7 @@ class SettingsMapView: MKMapView, MKMapViewDelegate {
         return shopList
     }
     
-//    MARK: - Creatigng store Annotation
+//    MARK: - Creatigng pin's
     
     private func createShopPin() {
         
@@ -97,6 +97,15 @@ class SettingsMapView: MKMapView, MKMapViewDelegate {
         }
     }
     
+    func createUserPin() {
+        
+        let pin = MKPointAnnotation()
+        pin.title = NSLocalizedString("You", comment: "")
+        pin.coordinate = userPosition.coordinate
+        
+        self.addAnnotation(pin)
+    }
+    
     //    MARK: - Creating route to store
     
     func route(to: CLLocation) {
@@ -104,7 +113,8 @@ class SettingsMapView: MKMapView, MKMapViewDelegate {
         let fromPointItem = MKMapItem(placemark: MKPlacemark(coordinate: userPosition.coordinate))
         let toPointItem = MKMapItem(placemark: MKPlacemark(coordinate: to.coordinate))
         
-
+        createUserPin()
+    
         let request = MKDirections.Request()
 
         request.source = fromPointItem
