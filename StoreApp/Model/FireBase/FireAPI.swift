@@ -334,6 +334,20 @@ class FireAPI {
                 }
             }
     }
+    
+    func isInCart(document: Document, completion: @escaping (Bool) -> ()) {
+        
+        db.collection(RootCollections.products.rawValue).document(document.category).collection(document.subCategory).document(document.documentID).getDocument { documentSnapshot, error in
+            if let error = error {
+                print("Error inCart: ", error)
+                completion(false)
+            }
+            if documentSnapshot != nil {
+                completion(true)
+            }
+        }
+        
+    }
 
 
     //    MARK: - Create,Update,Delete documents
@@ -344,7 +358,7 @@ class FireAPI {
             let data: [String : Any] = ["fullName": fullname,
                                         "address" : address,
                                         "phoneNum" : phoneNum,
-                                        "cart" : [""]]
+                                        "cart" : []]
             
             db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).setData(data)
         }
