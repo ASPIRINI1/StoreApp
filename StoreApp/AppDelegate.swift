@@ -17,31 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
-//        let coreData = CoreDataManager()
-//        let fireAPI = APIManager()
-//
-//        fireAPI.getCategories { categories in
-//
-//            for category in categories {
-//                for subCategory in category {
-//
-//                    if subCategory == category[0] {
-//                        continue
-//                    }
-//
-//                    fireAPI.getProductsForCategory(category: category[0], subCategoriy: subCategory) { documents in
-//
-//                        for doc in documents {
-//
-//                            fireAPI.getOneImage(category: category[0], subCategory: subCategory, docID: doc.documentID) { image in
-//
-//                                coreData.addToCorData(id: doc.documentID, name: doc.name, price: doc.price, category: category[0], subCategory: subCategory, image: image)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
         
         return true
     }

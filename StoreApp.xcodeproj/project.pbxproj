@@ -10,6 +10,7 @@
 		1153190184F41A04520FC300 /* Pods_StoreApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5453D5AA268F39F9A806095 /* Pods_StoreApp.framework */; };
 		DE26705B27FB34DD0063A84D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */; };
 		DE2B526E27FC7745009F22AB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B526D27FC7745009F22AB /* Validator.swift */; };
+		DE386012283431420077F0E7 /* FireAPIUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE386011283431420077F0E7 /* FireAPIUserAccount.swift */; };
 		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
 		DE5ED33C2820A16C00D46098 /* OrderingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5ED33B2820A16C00D46098 /* OrderingTableViewCell.swift */; };
@@ -17,14 +18,10 @@
 		DE6916E128216BAD00608D18 /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6916E028216BAD00608D18 /* ReviewsTableViewCell.swift */; };
 		DE6916E328216D9900608D18 /* ReviewAddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6916E228216D9900608D18 /* ReviewAddingViewController.swift */; };
 		DE6A9149280B2284005820E3 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6A9148280B2284005820E3 /* CategoryTableViewController.swift */; };
-		DE8397DF27EFD7400064E2DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8397DE27EFD7400064E2DF /* CoreDataManager.swift */; };
 		DE93F2DE280F23D900132E6A /* SettingsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93F2DD280F23D900132E6A /* SettingsMapView.swift */; };
-		DE96C95E2815D909008127FF /* Goods+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96C95C2815D909008127FF /* Goods+CoreDataProperties copy.swift */; };
-		DE96C95F2815D909008127FF /* Goods+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96C95D2815D909008127FF /* Goods+CoreDataClass copy.swift */; };
 		DEA8FE9B27EA6A0300084595 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */; };
 		DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */; };
 		DEA8FEA227EA6A0300084595 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA8FEA027EA6A0300084595 /* Main.storyboard */; };
-		DEA8FEA527EA6A0300084595 /* StoreApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEA8FEA327EA6A0300084595 /* StoreApp.xcdatamodeld */; };
 		DEA8FEA727EA6A0400084595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEA8FEA627EA6A0400084595 /* Assets.xcassets */; };
 		DEA8FEAA27EA6A0400084595 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA8FEA827EA6A0400084595 /* LaunchScreen.storyboard */; };
 		DEBF989427F6761F004DAD4C /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBF989327F6761F004DAD4C /* StoreCollectionViewCell.swift */; };
@@ -48,6 +45,7 @@
 		797B9853F2B09805D5F110A6 /* Pods-StoreApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreApp.debug.xcconfig"; path = "Target Support Files/Pods-StoreApp/Pods-StoreApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		DE2B526D27FC7745009F22AB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		DE386011283431420077F0E7 /* FireAPIUserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPIUserAccount.swift; sourceTree = "<group>"; };
 		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE5ED33B2820A16C00D46098 /* OrderingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingTableViewCell.swift; sourceTree = "<group>"; };
@@ -55,15 +53,11 @@
 		DE6916E028216BAD00608D18 /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		DE6916E228216D9900608D18 /* ReviewAddingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAddingViewController.swift; sourceTree = "<group>"; };
 		DE6A9148280B2284005820E3 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
-		DE8397DE27EFD7400064E2DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DE93F2DD280F23D900132E6A /* SettingsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMapView.swift; sourceTree = "<group>"; };
-		DE96C95C2815D909008127FF /* Goods+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Goods+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
-		DE96C95D2815D909008127FF /* Goods+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Goods+CoreDataClass copy.swift"; sourceTree = "<group>"; };
 		DEA8FE9727EA6A0300084595 /* StoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEA8FE9C27EA6A0300084595 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DEA8FEA127EA6A0300084595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DEA8FEA427EA6A0300084595 /* StoreApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreApp.xcdatamodel; sourceTree = "<group>"; };
 		DEA8FEA627EA6A0400084595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DEA8FEA927EA6A0400084595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DEA8FEAB27EA6A0400084595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -188,15 +182,6 @@
 			path = Reviews;
 			sourceTree = "<group>";
 		};
-		DE96C9572815CA35008127FF /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				DE96C95D2815D909008127FF /* Goods+CoreDataClass copy.swift */,
-				DE96C95C2815D909008127FF /* Goods+CoreDataProperties copy.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
 		DEA8FE8E27EA6A0300084595 = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +211,6 @@
 				DEA8FEA027EA6A0300084595 /* Main.storyboard */,
 				DEA8FEA627EA6A0400084595 /* Assets.xcassets */,
 				DEA8FEA827EA6A0400084595 /* LaunchScreen.storyboard */,
-				DEA8FEA327EA6A0300084595 /* StoreApp.xcdatamodeld */,
 				DEA8FEAB27EA6A0400084595 /* Info.plist */,
 				DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */,
 			);
@@ -247,9 +231,7 @@
 		DEBF989627F67BE6004DAD4C /* Local */ = {
 			isa = PBXGroup;
 			children = (
-				DE96C9572815CA35008127FF /* CoreData */,
 				DEE68AD927ED0C6400BA6A55 /* AppSettings.swift */,
-				DE8397DE27EFD7400064E2DF /* CoreDataManager.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -297,6 +279,7 @@
 				DEE68AD527ED096500BA6A55 /* FireAPI.swift */,
 				DEE68AD727ED09EC00BA6A55 /* Document.swift */,
 				DEC050532821EF92004991AA /* Review.swift */,
+				DE386011283431420077F0E7 /* FireAPIUserAccount.swift */,
 			);
 			path = FireBase;
 			sourceTree = "<group>";
@@ -422,6 +405,7 @@
 				DEC7719A27F9E8B4006DB6D6 /* SettingsTableViewController.swift in Sources */,
 				DEA8FE9B27EA6A0300084595 /* AppDelegate.swift in Sources */,
 				DEC83E6E2804C5FE00ADE83C /* CartTableViewController.swift in Sources */,
+				DE386012283431420077F0E7 /* FireAPIUserAccount.swift in Sources */,
 				DEC7719C27F9EB0C006DB6D6 /* AuthorisationViewController.swift in Sources */,
 				DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */,
 				DEC83E6728032C6500ADE83C /* UserInfoChangeViewController.swift in Sources */,
@@ -430,10 +414,7 @@
 				DEC83E6C2804C5ED00ADE83C /* CartTableViewCell.swift in Sources */,
 				DE6916E128216BAD00608D18 /* ReviewsTableViewCell.swift in Sources */,
 				DE5ED33C2820A16C00D46098 /* OrderingTableViewCell.swift in Sources */,
-				DE8397DF27EFD7400064E2DF /* CoreDataManager.swift in Sources */,
 				DEBF989427F6761F004DAD4C /* StoreCollectionViewCell.swift in Sources */,
-				DE96C95F2815D909008127FF /* Goods+CoreDataClass copy.swift in Sources */,
-				DE96C95E2815D909008127FF /* Goods+CoreDataProperties copy.swift in Sources */,
 				DE93F2DE280F23D900132E6A /* SettingsMapView.swift in Sources */,
 				DE6916E328216D9900608D18 /* ReviewAddingViewController.swift in Sources */,
 				DEC7719E27F9EB1B006DB6D6 /* WEBViewController.swift in Sources */,
@@ -444,7 +425,6 @@
 				DE2B526E27FC7745009F22AB /* Validator.swift in Sources */,
 				DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */,
 				DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */,
-				DEA8FEA527EA6A0300084595 /* StoreApp.xcdatamodeld in Sources */,
 				DEC3F1D727F8C23900EE6572 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,19 +643,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		DEA8FEA327EA6A0300084595 /* StoreApp.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DEA8FEA427EA6A0300084595 /* StoreApp.xcdatamodel */,
-			);
-			currentVersion = DEA8FEA427EA6A0300084595 /* StoreApp.xcdatamodel */;
-			path = StoreApp.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = DEA8FE8F27EA6A0300084595 /* Project object */;
 }
