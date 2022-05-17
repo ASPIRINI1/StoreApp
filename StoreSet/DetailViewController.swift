@@ -29,19 +29,28 @@ class DetailViewController: UIViewController {
     
     @IBAction func addToCartButtonAction(_ sender: Any) {
         
-        if AppSettings.shared.userID != "" {
-            FireAPI.shared.addToCart(document: doc)
+        FireAPI.shared.isInCart(document: doc) { inCart in
             
-        } else {
-            
-            let alert = UIAlertController(title: NSLocalizedString("You must register to add items to your shopping cart.", comment: ""), message: nil, preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default,handler: { alertAction in
+            if inCart {
+                self.addToCartButton.setTitle(NSLocalizedString("In cart", comment: ""), for: .normal)
                 
-                self.navigationController?.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthorisationViewController"), animated: true)
-            }))
-            
-            present(alert, animated: true)
+            } else {
+                
+                if AppSettings.shared.userID != "" {
+                    FireAPI.shared.addToCart(document: self.doc)
+                    
+                } else {
+                    
+                    let alert = UIAlertController(title: NSLocalizedString("You must register to add items to your shopping cart.", comment: ""), message: nil, preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .default,handler: { alertAction in
+                        
+                        self.navigationController?.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthorisationViewController"), animated: true)
+                    }))
+                    
+                    self.present(alert, animated: true)
+                }
+            }
         }
         
     }
