@@ -337,13 +337,27 @@ class FireAPI {
     
     func isInCart(document: Document, completion: @escaping (Bool) -> ()) {
         
-        db.collection(RootCollections.products.rawValue).document(document.category).collection(document.subCategory).document(document.documentID).getDocument { documentSnapshot, error in
+        db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
+            
             if let error = error {
-                print("Error inCart: ", error)
+                print("Error writing document: \(error)")
                 completion(false)
             }
+            
             if documentSnapshot != nil {
-                completion(true)
+                var userCart = documentSnapshot?.get("cart") as! [String]
+
+                
+                for userCart in userCart {
+                    if userCart.contains(document.documentID) {
+                        completion(true)
+                        
+                    } else {
+                        completion(false)
+                    }
+                }
+ 
+ 
             }
         }
         

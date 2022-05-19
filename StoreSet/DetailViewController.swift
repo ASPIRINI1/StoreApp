@@ -25,34 +25,35 @@ class DetailViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        FireAPI.shared.isInCart(document: doc) { inCart in
+            if inCart {
+                
+                self.addToCartButton.setTitle(NSLocalizedString("In cart", comment: ""), for: .normal)
+            }
+        }
+    }
+    
     //MARK: - Actions
     
     @IBAction func addToCartButtonAction(_ sender: Any) {
         
-        FireAPI.shared.isInCart(document: doc) { inCart in
+        if AppSettings.shared.userID != "" {
+            FireAPI.shared.addToCart(document: self.doc)
+            self.addToCartButton.setTitle(NSLocalizedString("In cart", comment: ""), for: .normal)
             
-            if inCart {
-                self.addToCartButton.setTitle(NSLocalizedString("In cart", comment: ""), for: .normal)
+        } else {
+            
+            let alert = UIAlertController(title: NSLocalizedString("You must register to add items to yo    shopping cart.", comment: ""), message: nil, preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default,handler: { alertAction in
                 
-            } else {
-                
-                if AppSettings.shared.userID != "" {
-                    FireAPI.shared.addToCart(document: self.doc)
-                    
-                } else {
-                    
-                    let alert = UIAlertController(title: NSLocalizedString("You must register to add items to your shopping cart.", comment: ""), message: nil, preferredStyle: .alert)
-                    
-                    alert.addAction(UIAlertAction(title: "OK", style: .default,handler: { alertAction in
-                        
-                        self.navigationController?.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthorisationViewController"), animated: true)
-                    }))
-                    
-                    self.present(alert, animated: true)
-                }
-            }
+                self.navigationController?.pushViewController(UIStoryboard(name: "Main", bundle:  nil).instantiateViewController(withIdentifier: "AuthorisationViewController"), animated: true)
+            }))
+            
+            self.present(alert, animated: true)
         }
-        
     }
     
     //MARK: - Additional Funcs
