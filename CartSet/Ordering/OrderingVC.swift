@@ -11,7 +11,9 @@ class OrderingVC: UIViewController {
 
     @IBOutlet weak var fullnameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var goodsListTableView: UITableView!
+    @IBOutlet weak var goodsListTableView: GoodsTableView!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var paymentMethodTableView: PaymentTableView!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
     var products: [Document] = []
@@ -42,54 +44,20 @@ class OrderingVC: UIViewController {
         self.products = products
     }
     
+//    MARK: - Actions
+    
     @IBAction func byButtonAction(_ sender: Any) {
+        
         
     }
     
     @IBAction func changeUserDataButtonAction(_ sender: Any) {
+        
+        
     }
 
 }
 
-// MARK: - UITableViewDelegate
-
-extension OrderingVC: UITableViewDelegate, UITableViewDataSource {
-    
-//  goodsCell spasing
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(1)
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-       return CGFloat(1)
-    }
-    
-    
-    
-    
-    //MARK: - UITableViewDataSource
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return products.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-//        return products.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderingCell", for: indexPath) as! OrderingTableViewCell
-        
-        cell.nameLabel.text = products[indexPath.section].name
-        cell.priceLabel.text = String(products[indexPath.section].price) + NSLocalizedString("Rub", comment: "")
-        cell.prodImage.image = products[indexPath.section].image
-        
-//        cell.layer.cornerRadius = 10
-        
-        return cell
-    }
-}
 
 
 

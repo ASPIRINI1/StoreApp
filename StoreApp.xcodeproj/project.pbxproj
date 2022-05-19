@@ -13,7 +13,10 @@
 		DE386012283431420077F0E7 /* FireAPIUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE386011283431420077F0E7 /* FireAPIUserAccount.swift */; };
 		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
-		DE5ED33C2820A16C00D46098 /* OrderingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5ED33B2820A16C00D46098 /* OrderingTableViewCell.swift */; };
+		DE5ED33C2820A16C00D46098 /* GoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */; };
+		DE65FB412835188C00DB0A51 /* PaymentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65FB402835188C00DB0A51 /* PaymentTableView.swift */; };
+		DE65FB4328351A2E00DB0A51 /* PaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65FB4228351A2E00DB0A51 /* PaymentTableViewCell.swift */; };
+		DE65FB452835316800DB0A51 /* GoodsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65FB442835316800DB0A51 /* GoodsTableView.swift */; };
 		DE6916DE28216B7800608D18 /* ReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6916DD28216B7800608D18 /* ReviewsTableViewController.swift */; };
 		DE6916E128216BAD00608D18 /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6916E028216BAD00608D18 /* ReviewsTableViewCell.swift */; };
 		DE6916E328216D9900608D18 /* ReviewAddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6916E228216D9900608D18 /* ReviewAddingViewController.swift */; };
@@ -48,7 +51,10 @@
 		DE386011283431420077F0E7 /* FireAPIUserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPIUserAccount.swift; sourceTree = "<group>"; };
 		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DE5ED33B2820A16C00D46098 /* OrderingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingTableViewCell.swift; sourceTree = "<group>"; };
+		DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
+		DE65FB402835188C00DB0A51 /* PaymentTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableView.swift; sourceTree = "<group>"; };
+		DE65FB4228351A2E00DB0A51 /* PaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableViewCell.swift; sourceTree = "<group>"; };
+		DE65FB442835316800DB0A51 /* GoodsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableView.swift; sourceTree = "<group>"; };
 		DE6916DD28216B7800608D18 /* ReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewController.swift; sourceTree = "<group>"; };
 		DE6916E028216BAD00608D18 /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		DE6916E228216D9900608D18 /* ReviewAddingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAddingViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				DEE46F432808A3290045941E /* OrderingVC.swift */,
-				DE5ED33B2820A16C00D46098 /* OrderingTableViewCell.swift */,
+				DE65FB4628353AB600DB0A51 /* GoodsTableView */,
+				DE65FB4728353AC300DB0A51 /* PaymentTableView */,
 			);
 			path = Ordering;
 			sourceTree = "<group>";
@@ -170,6 +177,24 @@
 				DE2B526D27FC7745009F22AB /* Validator.swift */,
 			);
 			path = Additional;
+			sourceTree = "<group>";
+		};
+		DE65FB4628353AB600DB0A51 /* GoodsTableView */ = {
+			isa = PBXGroup;
+			children = (
+				DE65FB442835316800DB0A51 /* GoodsTableView.swift */,
+				DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */,
+			);
+			path = GoodsTableView;
+			sourceTree = "<group>";
+		};
+		DE65FB4728353AC300DB0A51 /* PaymentTableView */ = {
+			isa = PBXGroup;
+			children = (
+				DE65FB402835188C00DB0A51 /* PaymentTableView.swift */,
+				DE65FB4228351A2E00DB0A51 /* PaymentTableViewCell.swift */,
+			);
+			path = PaymentTableView;
 			sourceTree = "<group>";
 		};
 		DE6916DF28216B8000608D18 /* Reviews */ = {
@@ -408,14 +433,16 @@
 				DE386012283431420077F0E7 /* FireAPIUserAccount.swift in Sources */,
 				DEC7719C27F9EB0C006DB6D6 /* AuthorisationViewController.swift in Sources */,
 				DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */,
+				DE65FB452835316800DB0A51 /* GoodsTableView.swift in Sources */,
 				DEC83E6728032C6500ADE83C /* UserInfoChangeViewController.swift in Sources */,
 				DEE46F442808A3290045941E /* OrderingVC.swift in Sources */,
 				DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */,
 				DEC83E6C2804C5ED00ADE83C /* CartTableViewCell.swift in Sources */,
 				DE6916E128216BAD00608D18 /* ReviewsTableViewCell.swift in Sources */,
-				DE5ED33C2820A16C00D46098 /* OrderingTableViewCell.swift in Sources */,
+				DE5ED33C2820A16C00D46098 /* GoodsTableViewCell.swift in Sources */,
 				DEBF989427F6761F004DAD4C /* StoreCollectionViewCell.swift in Sources */,
 				DE93F2DE280F23D900132E6A /* SettingsMapView.swift in Sources */,
+				DE65FB412835188C00DB0A51 /* PaymentTableView.swift in Sources */,
 				DE6916E328216D9900608D18 /* ReviewAddingViewController.swift in Sources */,
 				DEC7719E27F9EB1B006DB6D6 /* WEBViewController.swift in Sources */,
 				DE6A9149280B2284005820E3 /* CategoryTableViewController.swift in Sources */,
@@ -425,6 +452,7 @@
 				DE2B526E27FC7745009F22AB /* Validator.swift in Sources */,
 				DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */,
 				DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */,
+				DE65FB4328351A2E00DB0A51 /* PaymentTableViewCell.swift in Sources */,
 				DEC3F1D727F8C23900EE6572 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
