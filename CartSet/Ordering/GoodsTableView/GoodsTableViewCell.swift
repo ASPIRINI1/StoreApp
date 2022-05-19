@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrderingTableViewCell: UITableViewCell {
+class GoodsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var prodImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

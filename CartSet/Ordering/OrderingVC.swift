@@ -23,7 +23,14 @@ class OrderingVC: UIViewController {
         super.viewDidLoad()
         
         configureVC()
-        
+       
+        // creating payment method tableView
+        paymentMethodTableView.createPaymentTableView(methods: [NSLocalizedString("Credit card", comment: ""),
+                                                                NSLocalizedString("Qiwi/YaMoney", comment: ""),
+                                                                NSLocalizedString("Сash on delivery", comment: ""),
+                                                                NSLocalizedString("Pick up by yourself", comment: "")])
+        // creating goods list tableView
+        goodsListTableView.createGoodsTableView(goods: products)
     }
     
     private func configureVC() {
