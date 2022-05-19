@@ -32,6 +32,7 @@ class CartTableViewController: UITableViewController {
                     
                     FireAPI.shared.getFirstImage(document: product) { image in
                         product.image = image
+                        self.tableView.reloadData()
                     }
                     
                     if product.documentID == self.cart.last?.documentID {
