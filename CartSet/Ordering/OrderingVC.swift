@@ -33,10 +33,13 @@ class OrderingVC: UIViewController {
         goodsListTableView.createGoodsTableView(goods: products)
     }
     
+    //    MARK: - Configuring ViewController
+    
     private func configureVC() {
-//        fullnameLabel.text = AppSettings.shared.
+        
+        fullnameLabel.text = AppSettings.shared.userFullName
         addressLabel.text = AppSettings.shared.userAddress
-        goodsListTableView.layer.cornerRadius = 10
+        emailLabel.text = AppSettings.shared.userEmail
         
         var totalPrice = 0
         
@@ -44,7 +47,7 @@ class OrderingVC: UIViewController {
             totalPrice += product.price
         }
         
-        totalPriceLabel.text = String(totalPrice)
+        totalPriceLabel.text = String(totalPrice) + " " + NSLocalizedString("Rub", comment: "")
     }
     
     func setProducts(products: [Document]) {
