@@ -174,6 +174,8 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoreCell", for: indexPath) as! StoreCollectionViewCell
         
         cell.layer.cornerRadius = CGFloat(5)
+        cell.backgroundColor = .systemGray6
+        cell.image.backgroundColor = .white
     
         if isFiltering {
             cell.name.text = filtredProducts[indexPath.row].name
@@ -184,6 +186,7 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
             cell.name.text = products[indexPath.row].name
             cell.price.text = "\(products[indexPath.row].price)" + NSLocalizedString("Rub", comment: "")
             cell.image.image = products[indexPath.row].image
+//            cell.image.image = UIImage(named: "5")
             
         }
 
