@@ -13,5 +13,10 @@ class CartTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceAlbel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
-
+    @IBOutlet weak var stepper: UIStepper!
+    
+    
+    @IBAction func stepperAction(_ sender: UIStepper) {
+        countLabel.text = String(Int(sender.value))
+    } 
 }

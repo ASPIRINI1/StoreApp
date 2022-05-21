@@ -8,7 +8,16 @@
 import Foundation
 import UIKit
 
-class Document {
+class Document: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(documentID)
+    }
+    
+    static func == (lhs: Document, rhs: Document) -> Bool {
+        return lhs.documentID == rhs.documentID
+    }
+    
     
     init(category: String, subCategory: String, documentID: String, name: String, price: Int, description: String){
         self.category = category

@@ -16,7 +16,7 @@ class OrderingVC: UIViewController {
     @IBOutlet weak var paymentMethodTableView: PaymentTableView!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
-    var products: [Document] = []
+    private var products = [(product: Document ,count: Int)]()
     
     
     override func viewDidLoad() {
@@ -44,13 +44,13 @@ class OrderingVC: UIViewController {
         var totalPrice = 0
         
         for product in products {
-            totalPrice += product.price
+            totalPrice += product.product.price
         }
         
         totalPriceLabel.text = String(totalPrice) + " " + NSLocalizedString("Rub", comment: "")
     }
     
-    func setProducts(products: [Document]) {
+    func setProducts(products: [(Document,Int)]) {
         self.products = products
     }
     

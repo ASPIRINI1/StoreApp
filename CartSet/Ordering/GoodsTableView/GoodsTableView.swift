@@ -10,9 +10,9 @@ import UIKit
 
 class GoodsTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
-    private var products = [Document]()
+    private var products = [(product: Document ,count: Int)]()
     
-    func createGoodsTableView(goods: [Document]) {
+    func createGoodsTableView(goods: [(product: Document ,count: Int)]) {
         
         self.dataSource = self
         self.delegate = self
@@ -35,9 +35,12 @@ class GoodsTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoodsCell", for: indexPath) as! GoodsTableViewCell
-        cell.nameLabel.text = products[indexPath.section].name
-        cell.priceLabel.text = String(products[indexPath.section].price) + NSLocalizedString("Rub", comment: "")
-        cell.prodImage.image = products[indexPath.section].image
+        
+        cell.nameLabel.text = products[indexPath.section].product.name
+        cell.priceLabel.text = String(products[indexPath.section].product.price) + NSLocalizedString("Rub", comment: "")
+        cell.prodImage.image = products[indexPath.section].product.image
+        cell.countLabel.text = String(products[indexPath.row].count)
+        
         return cell
     }
     

@@ -106,7 +106,7 @@ class DetailViewController: UIViewController {
         
         if segue.destination is OrderingVC {
             let orderingVC = segue.destination as! OrderingVC
-            orderingVC.setProducts(products: [doc])
+            orderingVC.setProducts(products: [(doc,1)])
         }
     }
     

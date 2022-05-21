@@ -11,7 +11,7 @@ class CartTableViewController: UITableViewController {
     
     @IBOutlet weak var totalPriceLabel: UIBarButtonItem!
     
-    private var cart: [Document] = []
+    private var cart = [(product: Document ,count: Int)]()
     private var selectedIndex = 0
 
     override func viewDidLoad() {
@@ -25,17 +25,22 @@ class CartTableViewController: UITableViewController {
         
         if AppSettings.shared.userID != "" {
             FireAPI.shared.getUserCart { docs in
-                self.cart = docs
+                self.cart.removeAll()
+                
+                for doc in docs {
+                    self.cart.append((product: doc, count: 1))
+                }
+                
                 self.tableView.reloadData()
                 
                 for product in self.cart {
                     
-                    FireAPI.shared.getFirstImage(document: product) { image in
-                        product.image = image
+                    FireAPI.shared.getFirstImage(document: product.product) { image in
+                        product.product.image = image
                         self.tableView.reloadData()
                     }
                     
-                    if product.documentID == self.cart.last?.documentID {
+                    if product.product.documentID == self.cart.last?.product.documentID {
                         self.getTotalSum()
                         self.tableView.reloadData()
                     }
@@ -57,7 +62,7 @@ class CartTableViewController: UITableViewController {
         var sum = 0
         
         for product in cart {
-            sum += product.price
+            sum += product.product.price * product.count
         }
         totalPriceLabel.title = String(sum) + " " + NSLocalizedString("Rub", comment: "")
     }
@@ -69,7 +74,7 @@ class CartTableViewController: UITableViewController {
         if segue.destination is DetailViewController {
             
             let detailVC = segue.destination as! DetailViewController
-            detailVC.setDocument(docoment: cart[selectedIndex])
+            detailVC.setDocument(docoment: cart[selectedIndex].product)
             return
         }
         
@@ -113,10 +118,10 @@ class CartTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartTableViewCell
         
-        cell.prodImage.image = cart[indexPath.row].image
-        cell.nameLabel.text = cart[indexPath.row].name
-        cell.priceAlbel.text = String(cart[indexPath.row].price)
-        cell.countLabel.text = "0"
+        cell.prodImage.image = cart[indexPath.row].product.image
+        cell.nameLabel.text = cart[indexPath.row].product.name
+        cell.priceAlbel.text = String(cart[indexPath.row].product.price)
+        cell.countLabel.text = String(cart[indexPath.row].count)
         
         return cell
     }
@@ -134,7 +139,7 @@ class CartTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            FireAPI.shared.removeFromCart(document: cart[indexPath.row])
+            FireAPI.shared.removeFromCart(document: cart[indexPath.row].product)
             cart.remove(at: indexPath.row)
             getTotalSum()
             tableView.reloadData()

@@ -12,6 +12,7 @@ class GoodsTableViewCell: UITableViewCell {
     @IBOutlet weak var prodImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-
+    @IBOutlet weak var countLabel: UILabel!
+    
 }
 
