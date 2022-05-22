@@ -74,15 +74,14 @@ class FireAPI {
             }
     }
     
-    func getRandomProducts(count: Int,completion: @escaping ([Document]) -> ()) {
+    func getRandomProducts(countForCategory: Int,completion: @escaping ([Document]) -> ()) {
         
         getCategories { categories in
-            
-//            var docCount = -categories.count
-//
-//            for category in categories {
-//                docCount += category.count
-//            }
+
+            var subCategoriesCount = 0
+            for category in categories {
+                subCategoriesCount += category.count-1
+            }
             
             var docs: [Document] = []
             for category in categories {
@@ -90,15 +89,16 @@ class FireAPI {
                     
                     if subCategory == category.first { continue }
                     
-                    self.db.collection(RootCollections.products.rawValue).document(category.first!).collection(subCategory).limit(to: 2).getDocuments { querySnapshot, error in
+                    self.db.collection(RootCollections.products.rawValue).document(category.first!).collection(subCategory).limit(to: countForCategory).getDocuments { querySnapshot, error in
                         
                         if let error = error { print("Error getting random doc: ", error); return }
                         
+                        print(subCategory)
                         
                         if querySnapshot != nil {
                             
                             for doc in querySnapshot!.documents {
-                                print(doc.documentID)
+                                
                                 docs.append(Document(category: category.first!,
                                                      subCategory: subCategory,
                                                      documentID: doc.documentID,
@@ -108,7 +108,7 @@ class FireAPI {
                             }
                         }
                         
-                        if docs.count == count {
+                        if docs.count == subCategoriesCount {
                             completion(docs)
                         }
                     }
@@ -117,6 +117,8 @@ class FireAPI {
         }
 
     }
+    
+
     
     func findProduct(name: String, completion: @escaping ([Document]) -> ()) {
         
