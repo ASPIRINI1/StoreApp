@@ -93,8 +93,6 @@ class FireAPI {
                         
                         if let error = error { print("Error getting random doc: ", error); return }
                         
-                        print(subCategory)
-                        
                         if querySnapshot != nil {
                             
                             for doc in querySnapshot!.documents {
@@ -108,7 +106,7 @@ class FireAPI {
                             }
                         }
                         
-                        if docs.count == subCategoriesCount {
+                        if docs.count == (countForCategory * subCategoriesCount) {
                             completion(docs)
                         }
                     }
@@ -347,8 +345,7 @@ class FireAPI {
             }
             
             if documentSnapshot != nil {
-                var userCart = documentSnapshot?.get("cart") as! [String]
-
+                let userCart = documentSnapshot?.get("cart") as! [String]
                 
                 for userCart in userCart {
                     if userCart.contains(document.documentID) {
@@ -358,8 +355,6 @@ class FireAPI {
                         completion(false)
                     }
                 }
- 
- 
             }
         }
         
