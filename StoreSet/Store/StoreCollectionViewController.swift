@@ -15,8 +15,16 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
     
     
     
-    private var products: [Document] = []
+    private var products: [Document] = [] {
+        didSet {
+            print("reloda")
+            self.collectionView.reloadData()
+        }
+    }
     private var prodImages: [UIImage] = []
+    private var isLoading = true
+    private var selectedCategory: (category: String,sumCategory: String?)? = Optional.none
+    
     
 //    CategoryMenu variables
     private let categoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryTVC") as! CategoryTableViewController
@@ -55,8 +63,7 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
         navigationItem.searchController = searchController
         definesPresentationContext = true
 
-        
-        FireAPI.shared.getRandomProducts(count: 10) { docs in
+        FireAPI.shared.getRandomProducts(countForCategory: 2) { docs in
             self.products = docs
             self.collectionView.reloadData()
             
@@ -128,11 +135,14 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
         NotificationCenter.default.addObserver(forName: NSNotification.Name("LoadingNotes"), object: nil, queue: nil) { _ in
             self.view.addSubview(activityIndicator)
             activityIndicator.startAnimating()
+            self.isLoading = true
         }
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("NotesLoaded"), object: nil, queue: nil) { _ in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("DocsLoaded"), object: nil, queue: nil) { _ in
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
+            self.isLoading = false
+            print("loaded")
         }
     }
     
@@ -152,7 +162,9 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
                 FireAPI.shared.getFirstImage(document: product) { image in
                     
                     product.image = image
+                    self.selectedCategory = (category, subCategory)
                     self.collectionView.reloadData()
+                    self.collectionView.contentOffset.y = self.collectionView.frameLayoutGuide.layoutFrame.minY
                 }
             }
         }
@@ -201,11 +213,52 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
         return true
     }
     
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if isLoading { return }
+      
+        let contentHeight = collectionView.contentSize.height - collectionView.frame.height
+
+        if scrollView.contentOffset.y > contentHeight / 1.5 {
+            
+          
+            
+            if selectedCategory != nil {
+                print("cat = 1 loading")
+                self.isLoading = true
+                
+                FireAPI.shared.getProducts(category: selectedCategory!.category, subCategoriy: selectedCategory!.sumCategory!) { docs in
+                    
+                    for doc in docs {
+                        FireAPI.shared.getFirstImage(document: doc) { image in
+                            doc.image = image
+                        }
+                    }
+                    
+                    self.products += docs
+                }
+                
+            } else {
+                print("cat = 0 loading")
+                isLoading = true
+                FireAPI.shared.getRandomProducts(countForCategory: 2) { docs in
+                    
+                    for doc in docs {
+                        FireAPI.shared.getFirstImage(document: doc) { image in
+                            doc.image = image
+                        }
+                    }
+                    self.products += docs
+                }
+            }
+        }
+    }
+    
 }
 
 //MARK: - UISearchResultsUpdating, UISearchControllerDelegate
 
-extension StoreCollectionViewController: UISearchResultsUpdating, UISearchControllerDelegate{
+extension StoreCollectionViewController: UISearchResultsUpdating, UISearchControllerDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
