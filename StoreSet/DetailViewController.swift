@@ -45,7 +45,7 @@ class DetailViewController: UIViewController {
             
         } else {
             
-            let alert = UIAlertController(title: NSLocalizedString("You must register to add items to yo    shopping cart.", comment: ""), message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("You must register to add items to yor shopping cart.", comment: ""), message: nil, preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .default,handler: { alertAction in
                 
