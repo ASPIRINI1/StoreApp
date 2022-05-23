@@ -10,7 +10,6 @@
 		1153190184F41A04520FC300 /* Pods_StoreApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5453D5AA268F39F9A806095 /* Pods_StoreApp.framework */; };
 		DE26705B27FB34DD0063A84D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */; };
 		DE2B526E27FC7745009F22AB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B526D27FC7745009F22AB /* Validator.swift */; };
-		DE386012283431420077F0E7 /* FireAPIUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE386011283431420077F0E7 /* FireAPIUserAccount.swift */; };
 		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
 		DE5ED33C2820A16C00D46098 /* GoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */; };
@@ -41,6 +40,13 @@
 		DEE68AD627ED096500BA6A55 /* FireAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD527ED096500BA6A55 /* FireAPI.swift */; };
 		DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD727ED09EC00BA6A55 /* Document.swift */; };
 		DEE68ADA27ED0C6400BA6A55 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE68AD927ED0C6400BA6A55 /* AppSettings.swift */; };
+		DEF535B3283C165D0089F601 /* ProductsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535B2283C165D0089F601 /* ProductsModule.swift */; };
+		DEF535B5283C29AB0089F601 /* CartMoule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535B4283C29AB0089F601 /* CartMoule.swift */; };
+		DEF535B8283C2B760089F601 /* ImageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535B7283C2B760089F601 /* ImageModule.swift */; };
+		DEF535BA283C2C250089F601 /* ReviewsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535B9283C2C250089F601 /* ReviewsModule.swift */; };
+		DEF535BC283C2C740089F601 /* RegistrationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535BB283C2C740089F601 /* RegistrationModule.swift */; };
+		DEF535BE283C2D460089F601 /* ChangeUserAccounModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535BD283C2D460089F601 /* ChangeUserAccounModule.swift */; };
+		DEF535C0283C2EA90089F601 /* UserModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535BF283C2EA90089F601 /* UserModule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +54,6 @@
 		797B9853F2B09805D5F110A6 /* Pods-StoreApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreApp.debug.xcconfig"; path = "Target Support Files/Pods-StoreApp/Pods-StoreApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		DE2B526D27FC7745009F22AB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
-		DE386011283431420077F0E7 /* FireAPIUserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPIUserAccount.swift; sourceTree = "<group>"; };
 		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
@@ -81,6 +86,13 @@
 		DEE68AD527ED096500BA6A55 /* FireAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPI.swift; sourceTree = "<group>"; };
 		DEE68AD727ED09EC00BA6A55 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		DEE68AD927ED0C6400BA6A55 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		DEF535B2283C165D0089F601 /* ProductsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsModule.swift; sourceTree = "<group>"; };
+		DEF535B4283C29AB0089F601 /* CartMoule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartMoule.swift; sourceTree = "<group>"; };
+		DEF535B7283C2B760089F601 /* ImageModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModule.swift; sourceTree = "<group>"; };
+		DEF535B9283C2C250089F601 /* ReviewsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsModule.swift; sourceTree = "<group>"; };
+		DEF535BB283C2C740089F601 /* RegistrationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModule.swift; sourceTree = "<group>"; };
+		DEF535BD283C2D460089F601 /* ChangeUserAccounModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserAccounModule.swift; sourceTree = "<group>"; };
+		DEF535BF283C2EA90089F601 /* UserModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModule.swift; sourceTree = "<group>"; };
 		E5453D5AA268F39F9A806095 /* Pods_StoreApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoreApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -301,12 +313,26 @@
 		DEE68AD427ED095200BA6A55 /* FireBase */ = {
 			isa = PBXGroup;
 			children = (
+				DEF535B6283C2B620089F601 /* FireAPIModules */,
 				DEE68AD527ED096500BA6A55 /* FireAPI.swift */,
 				DEE68AD727ED09EC00BA6A55 /* Document.swift */,
 				DEC050532821EF92004991AA /* Review.swift */,
-				DE386011283431420077F0E7 /* FireAPIUserAccount.swift */,
 			);
 			path = FireBase;
+			sourceTree = "<group>";
+		};
+		DEF535B6283C2B620089F601 /* FireAPIModules */ = {
+			isa = PBXGroup;
+			children = (
+				DEF535B2283C165D0089F601 /* ProductsModule.swift */,
+				DEF535B4283C29AB0089F601 /* CartMoule.swift */,
+				DEF535B7283C2B760089F601 /* ImageModule.swift */,
+				DEF535B9283C2C250089F601 /* ReviewsModule.swift */,
+				DEF535BB283C2C740089F601 /* RegistrationModule.swift */,
+				DEF535BD283C2D460089F601 /* ChangeUserAccounModule.swift */,
+				DEF535BF283C2EA90089F601 /* UserModule.swift */,
+			);
+			path = FireAPIModules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,11 +455,14 @@
 				DE6916DE28216B7800608D18 /* ReviewsTableViewController.swift in Sources */,
 				DEC7719A27F9E8B4006DB6D6 /* SettingsTableViewController.swift in Sources */,
 				DEA8FE9B27EA6A0300084595 /* AppDelegate.swift in Sources */,
+				DEF535B3283C165D0089F601 /* ProductsModule.swift in Sources */,
 				DEC83E6E2804C5FE00ADE83C /* CartTableViewController.swift in Sources */,
-				DE386012283431420077F0E7 /* FireAPIUserAccount.swift in Sources */,
+				DEF535BC283C2C740089F601 /* RegistrationModule.swift in Sources */,
 				DEC7719C27F9EB0C006DB6D6 /* AuthorisationViewController.swift in Sources */,
+				DEF535B5283C29AB0089F601 /* CartMoule.swift in Sources */,
 				DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */,
 				DE65FB452835316800DB0A51 /* GoodsTableView.swift in Sources */,
+				DEF535B8283C2B760089F601 /* ImageModule.swift in Sources */,
 				DEC83E6728032C6500ADE83C /* UserInfoChangeViewController.swift in Sources */,
 				DEE46F442808A3290045941E /* OrderingVC.swift in Sources */,
 				DEA8FE9D27EA6A0300084595 /* SceneDelegate.swift in Sources */,
@@ -448,10 +477,13 @@
 				DE6A9149280B2284005820E3 /* CategoryTableViewController.swift in Sources */,
 				DE26705B27FB34DD0063A84D /* RegistrationViewController.swift in Sources */,
 				DEE68ADA27ED0C6400BA6A55 /* AppSettings.swift in Sources */,
+				DEF535BA283C2C250089F601 /* ReviewsModule.swift in Sources */,
 				DEC050542821EF92004991AA /* Review.swift in Sources */,
 				DE2B526E27FC7745009F22AB /* Validator.swift in Sources */,
+				DEF535BE283C2D460089F601 /* ChangeUserAccounModule.swift in Sources */,
 				DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */,
 				DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */,
+				DEF535C0283C2EA90089F601 /* UserModule.swift in Sources */,
 				DE65FB4328351A2E00DB0A51 /* PaymentTableViewCell.swift in Sources */,
 				DEC3F1D727F8C23900EE6572 /* CategoryTableViewCell.swift in Sources */,
 			);
