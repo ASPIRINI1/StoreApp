@@ -10,7 +10,7 @@ import Firebase
 
 extension FireAPI {
     
-    //    MARK: - Registration $ Authorization
+    //    MARK: - Registration & Authorization
         
         func signIn(email: String, password: String, completion: (Bool) -> ()...){
             
@@ -22,7 +22,7 @@ extension FireAPI {
                     
                 } else {
                     
-                    self.setUser(userID: authResult?.user.uid, email: email)
+                    self.setUser(ID: authResult?.user.uid, email: email)
                     completion[0](true)
                     
                     NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
@@ -30,32 +30,28 @@ extension FireAPI {
             }
         }
         
-        private func setUser(userID: String?, email: String) {
+        private func setUser(ID: String?, email: String) {
             
-            if userID != nil {
+            if let userID = ID {
                 
-                AppSettings.shared.signedIn = true
-                AppSettings.shared.userID = userID!
-                AppSettings.shared.userEmail = email
-                
-                db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).getDocument { documentSnapshot, error in
+                db.collection(RootCollections.users.rawValue).document(userID).getDocument { documentSnapshot, error in
                     if let error = error { print("Error getting user data: ", error); return }
                     
                     if documentSnapshot != nil {
-                        AppSettings.shared.userFullName = documentSnapshot?.get("fullName") as! String
-                        AppSettings.shared.userAddress = documentSnapshot?.get("address") as! String
-                        AppSettings.shared.userPhoneNum = documentSnapshot?.get("phoneNum") as! Int
+                       
+                        User.shared.set(UID: userID,
+                                        email: email,
+                                        address: documentSnapshot?.get("address") as? String,
+                                        fullName: documentSnapshot?.get("fullName") as! String,
+                                        phoneNum: documentSnapshot?.get("phoneNum") as! Int)
                     }
+                    
+                    
                 }
                 
             } else {
                 
-                AppSettings.shared.signedIn = false
-                AppSettings.shared.userEmail = ""
-                AppSettings.shared.userID = ""
-                AppSettings.shared.userAddress = ""
-                AppSettings.shared.userFullName = ""
-                AppSettings.shared.userPhoneNum = 0
+                User.shared.remove()
             }
         }
         
@@ -66,7 +62,7 @@ extension FireAPI {
                
            } catch let signOutError as NSError { print("Error signing out: %@", signOutError); return }
             
-            setUser(userID: nil, email: "")
+            setUser(ID: nil, email: "")
             
             NotificationCenter.default.post(name: NSNotification.Name("SignedOut"), object: nil)
         }
@@ -82,7 +78,7 @@ extension FireAPI {
                     
                     completion[0](true)
 
-                    self.setUser(userID: authResult?.user.uid, email: email)
+                    self.setUser(ID: authResult?.user.uid, email: email)
                     self.createNewUserFiles(fullname: userName, address: adress, phoneNum: phoneNum)
      
                     

@@ -36,10 +36,10 @@ class OrderingVC: UIViewController {
     //    MARK: - Configuring ViewController
     
     private func configureVC() {
-        
-        fullnameLabel.text = AppSettings.shared.userFullName
-        addressLabel.text = AppSettings.shared.userAddress
-        emailLabel.text = AppSettings.shared.userEmail
+
+        fullnameLabel.text = AppSettings.shared.user?.fullName
+        addressLabel.text = AppSettings.shared.user?.address
+        emailLabel.text = AppSettings.shared.user?.email
         
         var totalPrice = 0
         

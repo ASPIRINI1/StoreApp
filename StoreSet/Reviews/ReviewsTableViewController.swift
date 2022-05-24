@@ -57,7 +57,7 @@ class ReviewsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if reviews[indexPath.section].authorID == AppSettings.shared.userID {
+        if reviews[indexPath.section].authorID == AppSettings.shared.user?.userID {
             return .delete
         }
         return .none

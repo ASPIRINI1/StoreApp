@@ -65,8 +65,6 @@ class FireAPI {
     }
 
     
-//    MARK: Categories
-    
     func getCategories(completion: @escaping ([[String]]) -> ()) {
 
         var categories: [[String]] = []

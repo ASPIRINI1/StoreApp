@@ -10,6 +10,7 @@
 		1153190184F41A04520FC300 /* Pods_StoreApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5453D5AA268F39F9A806095 /* Pods_StoreApp.framework */; };
 		DE26705B27FB34DD0063A84D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */; };
 		DE2B526E27FC7745009F22AB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B526D27FC7745009F22AB /* Validator.swift */; };
+		DE4AA63F283C32B600D97395 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA63E283C32B600D97395 /* User.swift */; };
 		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
 		DE5ED33C2820A16C00D46098 /* GoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 		797B9853F2B09805D5F110A6 /* Pods-StoreApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreApp.debug.xcconfig"; path = "Target Support Files/Pods-StoreApp/Pods-StoreApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DE26705A27FB34DD0063A84D /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		DE2B526D27FC7745009F22AB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		DE4AA63E283C32B600D97395 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
@@ -123,6 +125,16 @@
 				1E463D655AC7F74C63862EA3 /* Pods-StoreApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DE4AA63D283C310F00D97395 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				DEE68AD727ED09EC00BA6A55 /* Document.swift */,
+				DEC050532821EF92004991AA /* Review.swift */,
+				DE4AA63E283C32B600D97395 /* User.swift */,
+			);
+			path = Documents;
 			sourceTree = "<group>";
 		};
 		DE50B23727EBC0A80072B3BC /* ViewControllers */ = {
@@ -313,10 +325,9 @@
 		DEE68AD427ED095200BA6A55 /* FireBase */ = {
 			isa = PBXGroup;
 			children = (
-				DEF535B6283C2B620089F601 /* FireAPIModules */,
 				DEE68AD527ED096500BA6A55 /* FireAPI.swift */,
-				DEE68AD727ED09EC00BA6A55 /* Document.swift */,
-				DEC050532821EF92004991AA /* Review.swift */,
+				DEF535B6283C2B620089F601 /* FireAPIModules */,
+				DE4AA63D283C310F00D97395 /* Documents */,
 			);
 			path = FireBase;
 			sourceTree = "<group>";
@@ -483,6 +494,7 @@
 				DEF535BE283C2D460089F601 /* ChangeUserAccounModule.swift in Sources */,
 				DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */,
 				DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */,
+				DE4AA63F283C32B600D97395 /* User.swift in Sources */,
 				DEF535C0283C2EA90089F601 /* UserModule.swift in Sources */,
 				DE65FB4328351A2E00DB0A51 /* PaymentTableViewCell.swift in Sources */,
 				DEC3F1D727F8C23900EE6572 /* CategoryTableViewCell.swift in Sources */,
@@ -649,7 +661,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -677,7 +689,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

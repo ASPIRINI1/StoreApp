@@ -13,11 +13,14 @@ extension FireAPI {
         
         func addReview(documentID: String ,text: String, mark: Int) {
             
-            db.collection(RootCollections.reviews.rawValue).addDocument(data: ["authorID" : AppSettings.shared.userID,
-                                                        "product" : documentID,
-                                                        "authorName" : AppSettings.shared.userFullName,
-                                                        "text" : text,
-                                                        "mark" : mark])
+            if !AppSettings.shared.signedIn { return }
+            
+            db.collection(RootCollections.reviews.rawValue).addDocument(data: [
+                "authorID" :AppSettings.shared.user!.userID,
+                "product" : documentID,
+                "authorName" : AppSettings.shared.user!.fullName,
+                "text" : text,
+                "mark" : mark])
         }
         
         func getReviews(documentID: String, completion: @escaping (_ reviews: [Review]) -> ()) {

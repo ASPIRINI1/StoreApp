@@ -32,7 +32,8 @@ extension FireAPI {
                     completion(false)
                     
                 } else {
-                    AppSettings.shared.userEmail = email
+//                    AppSettings.shared.userEmail = email
+                    AppSettings.shared.user?.email = email
                     completion(true)
                 }
             })
@@ -57,15 +58,16 @@ extension FireAPI {
     
     func changeUser(address: String, completion: @escaping (Bool) -> ()) {
         
-        if !address.isEmpty {
-            db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).updateData(["address" : address]) { error in
+        if let userID = AppSettings.shared.user?.userID {
+            db.collection(RootCollections.users.rawValue).document(userID).updateData(["address" : address]) { error in
                 
                 if let error = error {
                     print("Error changing user address: ", error)
                     completion(false)
                     
                 } else {
-                    AppSettings.shared.userAddress = address
+//                    AppSettings.shared.userAddress = address
+                    AppSettings.shared.user?.address = address
                     completion(true)
                 }
             }
@@ -74,17 +76,23 @@ extension FireAPI {
     
     func changeUser(phoneNum: Int, completion: @escaping (Bool) -> ()) {
         
-        db.collection(RootCollections.users.rawValue).document(AppSettings.shared.userID).updateData(["phoneNum" : phoneNum]) { error in
+        if let userID = AppSettings.shared.user?.userID {
             
-            if let error = error {
-                print("Error changing phone num: ",error)
-                completion(false)
+            db.collection(RootCollections.users.rawValue).document(userID).updateData(["phoneNum" : phoneNum]) { error in
                 
-            } else {
-                AppSettings.shared.userPhoneNum = phoneNum
-                completion(true)
+                if let error = error {
+                    print("Error changing phone num: ",error)
+                    completion(false)
+                    
+                } else {
+    //                AppSettings.shared.userPhoneNum = phoneNum
+                    AppSettings.shared.user?.phoneNum = phoneNum
+                    completion(true)
+                }
+                
             }
-            
         }
+        
+      
     }
 }

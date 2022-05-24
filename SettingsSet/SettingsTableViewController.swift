@@ -34,7 +34,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
         
         
         if AppSettings.shared.signedIn {
-            accountLabel.text = AppSettings.shared.userEmail
+            accountLabel.text = AppSettings.shared.user?.email
             signInButton.setTitle(NSLocalizedString("Sign Out", comment: ""), for: .normal)
             
         } else {

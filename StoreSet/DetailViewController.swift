@@ -39,7 +39,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func addToCartButtonAction(_ sender: Any) {
         
-        if AppSettings.shared.userID != "" {
+        if AppSettings.shared.signedIn {
             FireAPI.shared.addToCart(document: self.doc)
             self.addToCartButton.setTitle(NSLocalizedString("In cart", comment: ""), for: .normal)
             

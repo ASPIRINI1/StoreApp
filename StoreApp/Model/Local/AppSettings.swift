@@ -18,54 +18,12 @@ class AppSettings{
     }
     
     private enum SettingsKeys: String{
-        case userID = "userID"
-        case userEmail = "userEmail"
-        case userFullName = "userFullName"
-        case userAddress = "userAddress"
-        case userPhoneNum = "userPhoneNum"
         case isSignIn = "signedIn"
         case appTheme = "AppTheme"
         case categories = "categories"
-//        case shopList = "shopList"
+        case user = "user"
     }
-    
-    
-    var userID: String{
-        get{
-            return userDefaults.string(forKey: SettingsKeys.userID.rawValue) ?? ""
-        }
-        set{
-            userDefaults.set(newValue, forKey: SettingsKeys.userID.rawValue)
-        }
-    }
-    
-    var userEmail: String {
-        get{
-                return userDefaults.string(forKey: SettingsKeys.userEmail.rawValue) ?? ""
-        }
-        set{
-            userDefaults.set(newValue, forKey: SettingsKeys.userEmail.rawValue)
-        }
-    }
-    
-    var userFullName: String {
-        get {
-            return userDefaults.string(forKey: SettingsKeys.userFullName.rawValue) ?? ""
-        }
-        set {
-            userDefaults.set(newValue, forKey: SettingsKeys.userFullName.rawValue)
-        }
-    }
-    
-    var userAddress: String{
-        get {
-            return userDefaults.string(forKey: SettingsKeys.userAddress.rawValue ) ?? ""
-        }
-        set {
-            userDefaults.set(newValue, forKey: SettingsKeys.userAddress.rawValue)
-        }
-    }
-    
+
     var signedIn: Bool{
         get{
             return userDefaults.bool(forKey: SettingsKeys.isSignIn.rawValue)
@@ -98,22 +56,26 @@ class AppSettings{
         }
     }
     
-    var userPhoneNum: Int {
+    var user: User? {
         get {
-            return userDefaults.value(forKey: SettingsKeys.userPhoneNum.rawValue) as! Int
+            if let data = userDefaults.value(forKey: SettingsKeys.user.rawValue) as? Data {
+              return try! PropertyListDecoder().decode(User.self, from: data)
+            }
+            return nil
         }
+        
         set {
-            userDefaults.set(newValue, forKey: SettingsKeys.userPhoneNum.rawValue)
+            if let data = try? PropertyListEncoder().encode(newValue) {
+                userDefaults.set(data, forKey: SettingsKeys.user.rawValue)
+            }
+            
+            if newValue != nil {
+                signedIn = true
+                
+            } else {
+                signedIn = false
+            }
         }
     }
-    
-//    var shopList: [CLLocation]{
-//        get {
-//            return userDefaults.value(forKey: SettingsKeys.shopList.rawValue) as! [CLLocation]
-//        }
-//        set {
-//            userDefaults.set(newValue, forKey: SettingsKeys.shopList.rawValue)
-//        }
-//    }
     
 }

@@ -23,7 +23,7 @@ class CartTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if AppSettings.shared.userID != "" {
+        if AppSettings.shared.signedIn {
             FireAPI.shared.getUserCart { docs in
                 self.cart.removeAll()
                 
@@ -89,7 +89,7 @@ class CartTableViewController: UITableViewController {
                 present(alert, animated: true)
             }
             
-            if AppSettings.shared.userID != "" {
+            if AppSettings.shared.signedIn {
                 
                 let orderingVC = segue.destination as! OrderingVC
                 orderingVC.setProducts(products: cart)
