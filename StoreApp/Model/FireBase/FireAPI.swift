@@ -71,19 +71,21 @@ class FireAPI {
 
         storageRef.listAll { storageListResult, err in
 
-            if err == nil {
-                for category in storageListResult.prefixes {
+            if err == nil && storageListResult != nil {
+                for category in storageListResult!.prefixes {
                     
                     self.storageRef.child(category.name).listAll { result, err in
                         if err != nil { print("Error getting SubCategory") ; return }
                         
                         categories.append([category.name])
-
-                        for subCategory in result.prefixes {
-                            categories[categories.endIndex-1].append(subCategory.name)
+                        
+                        if result != nil {
+                            for subCategory in result!.prefixes {
+                                categories[categories.endIndex-1].append(subCategory.name)
+                            }
                         }
                         
-                        if categories.count == storageListResult.prefixes.count {
+                        if categories.count == storageListResult!.prefixes.count {
                             AppSettings.shared.categories = categories
                             completion(AppSettings.shared.categories)
                         }
