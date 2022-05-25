@@ -123,7 +123,12 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailVC = segue.destination as! DetailViewController
-        detailVC.setDocument(docoment: products[selectedIndex.1])
+        
+        if isFiltering {
+            detailVC.setDocument(docoment: filtredProducts[selectedIndex.1])
+        } else {
+            detailVC.setDocument(docoment: products[selectedIndex.1])
+        }
     }
     
 //    MARK: - Notifications
