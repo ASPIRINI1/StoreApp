@@ -9,7 +9,6 @@ import UIKit
 
 class AuthorisationViewController: UIViewController {
     
-    let fireAPI = FireAPI.shared
 
     @IBOutlet weak var validationLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
@@ -23,10 +22,6 @@ class AuthorisationViewController: UIViewController {
         emailTextField.delegate = self
         
         substrateView.layer.cornerRadius = 20
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("SignedIn"), object: nil, queue: nil) { _ in
-            self.navigationController?.popViewController(animated: true)
-        }
         
         if traitCollection.userInterfaceStyle == .dark {
             substrateView.backgroundColor = .systemGray6
@@ -43,36 +38,21 @@ class AuthorisationViewController: UIViewController {
     
     //MARK: Actions
     
-    @IBAction func registrationButtAction(_ sender: Any) {
-        
-        if Validator.shared.userDataIsCurrect(email: emailTextField.text!, pass: passwordTextField.text!) {
-            
-//            fireAPI.registration(email: emailTextField.text!, password: passwordTextField.text!) { regSuccess in
-//
-//                if !regSuccess {
-//                    let alert = UIAlertController(title: NSLocalizedString("Registration Error", comment: ""), message: NSLocalizedString("Network unable or email already exist.", comment: ""), preferredStyle: .alert)
-//
-//                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//
-//                    alert.addAction(alertAction)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//            }
-        }
-    }
-    
     
     @IBAction func signInButtAction(_ sender: Any) {
         
-        if Validator.shared.userDataIsCurrect(email: emailTextField.text, pass: passwordTextField.text){
+        if Validator.shared.userDataIsCurrect(email: emailTextField.text, pass: passwordTextField.text) {
             
-            fireAPI.signIn(email: emailTextField.text!, password: passwordTextField.text!) { Success in
+            FireAPI.shared.signIn(email: emailTextField.text!, password: passwordTextField.text!) { Success in
                 if !Success {
                     let alert = UIAlertController(title: NSLocalizedString("SignIn Error", comment: ""), message: NSLocalizedString("Network unable or email do not exist.", comment: ""), preferredStyle: .alert)
                     let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                    
                     alert.addAction(alertAction)
                     self.present(alert, animated: true, completion: nil)
+                    
+                } else {
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
         } else {
@@ -82,51 +62,19 @@ class AuthorisationViewController: UIViewController {
     }
     
     //MARK: Additional funcs
-
-//    func userDataIsCurrect() -> Bool{
-//        if emailTextField.text!.isValidEmail(){
-//
-//            if passwordTextField.text!.isValidPass(){
-//                return true
-//
-//            } else {
-//                validationLabel.isHidden = false
-//                validationLabel.text = NSLocalizedString("Uncorrect password", comment: "")
-//                return false
-//            }
-//
-//        } else {
-//            validationLabel.isHidden = false
-//            validationLabel.text = NSLocalizedString("Uncorrect Email. You may not use #$%^&*()/ in your Email.", comment: "nil")
-//            return false
-//        }
-//    }
     
-    @objc func dismissKeyboard(Sender: UITapGestureRecognizer){
+    @objc func dismissKeyboard(Sender: UITapGestureRecognizer) {
        view.endEditing(true)
     }
     
 }
 
-// Email checking
-//extension String {
-//    func isValidEmail() -> Bool {
-//        let regex = try! NSRegularExpression(pattern: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\\.[a-zA-Z.]{2,64}", options: .caseInsensitive)
-//        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
-//    }
-//
-//    func isValidPass() -> Bool {
-//        let regex = try! NSRegularExpression(pattern: "[a-zA-Z0-9._-]{8,20}", options: .caseInsensitive)
-//        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
-//    }
-//}
-
 //MARK: - UITextFieldDelegate
 
-extension AuthorisationViewController: UITextFieldDelegate{
+extension AuthorisationViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("hgn")
+
         if emailTextField.isFirstResponder{
             passwordTextField.becomeFirstResponder()
         }

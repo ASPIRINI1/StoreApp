@@ -32,19 +32,23 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        addNotifications()
         
         if AppSettings.shared.signedIn {
             accountLabel.text = AppSettings.shared.user?.email
             signInButton.setTitle(NSLocalizedString("Sign Out", comment: ""), for: .normal)
-            
+
         } else {
             accountLabel.text = NSLocalizedString("Authorization", comment: "")
-            signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal) 
+            signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         }
         
         
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     
     //    MARK:  App theme
@@ -88,6 +92,24 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
             let AuthorisationVС = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AuthorisationViewController") as? AuthorisationViewController
             
             self.navigationController?.pushViewController(AuthorisationVС!, animated: true)
+        }
+    }
+    
+    
+//    MARK: - Notifications
+    
+    func addNotifications() {
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("SignedIn"), object: nil, queue: nil) { _ in
+            
+            self.accountLabel.text = AppSettings.shared.user?.email
+            self.signInButton.setTitle(NSLocalizedString("Sign Out", comment: ""), for: .normal)
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("SignedOut"), object: nil, queue: nil) { _ in
+            
+            self.accountLabel.text = NSLocalizedString("Authorization", comment: "")
+            self.signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         }
     }
     

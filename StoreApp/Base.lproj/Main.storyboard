@@ -1430,7 +1430,6 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Registration"/>
                                         <connections>
-                                            <action selector="registrationButtAction:" destination="Q5h-5J-wMY" eventType="touchUpInside" id="zAV-lk-kaE"/>
                                             <segue destination="bdJ-q8-feJ" kind="push" id="23t-l3-yrA"/>
                                         </connections>
                                     </button>
