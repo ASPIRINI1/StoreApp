@@ -43,16 +43,27 @@ extension FireAPI {
     func changeUser(password: String, completion: @escaping (Bool) -> ()) {
         
         if !password.isEmpty {
-            currectUser?.updatePassword(to: password, completion: { error in
+            
+            if let email = AppSettings.shared.user?.email {
                 
-                if let error = error {
-                    print("Error changing user password: ", error)
-                    completion(false)
+                signIn(email: email, password: password) { success in
+                    if !success { return }
+                    
+                    self.currectUser!.updatePassword(to: password, completion: { error in
+                        
+                        if let error = error {
+                            print("Error changing user password: ", error)
+                            completion(false)
 
-                } else {
-                    completion(true)
+                        } else {
+                            completion(true)
+                        }
+                    })
                 }
-            })
+            }
+            
+           
+            
         }
     }
     
