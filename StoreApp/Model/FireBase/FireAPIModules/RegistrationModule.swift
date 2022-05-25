@@ -22,7 +22,7 @@ extension FireAPI {
                     
                 } else {
                     
-                    self.setUser(ID: authResult?.user.uid, email: email)
+                    self.setUser(ID: authResult?.user.uid, email: email, password: password)
                     completion[0](true)
                     
                     NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
@@ -30,17 +30,18 @@ extension FireAPI {
             }
         }
         
-        private func setUser(ID: String?, email: String) {
+    private func setUser(ID: String?, email: String?, password: String?) {
             
-            if let userID = ID {
+            if ID != nil && email != nil && password != nil {
                 
-                db.collection(RootCollections.users.rawValue).document(userID).getDocument { documentSnapshot, error in
+                db.collection(RootCollections.users.rawValue).document(ID!).getDocument { documentSnapshot, error in
                     if let error = error { print("Error getting user data: ", error); return }
                     
                     if documentSnapshot != nil {
                        
-                        User.shared.set(UID: userID,
-                                        email: email,
+                        User.shared.set(UID: ID!,
+                                        email: email!,
+                                        password: password!,
                                         address: documentSnapshot?.get("address") as? String,
                                         fullName: documentSnapshot?.get("fullName") as! String,
                                         phoneNum: documentSnapshot?.get("phoneNum") as! Int)
@@ -62,11 +63,13 @@ extension FireAPI {
                
            } catch let signOutError as NSError { print("Error signing out: %@", signOutError); return }
             
-            setUser(ID: nil, email: "")
+            setUser(ID: nil, email: nil, password: nil)
             
             NotificationCenter.default.post(name: NSNotification.Name("SignedOut"), object: nil)
         }
         
+    
+    
         func registration(email: String, password: String, userName: String, adress: String, phoneNum: Int, completion: (Bool) -> ()...){
             
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
@@ -78,7 +81,7 @@ extension FireAPI {
                     
                     completion[0](true)
 
-                    self.setUser(ID: authResult?.user.uid, email: email)
+                    self.setUser(ID: authResult?.user.uid, email: email, password: password)
                     self.createNewUserFiles(fullname: userName, address: adress, phoneNum: phoneNum)
      
                     

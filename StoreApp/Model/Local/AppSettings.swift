@@ -59,7 +59,7 @@ class AppSettings{
     var user: User? {
         get {
             if let data = userDefaults.value(forKey: SettingsKeys.user.rawValue) as? Data {
-              return try! PropertyListDecoder().decode(User.self, from: data)
+              return try? PropertyListDecoder().decode(User.self, from: data)
             }
             return nil
         }
