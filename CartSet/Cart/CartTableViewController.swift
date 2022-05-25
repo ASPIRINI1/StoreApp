@@ -40,7 +40,7 @@ class CartTableViewController: UITableViewController {
                         self.tableView.reloadData()
                     }
                     
-                    if product.product.documentID == self.cart.last?.product.documentID {
+                    if product.product.ID == self.cart.last?.product.ID {
                         self.getTotalSum()
                         self.tableView.reloadData()
                     }

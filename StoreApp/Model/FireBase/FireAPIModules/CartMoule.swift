@@ -20,7 +20,7 @@ extension FireAPI {
             if let userID = AppSettings.shared.user?.userID {
                 
                 db.collection(RootCollections.users.rawValue).document(userID).updateData(
-                    ["cart" : FieldValue.arrayUnion( [document.category + "/" + document.subCategory  + "/" + document.documentID]
+                    ["cart" : FieldValue.arrayUnion( [document.category + "/" + document.subCategory  + "/" + document.ID]
                     )]) { err in
                         
                     if let err = err {
@@ -80,7 +80,7 @@ extension FireAPI {
             if let userID = AppSettings.shared.user?.userID {
                 
                 db.collection(RootCollections.users.rawValue).document(userID).updateData(
-                    ["cart" : FieldValue.arrayRemove([document.category + "/" + document.subCategory  + "/" + document.documentID])]) { err in
+                    ["cart" : FieldValue.arrayRemove([document.category + "/" + document.subCategory  + "/" + document.ID])]) { err in
                         
                         if let err = err {
                             print("Error writing document: \(err)")
@@ -105,7 +105,7 @@ extension FireAPI {
                             let userCart = documentSnapshot?.get("cart") as! [String]
                             
                             for userCart in userCart {
-                                if userCart.contains(document.documentID) {
+                                if userCart.contains(document.ID) {
                                     completion(true)
                                     
                                 } else {

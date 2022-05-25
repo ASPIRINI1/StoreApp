@@ -14,7 +14,7 @@ extension FireAPI {
         
         func getProductImages(doc: Document, completion: @escaping ([UIImage]?) -> ()) {
             
-            let productsRef = storageRef.child(doc.category + "/" + doc.subCategory).child(doc.documentID)
+            let productsRef = storageRef.child(doc.category + "/" + doc.subCategory).child(doc.ID)
             var images: [UIImage]? = []
             
             
@@ -41,7 +41,7 @@ extension FireAPI {
         
         func getFirstImage(document: Document, completion: @escaping (UIImage) -> ()) {
             
-            let productsRef = storageRef.child(document.category + "/" + document.subCategory).child(document.documentID)
+            let productsRef = storageRef.child(document.category + "/" + document.subCategory).child(document.ID)
             
             productsRef.listAll(completion: { imageList, error in
                 if (error != nil) { print("Error getting image for product: ", error ?? ""); return }

@@ -146,7 +146,7 @@ extension FireAPI {
         
         func getDecscription(doc: Document, completion: @escaping (String) -> ()) {
             
-            db.collection(RootCollections.products.rawValue).document(doc.category).collection(doc.subCategory).document(doc.documentID).getDocument { documentSnapshot, error in
+            db.collection(RootCollections.products.rawValue).document(doc.category).collection(doc.subCategory).document(doc.ID).getDocument { documentSnapshot, error in
                 if let error = error { print("Getting description error: ", error)}
                 
                 if documentSnapshot != nil {

@@ -11,33 +11,29 @@ import UIKit
 class Document: Hashable {
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(documentID)
+        hasher.combine(ID)
     }
     
     static func == (lhs: Document, rhs: Document) -> Bool {
-        return lhs.documentID == rhs.documentID
+        return lhs.ID == rhs.ID
     }
     
     
     init(category: String, subCategory: String, documentID: String, name: String, price: Int, description: String){
         self.category = category
         self.subCategory = subCategory
-        self.documentID = documentID
+        self.ID = documentID
         self.name = name
         self.price = price
         self.description = description
     }
     
-    var category = ""
-    var subCategory = ""
-    var documentID = ""
-    var name = ""
-    var price = 0
+    var category = String()
+    var subCategory = String()
+    var ID = String()
+    var name = String()
+    var price = Int()
     var image = UIImage()
-    var description = ""
-    
-    func setImage(image: UIImage) {
-        self.image = image
-    }
+    var description = String()
 
 }

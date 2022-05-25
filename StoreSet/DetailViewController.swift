@@ -101,7 +101,7 @@ class DetailViewController: UIViewController {
         
         if segue.destination is ReviewsTableViewController {
             let reviewsTableVC = segue.destination as! ReviewsTableViewController
-            reviewsTableVC.setDocID(ID: doc.documentID)
+            reviewsTableVC.setDocID(ID: doc.ID)
         }
         
         if segue.destination is OrderingVC {

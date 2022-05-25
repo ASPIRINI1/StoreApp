@@ -17,11 +17,11 @@ class Review {
         self.mark = mark
     }
 
-    var reviewID = ""
-    var authorID = ""
-    var authorName = ""
-    var text = ""
-    var mark = 0
+    var reviewID = String()
+    var authorID = String()
+    var authorName = String()
+    var text = String()
+    var mark = Int()
     
 }
 
