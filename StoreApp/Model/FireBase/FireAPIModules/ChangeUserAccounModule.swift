@@ -46,7 +46,7 @@ extension FireAPI {
             
             if let email = AppSettings.shared.user?.email {
                 
-                signIn(email: email, password: password) { success in
+                signIn(email: email, password: AppSettings.shared.user!.password) { success in
                     if !success { return }
                     
                     self.currectUser!.updatePassword(to: password, completion: { error in
