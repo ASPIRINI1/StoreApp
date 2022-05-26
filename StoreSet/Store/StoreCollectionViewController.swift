@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ConfigureStoreCVCDelegate: class {
+protocol ConfigureStoreCVCDelegate: AnyObject {
     func setProducts(category: String, subCategory: String)
 }
 

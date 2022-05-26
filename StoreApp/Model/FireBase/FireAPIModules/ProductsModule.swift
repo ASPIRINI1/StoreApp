@@ -100,12 +100,12 @@ extension FireAPI {
 
         }
         
-        func getDocumentsCountForCategory(category: String, subCategory: String) {
-            
-            db.collection(RootCollections.products.rawValue).document(category).collection(subCategory).getDocuments { querySnapshot, error in
-                print(querySnapshot?.documents.count)
-            }
-        }
+//        func getDocumentsCountForCategory(category: String, subCategory: String) {
+//            
+//            db.collection(RootCollections.products.rawValue).document(category).collection(subCategory).getDocuments { querySnapshot, error in
+//                print(querySnapshot?.documents.count)
+//            }
+//        }
         
         func findProduct(name: String, completion: @escaping ([Document]) -> ()) {
             
