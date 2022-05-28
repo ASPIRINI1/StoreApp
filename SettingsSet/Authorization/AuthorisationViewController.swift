@@ -60,8 +60,18 @@ class AuthorisationViewController: UIViewController {
             validationLabel.text = NSLocalizedString("Error. Check your email or password.", comment: "")
         }
     }
+    @IBAction func appleLoginButtonAction(_ sender: Any) {
+        
+    }
+    
+    @IBAction func googleLoginButtonAction(_ sender: Any) {
+        
+    }
     
     //MARK: Additional funcs
+    @IBAction func facebookLoginButtonAction(_ sender: Any) {
+        
+    }
     
     @objc func dismissKeyboard(Sender: UITapGestureRecognizer) {
        view.endEditing(true)
