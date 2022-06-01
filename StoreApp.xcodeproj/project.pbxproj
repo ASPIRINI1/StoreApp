@@ -47,7 +47,7 @@
 		DEF535BA283C2C250089F601 /* ReviewsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535B9283C2C250089F601 /* ReviewsModule.swift */; };
 		DEF535BC283C2C740089F601 /* RegistrationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535BB283C2C740089F601 /* RegistrationModule.swift */; };
 		DEF535BE283C2D460089F601 /* ChangeUserAccounModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535BD283C2D460089F601 /* ChangeUserAccounModule.swift */; };
-		DEF535C0283C2EA90089F601 /* UserModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535BF283C2EA90089F601 /* UserModule.swift */; };
+		DEF535C0283C2EA90089F601 /* UserFileModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF535BF283C2EA90089F601 /* UserFileModule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +66,8 @@
 		DE6916E028216BAD00608D18 /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		DE6916E228216D9900608D18 /* ReviewAddingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAddingViewController.swift; sourceTree = "<group>"; };
 		DE6A9148280B2284005820E3 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		DE81589E28480D7C00B1DD49 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		DE81589F28480D7C00B1DD49 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		DE93F2DD280F23D900132E6A /* SettingsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMapView.swift; sourceTree = "<group>"; };
 		DEA8FE9727EA6A0300084595 /* StoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEA8FE9A27EA6A0300084595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 		DEF535B9283C2C250089F601 /* ReviewsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsModule.swift; sourceTree = "<group>"; };
 		DEF535BB283C2C740089F601 /* RegistrationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModule.swift; sourceTree = "<group>"; };
 		DEF535BD283C2D460089F601 /* ChangeUserAccounModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserAccounModule.swift; sourceTree = "<group>"; };
-		DEF535BF283C2EA90089F601 /* UserModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModule.swift; sourceTree = "<group>"; };
+		DEF535BF283C2EA90089F601 /* UserFileModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFileModule.swift; sourceTree = "<group>"; };
 		E5453D5AA268F39F9A806095 /* Pods_StoreApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoreApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -341,7 +343,7 @@
 				DEF535B9283C2C250089F601 /* ReviewsModule.swift */,
 				DEF535BB283C2C740089F601 /* RegistrationModule.swift */,
 				DEF535BD283C2D460089F601 /* ChangeUserAccounModule.swift */,
-				DEF535BF283C2EA90089F601 /* UserModule.swift */,
+				DEF535BF283C2EA90089F601 /* UserFileModule.swift */,
 			);
 			path = FireAPIModules;
 			sourceTree = "<group>";
@@ -390,6 +392,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = DEA8FE8E27EA6A0300084595;
 			productRefGroup = DEA8FE9827EA6A0300084595 /* Products */;
@@ -495,7 +498,7 @@
 				DEE68AD227ECFD5F00BA6A55 /* StoreCollectionViewController.swift in Sources */,
 				DEE68AD827ED09EC00BA6A55 /* Document.swift in Sources */,
 				DE4AA63F283C32B600D97395 /* User.swift in Sources */,
-				DEF535C0283C2EA90089F601 /* UserModule.swift in Sources */,
+				DEF535C0283C2EA90089F601 /* UserFileModule.swift in Sources */,
 				DE65FB4328351A2E00DB0A51 /* PaymentTableViewCell.swift in Sources */,
 				DEC3F1D727F8C23900EE6572 /* CategoryTableViewCell.swift in Sources */,
 			);
@@ -508,6 +511,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				DEA8FEA127EA6A0300084595 /* Base */,
+				DE81589E28480D7C00B1DD49 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -516,6 +520,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				DEA8FEA927EA6A0400084595 /* Base */,
+				DE81589F28480D7C00B1DD49 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -587,6 +593,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

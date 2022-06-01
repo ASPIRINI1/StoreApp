@@ -1,0 +1,351 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "0aK-BO-7AX"; */
+"0aK-BO-7AX.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "By now"; ObjectID = "0tC-t8-Gb2"; */
+"0tC-t8-Gb2.configuration.title" = "К покупке";
+
+/* Class = "UILabel"; text = "Email:"; ObjectID = "235-Fv-XG4"; */
+"235-Fv-XG4.text" = "Email:";
+
+/* Class = "UITabBarItem"; title = "Store"; ObjectID = "3Fj-Za-Z4g"; */
+"3Fj-Za-Z4g.title" = "Магазин";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "4NL-j5-1vQ"; */
+"4NL-j5-1vQ.text" = "Цена";
+
+/* Class = "UIButton"; configuration.subtitle = "Facebook"; ObjectID = "4zC-Hp-dg0"; */
+"4zC-Hp-dg0.configuration.subtitle" = "Facebook";
+
+/* Class = "UIButton"; configuration.title = "LogIn with"; ObjectID = "4zC-Hp-dg0"; */
+"4zC-Hp-dg0.configuration.title" = "Войти с";
+
+/* Class = "UIButton"; configuration.subtitle = "Goolge"; ObjectID = "5p6-EV-tP9"; */
+"5p6-EV-tP9.configuration.subtitle" = "Goolge";
+
+/* Class = "UIButton"; configuration.title = "LogIn with"; ObjectID = "5p6-EV-tP9"; */
+"5p6-EV-tP9.configuration.title" = "Войти с";
+
+/* Class = "UIButton"; configuration.title = "Buy"; ObjectID = "6DQ-0L-bHS"; */
+"6DQ-0L-bHS.configuration.title" = "Купить";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "6DQ-0L-bHS"; */
+"6DQ-0L-bHS.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "Cart"; ObjectID = "6Jd-8Y-F0m"; */
+"6Jd-8Y-F0m.title" = "Корзина";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6Sm-ZJ-GNt"; */
+"6Sm-ZJ-GNt.text" = "Label";
+
+/* Class = "UILabel"; text = "Phone number"; ObjectID = "6db-vo-sgI"; */
+"6db-vo-sgI.text" = "Номер телефона";
+
+/* Class = "UILabel"; text = "+7-863-645-23-54"; ObjectID = "77d-vr-aUY"; */
+"77d-vr-aUY.text" = "+7-863-645-23-54";
+
+/* Class = "UILabel"; text = "App theme"; ObjectID = "9eL-Mw-a27"; */
+"9eL-Mw-a27.text" = "Тема";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "AWo-IY-OKF"; */
+"AWo-IY-OKF.text" = "Имя";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BfX-p5-pOs"; */
+"BfX-p5-pOs.text" = "Label";
+
+/* Class = "UILabel"; text = "Full name"; ObjectID = "CDP-ka-8yF"; */
+"CDP-ka-8yF.text" = "ФИО";
+
+/* Class = "UILabel"; text = "Authorization"; ObjectID = "DvD-N7-MgK"; */
+"DvD-N7-MgK.text" = "Авторизоваться";
+
+/* Class = "UIBarButtonItem"; title = "0"; ObjectID = "Dxs-PT-sdd"; */
+"Dxs-PT-sdd.title" = "0";
+
+/* Class = "UIBarButtonItem"; title = "Buy"; ObjectID = "Eno-DX-UXW"; */
+"Eno-DX-UXW.title" = "Купить";
+
+/* Class = "UIBarButtonItem"; title = "Open in browser"; ObjectID = "FwA-Q1-KeL"; */
+"FwA-Q1-KeL.title" = "В браузер";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "GTL-dm-mIc"; */
+"GTL-dm-mIc.text" = "Имя";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "GWt-76-NAc"; */
+"GWt-76-NAc.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Gj4-73-SgY"; */
+"Gj4-73-SgY.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "HmQ-Pb-UbA"; */
+"HmQ-Pb-UbA.text" = "Цена";
+
+/* Class = "UILabel"; text = "Rate:"; ObjectID = "JYU-9X-JFA"; */
+"JYU-9X-JFA.text" = "Оценка:";
+
+/* Class = "UITabBarItem"; title = "Cart"; ObjectID = "K8H-wS-vFv"; */
+"K8H-wS-vFv.title" = "Корзина";
+
+/* Class = "UISegmentedControl"; KE5-ey-6wb.segmentTitles[0] = "Light"; ObjectID = "KE5-ey-6wb"; */
+"KE5-ey-6wb.segmentTitles[0]" = "Светлый";
+
+/* Class = "UISegmentedControl"; KE5-ey-6wb.segmentTitles[1] = "Dark"; ObjectID = "KE5-ey-6wb"; */
+"KE5-ey-6wb.segmentTitles[1]" = "Тёмный";
+
+/* Class = "UISegmentedControl"; KE5-ey-6wb.segmentTitles[2] = "System"; ObjectID = "KE5-ey-6wb"; */
+"KE5-ey-6wb.segmentTitles[2]" = "Системный";
+
+/* Class = "UILabel"; text = "E-mail"; ObjectID = "Lhm-IM-ZIr"; */
+"Lhm-IM-ZIr.text" = "E-mail";
+
+/* Class = "UILabel"; text = "nameLabel"; ObjectID = "M1v-ya-kEX"; */
+"M1v-ya-kEX.text" = "nameLabel";
+
+/* Class = "UIButton"; configuration.title = " Edit"; ObjectID = "NAB-vH-Mkb"; */
+"NAB-vH-Mkb.configuration.title" = "Ред";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "NAB-vH-Mkb"; */
+"NAB-vH-Mkb.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "O7P-t7-CBh"; */
+"O7P-t7-CBh.text" = "Адрес";
+
+/* Class = "UIBarButtonItem"; title = "Refresh"; ObjectID = "OE1-7X-KsC"; */
+"OE1-7X-KsC.title" = "Обновить";
+
+/* Class = "UIButton"; configuration.title = "Sign in"; ObjectID = "OFr-qa-k9T"; */
+"OFr-qa-k9T.configuration.title" = "Войти";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "OFr-qa-k9T"; */
+"OFr-qa-k9T.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "priceLabel"; ObjectID = "OLo-hZ-dRi"; */
+"OLo-hZ-dRi.text" = "priceLabel";
+
+/* Class = "UILabel"; text = "E-mail"; ObjectID = "OYd-QH-fPW"; */
+"OYd-QH-fPW.text" = "E-mail";
+
+/* Class = "UILabel"; text = "Total:"; ObjectID = "QAg-Cp-bhq"; */
+"QAg-Cp-bhq.text" = "Всего:";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "QL0-vz-FLG"; */
+"QL0-vz-FLG.text" = "Адрес";
+
+/* Class = "UILabel"; text = "Full name"; ObjectID = "Qza-XU-qKh"; */
+"Qza-XU-qKh.text" = "ФИО";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Som-o9-irG"; */
+"Som-o9-irG.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TOx-8I-G3R"; */
+"TOx-8I-G3R.text" = "Label";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "VDL-Fn-RLB"; */
+"VDL-Fn-RLB.text" = "5";
+
+/* Class = "UIButton"; configuration.subtitle = "Apple"; ObjectID = "VwI-yP-QFi"; */
+"VwI-yP-QFi.configuration.subtitle" = "Apple";
+
+/* Class = "UIButton"; configuration.title = "LogIn with"; ObjectID = "VwI-yP-QFi"; */
+"VwI-yP-QFi.configuration.title" = "Войти с";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "WTS-qe-Tlt"; */
+"WTS-qe-Tlt.text" = "Пароль";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XHr-20-d5A"; */
+"XHr-20-d5A.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Total:"; ObjectID = "XeU-Js-T5u"; */
+"XeU-Js-T5u.title" = "Всего:";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "XzX-Xc-RBA"; */
+"XzX-Xc-RBA.text" = "Email";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "YAB-xs-aiL"; */
+"YAB-xs-aiL.title" = "Item";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "YPq-rR-SSx"; */
+"YPq-rR-SSx.title" = "Настройки";
+
+/* Class = "UIButton"; configuration.title = "Sign in"; ObjectID = "aCQ-Ap-viU"; */
+"aCQ-Ap-viU.configuration.title" = "Войти";
+
+/* Class = "UIButton"; normalTitle = "Sign in"; ObjectID = "aCQ-Ap-viU"; */
+"aCQ-Ap-viU.normalTitle" = "Войти";
+
+/* Class = "UILabel"; text = "Payment method:"; ObjectID = "aTb-ud-epP"; */
+"aTb-ud-epP.text" = "Способ оплаты:";
+
+/* Class = "UILabel"; text = "Count:"; ObjectID = "aeE-9T-ylh"; */
+"aeE-9T-ylh.text" = "Кол-во:";
+
+/* Class = "UILabel"; text = "Check your order"; ObjectID = "bLb-xK-iUt"; */
+"bLb-xK-iUt.text" = "Проверьте ваш заказ";
+
+/* Class = "UILabel"; text = "user full name"; ObjectID = "bNw-uV-4FB"; */
+"bNw-uV-4FB.text" = "user full name";
+
+/* Class = "UIButton"; configuration.title = "Reviews"; ObjectID = "cWh-I4-W7P"; */
+"cWh-I4-W7P.configuration.title" = "Отзывы";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cWh-I4-W7P"; */
+"cWh-I4-W7P.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cb2-IW-I6G"; */
+"cb2-IW-I6G.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "Cancel"; ObjectID = "cln-sk-4yq"; */
+"cln-sk-4yq.configuration.title" = "Отмена";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cln-sk-4yq"; */
+"cln-sk-4yq.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Add review"; ObjectID = "csQ-Vs-7O7"; */
+"csQ-Vs-7O7.configuration.title" = "Добавить отзыв";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "csQ-Vs-7O7"; */
+"csQ-Vs-7O7.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Change user information"; ObjectID = "d2l-R5-jsn"; */
+"d2l-R5-jsn.text" = "Изменить данные пользователя";
+
+/* Class = "UILabel"; text = "userName"; ObjectID = "d7D-MH-SsS"; */
+"d7D-MH-SsS.text" = "userName";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "di5-XD-BNg"; */
+"di5-XD-BNg.text" = "Label";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "djq-ES-7bc"; */
+"djq-ES-7bc.text" = "5";
+
+/* Class = "UILabel"; text = "Revew text:"; ObjectID = "e9F-pw-vj3"; */
+"e9F-pw-vj3.text" = "Текст отзыва:";
+
+/* Class = "UIButton"; configuration.title = "Registration"; ObjectID = "eMM-lX-XYO"; */
+"eMM-lX-XYO.configuration.title" = "Регистрация";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "eMM-lX-XYO"; */
+"eMM-lX-XYO.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Registration"; ObjectID = "em9-2F-6ki"; */
+"em9-2F-6ki.configuration.title" = "Регистрация";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "em9-2F-6ki"; */
+"em9-2F-6ki.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Add to cart"; ObjectID = "exM-kE-SZ8"; */
+"exM-kE-SZ8.configuration.title" = "В корзину";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "exM-kE-SZ8"; */
+"exM-kE-SZ8.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fTm-5t-wtm"; */
+"fTm-5t-wtm.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "faA-no-xDI"; */
+"faA-no-xDI.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hrs-2Z-i5V"; */
+"hrs-2Z-i5V.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "ils-oO-chI"; */
+"ils-oO-chI.title" = "Back";
+
+/* Class = "UILabel"; text = "reviewText"; ObjectID = "ivp-SQ-X9m"; */
+"ivp-SQ-X9m.text" = "Текст отзыва";
+
+/* Class = "UITableViewSection"; headerTitle = "Info"; ObjectID = "j2P-O1-TbC"; */
+"j2P-O1-TbC.headerTitle" = "Инфо.";
+
+/* Class = "UIBarButtonItem"; title = "Forward"; ObjectID = "jf5-Xy-DN9"; */
+"jf5-Xy-DN9.title" = "Назад";
+
+/* Class = "UILabel"; text = "PCS"; ObjectID = "kk4-ZR-x3Y"; */
+"kk4-ZR-x3Y.text" = "PCS";
+
+/* Class = "UINavigationItem"; title = "WEB"; ObjectID = "mYH-Vg-t0P"; */
+"mYH-Vg-t0P.title" = "WEB";
+
+/* Class = "UILabel"; text = "Good's mark:"; ObjectID = "o4C-0B-Dod"; */
+"o4C-0B-Dod.text" = "Оценка товара:";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "ph7-rZ-gHQ"; */
+"ph7-rZ-gHQ.title" = "Настройки";
+
+/* Class = "UILabel"; text = "Registration"; ObjectID = "q97-Z0-Hic"; */
+"q97-Z0-Hic.text" = "Регестрация";
+
+/* Class = "UIButton"; configuration.title = "Change user data"; ObjectID = "qB4-CA-2vO"; */
+"qB4-CA-2vO.configuration.title" = "Изменить данные";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "qB4-CA-2vO"; */
+"qB4-CA-2vO.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Goods list:"; ObjectID = "qKF-uO-DKE"; */
+"qKF-uO-DKE.text" = "Список товаров:";
+
+/* Class = "UITableViewSection"; headerTitle = "Account"; ObjectID = "qOR-Qr-vxG"; */
+"qOR-Qr-vxG.headerTitle" = "Аккаунт";
+
+/* Class = "UILabel"; text = "user address"; ObjectID = "qkU-C5-wDz"; */
+"qkU-C5-wDz.text" = "user address";
+
+/* Class = "UISegmentedControl"; qs5-S5-sWN.segmentTitles[0] = "1"; ObjectID = "qs5-S5-sWN"; */
+"qs5-S5-sWN.segmentTitles[0]" = "1";
+
+/* Class = "UISegmentedControl"; qs5-S5-sWN.segmentTitles[1] = "2"; ObjectID = "qs5-S5-sWN"; */
+"qs5-S5-sWN.segmentTitles[1]" = "2";
+
+/* Class = "UISegmentedControl"; qs5-S5-sWN.segmentTitles[2] = "3"; ObjectID = "qs5-S5-sWN"; */
+"qs5-S5-sWN.segmentTitles[2]" = "3";
+
+/* Class = "UISegmentedControl"; qs5-S5-sWN.segmentTitles[3] = "4"; ObjectID = "qs5-S5-sWN"; */
+"qs5-S5-sWN.segmentTitles[3]" = "4";
+
+/* Class = "UISegmentedControl"; qs5-S5-sWN.segmentTitles[4] = "5"; ObjectID = "qs5-S5-sWN"; */
+"qs5-S5-sWN.segmentTitles[4]" = "5";
+
+/* Class = "UIButton"; configuration.title = "Apply"; ObjectID = "ruI-Pf-jFd"; */
+"ruI-Pf-jFd.configuration.title" = "Применить";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ruI-Pf-jFd"; */
+"ruI-Pf-jFd.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Authorisation"; ObjectID = "rwv-8O-Nyg"; */
+"rwv-8O-Nyg.text" = "Авторизация";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "uPh-f0-Dee"; */
+"uPh-f0-Dee.text" = "Label";
+
+/* Class = "UILabel"; text = "user email"; ObjectID = "vMX-zJ-XxG"; */
+"vMX-zJ-XxG.text" = "user email";
+
+/* Class = "UILabel"; text = "Company site"; ObjectID = "vfH-2G-ckM"; */
+"vfH-2G-ckM.text" = "Сайт предприятия";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vof-dW-wD2"; */
+"vof-dW-wD2.text" = "Label";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "wMa-SV-WHv"; */
+"wMa-SV-WHv.text" = "Описание";
+
+/* Class = "UILabel"; text = "Developer info"; ObjectID = "wak-GT-Ngq"; */
+"wak-GT-Ngq.text" = "О разработчике";
+
+/* Class = "UITableViewSection"; headerTitle = "App"; ObjectID = "yqD-JK-qtf"; */
+"yqD-JK-qtf.headerTitle" = "Приложение";
+
+/* Class = "UILabel"; text = "Phone number:"; ObjectID = "yuc-Rm-hTs"; */
+"yuc-Rm-hTs.text" = "Номер телефона:";
+
+/* Class = "UIViewController"; title = "OrderingVC"; ObjectID = "zSy-kL-IHK"; */
+"zSy-kL-IHK.title" = "OrderingVC";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "zV2-hx-JPr"; */
+"zV2-hx-JPr.text" = "Пароль";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zaq-1R-R0K"; */
+"zaq-1R-R0K.text" = "Label";
+
+/* Class = "UILabel"; text = "Shop@email.org"; ObjectID = "znS-rD-m7y"; */
+"znS-rD-m7y.text" = "Shop@email.org";
