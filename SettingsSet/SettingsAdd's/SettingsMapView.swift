@@ -89,7 +89,7 @@ class SettingsMapView: MKMapView, MKMapViewDelegate {
         
         for shop in shopList{
             let pin = MKPointAnnotation()
-            pin.title = "Shop №" + "\(shopNumber)"
+            pin.title = NSLocalizedString("Shop №", comment: "") + "\(shopNumber)"
 //            pin.subtitle = "here"
             pin.coordinate = shop.coordinate
             self.addAnnotation(pin)
