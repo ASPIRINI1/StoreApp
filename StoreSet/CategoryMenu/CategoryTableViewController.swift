@@ -52,8 +52,17 @@ class CategoryTableViewController: UITableViewController {
         
         if indexPath.row == 0 {
             cell.backgroundColor = .systemGray5
+            cell.accessoryType = .disclosureIndicator
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 35
+        } else {
+            return 59.5
+        }
     }
  
 }
