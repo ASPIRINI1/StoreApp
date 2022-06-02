@@ -130,7 +130,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
 
         switch indexPath {
         case [2, 0]: // about company
-            WEBurl = "https://www.google.com"
+            WEBurl = "https://foks-donetsk.com"
         case [2, 1]: // mapView
             
             if routeEnabled {
