@@ -187,7 +187,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
                 self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
             }
             
-            let changePhoneNumAction = UIAlertAction(title: "Change phone number", style: .default) { _ in
+            let changePhoneNumAction = UIAlertAction(title: NSLocalizedString("Change phone number", comment: ""), style: .default) { _ in
                 userInfoChangeVC.setViewType(viewType: .phoneNum)
                 self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
             }

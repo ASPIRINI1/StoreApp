@@ -192,7 +192,7 @@
 "cWh-I4-W7P.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "cb2-IW-I6G"; */
-"cb2-IW-I6G.text" = "Label";
+"cb2-IW-I6G.text" = "Версия";
 
 /* Class = "UIButton"; configuration.title = "Cancel"; ObjectID = "cln-sk-4yq"; */
 "cln-sk-4yq.configuration.title" = "Отмена";
@@ -201,7 +201,7 @@
 "cln-sk-4yq.normalTitle" = "Button";
 
 /* Class = "UIButton"; configuration.title = "Add review"; ObjectID = "csQ-Vs-7O7"; */
-"csQ-Vs-7O7.configuration.title" = "Добавить отзыв";
+"csQ-Vs-7O7.configuration.title" = "Добавить";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "csQ-Vs-7O7"; */
 "csQ-Vs-7O7.normalTitle" = "Button";
@@ -349,3 +349,5 @@
 
 /* Class = "UILabel"; text = "Shop@email.org"; ObjectID = "znS-rD-m7y"; */
 "znS-rD-m7y.text" = "Shop@email.org";
+
+"fk0-60-Xez.text" = "Цена"

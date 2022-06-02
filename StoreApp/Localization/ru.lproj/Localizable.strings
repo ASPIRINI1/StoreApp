@@ -1,0 +1,177 @@
+/* 
+  Localizable.strings
+  StoreApp
+
+  Created by Станислав Зверьков on 02.06.2022.
+  
+*/
+
+//MARK - DetailViewController
+
+"In cart" = "В корзине";
+
+"You must register to add items to yor shopping cart." = "Вы должны загерестрироваться для того что бы добавить товары в корзину.";
+
+
+//MARK - StoreCollectionViewController
+
+"Search" = "Поиск";
+
+"Rub" = "Руб";
+
+
+//MARK - ReviewsTableViewController
+
+"No reviews yet." = "Пока что нет отзывов.";
+
+"You must register first." = "Сперва вы должны зарегестрироваться";
+
+
+//MARK - ReviewAddingViewController
+
+"You must write a text in review text field tp add your review." = "Вы должны запонить поле для ввода текста отзыва чтобы добавить ваш отзыв.";
+
+
+
+//MARK - CartTableViewController
+
+"Add some goods in cart first." = "Сперва добавьте товары в корзину.";
+
+"You must register to make purchases." = "Вы должны зарегестрироваться для оформления заказа.";
+
+//MARK - OrderingVC
+
+"Credit card" = "Банковская карта";
+
+"Сash on delivery" = "Оплата при получении";
+
+"Pick up by yourself" = "Самовывоз";
+
+//MARK - SettingsTableViewController
+
+"Sign Out" = "Выйти";
+
+"Authorization" = "Авторизация";
+
+"Sign In" = "Войти";
+
+"Are You shure?" = "Вы уверены?";
+
+"Do You want to logOut?" = "Вы действительно хотите выйти?";
+
+"Yes" = "Да";
+
+"Cancel" = "Отмена";
+
+"Do you want to open maps?" = "Хотите открыть навигатор?";
+
+"Another app will be open." = "Будет открыто другое приложение.";
+
+"No" = "Нет";
+
+"Select user info to change" = "Выберите данные для изменения";
+
+"Change Email" = "Изменить Email";
+
+"Change password" = "Изменить пароль";
+
+"Change address" = "Изменить адресс";
+
+"Change phone number" = "Изменить номер телефона";
+
+"Delete user account" = "Удалить аккаунт";
+
+
+
+
+//MARK - RegistrationViewController
+
+"This email is uncurrect." = "Не верный Email.";
+
+"Uncurrect password." = "Не верный пароль.";
+
+"Check your fullname." = "Проверьте ваше ФИО.";
+
+"Check your address." = "Проверьте ваш адрес.";
+
+"Check you phone num." = "Проверьте ваш номер телефона.";
+
+"Registration Error" = "Ошибка регистрации";
+
+"Network unable or email already exist." = "Сеть недоступна или Email не существует.";
+
+
+
+//MARK - AuthorisationViewController
+
+"SignIn Error" = "Ошибка входа";
+
+"Error. Check your email or password." = "Проверьте Email ваш и пароль.";
+
+
+//MARK - WEBViewController
+
+"Error" = "Ошибка";
+
+"Error loading WEB page." = "Ошибка загрузки страницы";
+
+"Error opening browser." = "Ошибка открытия браузера";
+
+
+//MARK - UserInfoChangeViewController
+
+"Wrong Email." = "Неверный Email";
+
+"Wrong password." = "Неверный пароль";
+
+"Passwords do not same." = "Пароли не совпадают";
+
+"Wrong acddress." = "Неверный адрес";
+
+"Wrong phone number." = "Неверный номер телефона";
+
+"You must confirm the change of email on your new mailbox." = "Вы должны подтвердить изменение на почте";
+
+"Your new email" = "Новый Email";
+
+"Enter email here"  = "Введите Email тут";
+
+"Enter your passord" = "Введите новый пароль";
+
+"password" = "Пароль";
+
+"You must confirm the change of password on your mailbox." = "Вы должны подтвердить изменение на почте";
+
+"Old password" = "Старый пароль";
+
+"Enter old passord here" = "Введите старый пароль тут";
+
+"New password" = "Новый пароль";
+
+"Enter new passord here" = "Введите новый пароль тут";
+
+"Write new password again" = "Введите новый пароль ещё раз";
+
+"You must confirm the change of address on your mailbox." = "Вы должны подтвердить изменение на почте";
+
+"Adress" = "Адрес";
+
+"Enter new address here" = "Введите новый адрес тут";
+
+"You must confirm the change of phone number on your mailbox." = "Вы должны подтвердить изменение на почте";
+
+"New phone num" = "Новый номер телефона";
+
+"Error update data. Check your internet connection and try again." = "Ошибка обновления данных. Проверьте ваше интерент соединение и повторите попытку.";
+
+//MARK - SettingsMapView
+
+"Location services is deneid." = "Сервисы геопозиции отключены";
+
+"Go to settings" = "Перейти в настройки";
+
+"Shop №" = "Магазин №";
+
+"You" = "Вы";
+//MARK - OrderingVC
+//MARK - OrderingVC
