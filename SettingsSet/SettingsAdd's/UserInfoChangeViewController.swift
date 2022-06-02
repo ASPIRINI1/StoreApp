@@ -191,7 +191,7 @@ class UserInfoChangeViewController: UIViewController {
             
         case .address:
             
-            headerLAbel.text = NSLocalizedString("You must confirm the change of address on your mailbox.", comment: "")
+            headerLAbel.text = NSLocalizedString("Write your new address.", comment: "")
             
             firstLabel.text = NSLocalizedString("Adress", comment: "")
             firstTextField.placeholder = NSLocalizedString("Enter new address here", comment: "")
@@ -201,7 +201,7 @@ class UserInfoChangeViewController: UIViewController {
             
         case .phoneNum:
             
-            headerLAbel.text = NSLocalizedString("You must confirm the change of phone number on your mailbox.", comment: "")
+            headerLAbel.text = NSLocalizedString("Write your new phone num.", comment: "")
             firstLabel.text = NSLocalizedString("New phone num", comment: "")
             
             secondLabel.isHidden = true

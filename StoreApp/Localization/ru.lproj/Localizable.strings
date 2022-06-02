@@ -136,7 +136,7 @@
 
 "Enter email here"  = "Введите Email тут";
 
-"Enter your passord" = "Введите новый пароль";
+"Enter your passord" = "Введите пароль";
 
 "password" = "Пароль";
 
@@ -152,13 +152,13 @@
 
 "Write new password again" = "Введите новый пароль ещё раз";
 
-"You must confirm the change of address on your mailbox." = "Вы должны подтвердить изменение на почте";
+"Write your new address." = "Введите ваш новый адрес доставки.";
 
 "Adress" = "Адрес";
 
 "Enter new address here" = "Введите новый адрес тут";
 
-"You must confirm the change of phone number on your mailbox." = "Вы должны подтвердить изменение на почте";
+"Write your new phone num." = "Введите ваш новый номер телефона.";
 
 "New phone num" = "Новый номер телефона";
 
