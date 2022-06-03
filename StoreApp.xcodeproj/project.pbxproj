@@ -12,6 +12,7 @@
 		DE2B526E27FC7745009F22AB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B526D27FC7745009F22AB /* Validator.swift */; };
 		DE4AA63F283C32B600D97395 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA63E283C32B600D97395 /* User.swift */; };
 		DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */; };
+		DE52EAB92848F22900651828 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52EAB82848F22900651828 /* PaymentViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
 		DE5ED33C2820A16C00D46098 /* GoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */; };
 		DE65FB412835188C00DB0A51 /* PaymentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65FB402835188C00DB0A51 /* PaymentTableView.swift */; };
@@ -58,6 +59,7 @@
 		DE2B526D27FC7745009F22AB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		DE4AA63E283C32B600D97395 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE50B23827EBC0BD0072B3BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DE52EAB82848F22900651828 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
 		DE65FB402835188C00DB0A51 /* PaymentTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableView.swift; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		DE52EAB72848F20000651828 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				DE52EAB82848F22900651828 /* PaymentViewController.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
 		DE5ED33D2820A41300D46098 /* SettingsAdd's */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +187,7 @@
 			children = (
 				DEC83E682804C5C300ADE83C /* Cart */,
 				DE5ED3402820A47400D46098 /* Ordering */,
+				DE52EAB72848F20000651828 /* Payment */,
 			);
 			path = CartSet;
 			sourceTree = "<group>";
@@ -487,6 +498,7 @@
 				DEF535BC283C2C740089F601 /* RegistrationModule.swift in Sources */,
 				DEC7719C27F9EB0C006DB6D6 /* AuthorisationViewController.swift in Sources */,
 				DEF535B5283C29AB0089F601 /* CartMoule.swift in Sources */,
+				DE52EAB92848F22900651828 /* PaymentViewController.swift in Sources */,
 				DE50B23927EBC0BD0072B3BC /* DetailViewController.swift in Sources */,
 				DE65FB452835316800DB0A51 /* GoodsTableView.swift in Sources */,
 				DEF535B8283C2B760089F601 /* ImageModule.swift in Sources */,
