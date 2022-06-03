@@ -55,5 +55,31 @@ extension String {
         let regex = try! NSRegularExpression(pattern: "[0-9]{10,12}", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
+    
+//    func isValidCard() -> Bool {
+//        var regex = try! NSRegularExpression(pattern: "^4\\d{0,}$", options: .caseInsensitive)
+//        
+//        if regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil {
+//            return true
+//        }
+//        
+//        regex = try! NSRegularExpression(pattern: "^5[1-5]\\d{0,14}$", options: .caseInsensitive)
+//        
+//        if regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil {
+//            return true
+//        }
+//        
+//        return false
+//    }
+    
+    func isValidVisa() -> Bool {
+        let regex = try! NSRegularExpression(pattern: "^4\\d{0,}$", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
+    
+    func isValidMasterCard() -> Bool {
+        let regex = try! NSRegularExpression(pattern: "^5[1-5]\\d{0,14}$", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
 }
 
