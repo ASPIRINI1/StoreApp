@@ -15,8 +15,14 @@ class CartTableViewCell: UITableViewCell {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
+    var cellIndex = Int()
+    var cartCellDelegate: CartTableViewControllerDelegate?
     
     @IBAction func stepperAction(_ sender: UIStepper) {
         countLabel.text = String(Int(sender.value))
+   
+        
+        cartCellDelegate?.setProductCount(cellIndex: cellIndex, productCount: Int(sender.value))
+//        cartVC?.cellDelegate.setProductCount(cellIndex: cellIndex, productCount: Int(sender.value))
     } 
 }

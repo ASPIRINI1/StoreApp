@@ -7,18 +7,20 @@
 
 import UIKit
 
-class CartTableViewController: UITableViewController {
+protocol CartTableViewControllerDelegate: AnyObject {
+    func setProductCount(cellIndex: Int, productCount: Int)
+}
+
+class CartTableViewController: UITableViewController, CartTableViewControllerDelegate {
     
     @IBOutlet weak var totalPriceLabel: UIBarButtonItem!
     
     private var cart = [(product: Document ,count: Int)]()
     private var selectedIndex = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-       
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +67,12 @@ class CartTableViewController: UITableViewController {
             sum += product.product.price * product.count
         }
         totalPriceLabel.title = String(sum) + " " + NSLocalizedString("Rub", comment: "")
+        
+    }
+    
+    func setProductCount(cellIndex: Int, productCount: Int) {
+        cart[cellIndex].count = productCount
+        getTotalSum()
     }
     
     // MARK: - Navigation
@@ -122,6 +130,8 @@ class CartTableViewController: UITableViewController {
         cell.nameLabel.text = cart[indexPath.row].product.name
         cell.priceAlbel.text = String(cart[indexPath.row].product.price)
         cell.countLabel.text = String(cart[indexPath.row].count)
+        cell.cellIndex = indexPath.row
+        cell.cartCellDelegate = self
         
         return cell
     }
