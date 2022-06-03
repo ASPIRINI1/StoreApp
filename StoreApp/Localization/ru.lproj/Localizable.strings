@@ -177,5 +177,11 @@
 "Shop №" = "Магазин №";
 
 "You" = "Вы";
-//MARK - OrderingVC
+
+//MARK - PaymentViewController
+
+"Please write your Emoney card num." = "Введите номер вашего электронного кошелька";
+
+"Please write your credit card num." = "Введите номер вашей банковской карты";
+
 //MARK - OrderingVC

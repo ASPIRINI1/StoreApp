@@ -234,7 +234,11 @@
 "em9-2F-6ki.normalTitle" = "Button";
 
 /* Class = "UIButton"; configuration.title = "Add to cart"; ObjectID = "exM-kE-SZ8"; */
-"exM-kE-SZ8.configuration.title" = "В корзину";
+//"exM-kE-SZ8.configuration.title" = "В корзину";
+
+"exM-kE-SZ8.configuration.title" = "В";
+
+"exM-kE-SZ8.configuration.subtitle" = "корзину";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "exM-kE-SZ8"; */
 "exM-kE-SZ8.normalTitle" = "Button";
@@ -350,4 +354,5 @@
 /* Class = "UILabel"; text = "Shop@email.org"; ObjectID = "znS-rD-m7y"; */
 "znS-rD-m7y.text" = "Shop@email.org";
 
-"fk0-60-Xez.text" = "Цена"
+/* Class = "UILabel"; text = "Price"; ObjectID = "fk0-60-Xez"; */
+"fk0-60-Xez.text" = "Цена";
