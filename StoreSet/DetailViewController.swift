@@ -30,7 +30,8 @@ class DetailViewController: UIViewController {
         FireAPI.shared.isInCart(document: doc) { inCart in
             if inCart {
                 
-                self.addToCartButton.setTitle(NSLocalizedString("In cart", comment: ""), for: .normal)
+                self.addToCartButton.setTitle(NSLocalizedString("In", comment: ""), for: .normal)
+                self.addToCartButton.subtitleLabel?.text = NSLocalizedString("cart", comment: "")
             }
         }
     }
@@ -41,7 +42,8 @@ class DetailViewController: UIViewController {
         
         if AppSettings.shared.signedIn {
             FireAPI.shared.addToCart(document: self.doc)
-            self.addToCartButton.setTitle(NSLocalizedString("In cart", comment: ""), for: .normal)
+            self.addToCartButton.setTitle(NSLocalizedString("In", comment: ""), for: .normal)
+            self.addToCartButton.subtitleLabel?.text = NSLocalizedString("cart", comment: "")
             
         } else {
             

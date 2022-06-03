@@ -8,7 +8,9 @@
 
 //MARK - DetailViewController
 
-"In cart" = "В корзине";
+"In" = "В";
+
+"cart" = "Корзине";
 
 "You must register to add items to yor shopping cart." = "Вы должны загерестрироваться для того что бы добавить товары в корзину.";
 
@@ -46,6 +48,8 @@
 "Сash on delivery" = "Оплата при получении";
 
 "Pick up by yourself" = "Самовывоз";
+
+"Do you want to pay with apple pay?" = "Хотите воспользоваться Apple pay?";
 
 //MARK - SettingsTableViewController
 
