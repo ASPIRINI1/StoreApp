@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 extension FireAPI {
     
@@ -24,42 +25,58 @@ extension FireAPI {
     
     func changeUser(email: String, completion: @escaping (Bool) -> ()) {
         
-        if !email.isEmpty {
-            currectUser?.sendEmailVerification(beforeUpdatingEmail: email, completion: { error in
+        
+        guard !email.isEmpty else {
+            return
+        }
+        
+        guard let user = currectUser else {
+            return
+        }
+        
+        guard let thisUser = AppSettings.shared.user else {
+            return
+        }
+        
+        signOut()
+        signIn(email: thisUser.email, password: thisUser.password ) { success in
+            
+            if success {
                 
-                if let error = error {
-                    print("Error changing user email: ", error)
-                    completion(false)
-                    
-                } else {
-//                    AppSettings.shared.userEmail = email
-                    AppSettings.shared.user?.email = email
+                user.sendEmailVerification(beforeUpdatingEmail: email) { error in
+                    if let error = error {
+                        print("Error sending email update verification: ", error)
+                        completion(false)
+                        return
+                    }
                     completion(true)
                 }
-            })
+            }
         }
+
+      
     }
     
     func changeUser(password: String, completion: @escaping (Bool) -> ()) {
         
         if !password.isEmpty {
             
-            if let email = AppSettings.shared.user?.email {
+            guard let email = AppSettings.shared.user?.email else {
+                return
+            }
                 
-                signIn(email: email, password: AppSettings.shared.user!.password) { success in
-                    if !success { return }
+            signIn(email: email, password: AppSettings.shared.user!.password) { success in
+                if !success { return }
+                
+                self.currectUser!.updatePassword(to: password, completion: { error in
                     
-                    self.currectUser!.updatePassword(to: password, completion: { error in
-                        
-                        if let error = error {
-                            print("Error changing user password: ", error)
-                            completion(false)
-
-                        } else {
-                            completion(true)
-                        }
-                    })
-                }
+                    if let error = error {
+                        print("Error changing user password: ", error)
+                        completion(false)
+                    } else {
+                        completion(true)
+                    }
+                })
             }
             
            
@@ -77,7 +94,6 @@ extension FireAPI {
                     completion(false)
                     
                 } else {
-//                    AppSettings.shared.userAddress = address
                     AppSettings.shared.user?.address = address
                     completion(true)
                 }
@@ -96,7 +112,6 @@ extension FireAPI {
                     completion(false)
                     
                 } else {
-    //                AppSettings.shared.userPhoneNum = phoneNum
                     AppSettings.shared.user?.phoneNum = phoneNum
                     completion(true)
                 }
