@@ -74,7 +74,7 @@ class RegistrationViewController: UIViewController {
             
             validationLabel.isHidden = true
         
-            FireAPI.shared.registration(email: emailTextField.text!, password: passwordTextField.text!, userName: fullNameTextFiedl.text!, adress: addressTextField.text!, phoneNum: Int(phoneNumTextField.text!)!) { regSuccess in
+            FireAPI.shared.registration(email: emailTextField.text!, password: passwordTextField.text!, userName: fullNameTextFiedl.text!, address: addressTextField.text!, phoneNum: Int(phoneNumTextField.text!)!) { regSuccess in
 
                 if !regSuccess {
                     let alert = UIAlertController(title: NSLocalizedString("Registration Error", comment: ""), message: NSLocalizedString("Network unable or email already exist.", comment: ""), preferredStyle: .alert)
@@ -97,6 +97,7 @@ class RegistrationViewController: UIViewController {
 //    MARK: - notifications
     
     func registerNotifications() {
+        
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [self] notif in
             if self.addressTextField.isFirstResponder {
                 self.view.frame.origin.y -= self.addressTextField.frame.height * 2 //?????????

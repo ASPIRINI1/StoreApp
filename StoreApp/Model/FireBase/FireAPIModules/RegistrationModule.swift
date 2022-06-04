@@ -39,13 +39,17 @@ extension FireAPI {
                     if let error = error { print("Error getting user data: ", error); return }
                     
                     if documentSnapshot != nil {
+                        
+                        if documentSnapshot?.get("fullName") == nil || documentSnapshot?.get("phoneNum") == nil {
+                            print("Error loading user data.")
+                        }
                        
                         User.shared.set(UID: ID!,
                                         email: email!,
                                         password: password!,
                                         address: documentSnapshot?.get("address") as? String,
-                                        fullName: documentSnapshot?.get("fullName") as! String,
-                                        phoneNum: documentSnapshot?.get("phoneNum") as! Int)
+                                        fullName: documentSnapshot?.get("fullName") as? String ?? "",
+                                        phoneNum: documentSnapshot?.get("phoneNum") as? Int ?? 0)
                     }
                     
                     
@@ -71,22 +75,23 @@ extension FireAPI {
         
     
     
-        func registration(email: String, password: String, userName: String, adress: String, phoneNum: Int, completion: (Bool) -> ()...){
+        func registration(email: String, password: String, userName: String, address: String, phoneNum: Int, completion: (Bool) -> ()...){
             
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                if  (error != nil){
+                
+                if error != nil {
                     print("Registration error:", error!)
                     completion[0](false)
-                    
-                } else {
-                    
-                    completion[0](true)
-
-                    self.setUser(ID: authResult?.user.uid, email: email, password: password)
-                    self.createNewUserFiles(fullname: userName, address: adress, phoneNum: phoneNum)
-     
-                    
+                }
+                
+                guard let authResult = authResult else {
+                    return
+                }
+                
+                self.createNewUserFiles(uid: authResult.user.uid, fullname: userName, address: address, phoneNum:   phoneNum) {
+                    self.setUser(ID: authResult.user.uid, email: email, password: password)
                     NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
+                    completion[0](true)
                 }
             }
         }
