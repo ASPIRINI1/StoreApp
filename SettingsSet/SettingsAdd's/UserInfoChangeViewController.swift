@@ -47,7 +47,7 @@ class UserInfoChangeViewController: UIViewController {
             
         case .email:
             
-            if firstTextField.text != nil && firstLabel.text!.isValidEmail() {
+            if firstTextField.text != nil && firstTextField.text!.isValidEmail() {
                 FireAPI.shared.changeUser(email: firstTextField.text!, completion: { success in
                 
                     if success {

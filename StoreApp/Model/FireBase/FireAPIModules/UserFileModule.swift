@@ -11,29 +11,27 @@ extension FireAPI {
      
     //    MARK: - Create,Update,Delete documents
     
-    func createNewUserFiles(fullname: String, address: String, phoneNum: Int) {
-        
-        if AppSettings.shared.signedIn { }
-        
-        
-        if let userID = AppSettings.shared.user?.userID {
+    func createNewUserFiles(uid: String,fullname: String, address: String, phoneNum: Int, completion: @escaping () -> ()) {
             
-            let data: [String : Any] = ["fullName": fullname,
-                                        "address" : address,
-                                        "phoneNum" : phoneNum,
-                                        "cart" : []]
-            
-            db.collection(RootCollections.users.rawValue).document(userID).setData(data)
+        let data: [String : Any] = ["fullName": fullname,
+                                    "address" : address,
+                                    "phoneNum" : phoneNum,
+                                    "cart" : []]
+        
+        db.collection(RootCollections.users.rawValue).document(uid).setData(data) { error in
+            if error != nil { print("Error creating user files: ", error!); return }
+            completion()
         }
    }
     
     func deleteUserFiles(){
         
-        if let userID = AppSettings.shared.user?.userID {
-            
-            db.collection(RootCollections.users.rawValue).document(userID).delete()
-            db.collection(RootCollections.reviews.rawValue).document(userID).delete()
+        guard let userID = AppSettings.shared.user?.userID else {
+            return
         }
+        
+        db.collection(RootCollections.users.rawValue).document(userID).delete()
+        db.collection(RootCollections.reviews.rawValue).document(userID).delete()
         
     }
 }
