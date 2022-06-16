@@ -13,7 +13,7 @@ class OrderingVC: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var goodsListTableView: GoodsTableView!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var paymentMethodTableView: PaymentTableView!
+    @IBOutlet weak var paymentMethodTableView: PaymentMethodTableView!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
     private var products = [(product: Document ,count: Int)]()
@@ -24,12 +24,13 @@ class OrderingVC: UIViewController {
         
         configureVC()
        
-        // creating payment method tableView
+//         creating payment method tableView
         paymentMethodTableView.createPaymentTableView(methods: [NSLocalizedString("Credit card", comment: ""),
                                                                 NSLocalizedString("Qiwi/YaMoney", comment: ""),
                                                                 NSLocalizedString("Сash on delivery", comment: ""),
                                                                 NSLocalizedString("Pick up by yourself", comment: "")])
-        // creating goods list tableView
+        
+//         creating goods list tableView
         goodsListTableView.createGoodsTableView(goods: products)
     }
     

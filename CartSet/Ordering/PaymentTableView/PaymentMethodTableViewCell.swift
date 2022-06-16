@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PaymentTableViewCell: UITableViewCell {
+class PaymentMethodTableViewCell: UITableViewCell {
 
     @IBOutlet weak var paymentNameLabel: UILabel!
 

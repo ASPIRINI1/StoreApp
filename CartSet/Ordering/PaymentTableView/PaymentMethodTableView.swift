@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class PaymentTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class PaymentMethodTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     private var paymentMethods = [String]()
     
@@ -31,7 +31,7 @@ class PaymentTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentCell", for: indexPath) as! PaymentTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentCell", for: indexPath) as! PaymentMethodTableViewCell
         
         cell.paymentNameLabel.text = paymentMethods[indexPath.row]
         
