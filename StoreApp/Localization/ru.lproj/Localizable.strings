@@ -185,3 +185,8 @@
 "Please write your credit card num." = "Введите номер вашей банковской карты";
 
 //MARK - OrderingVC
+
+
+// GoodsTableViewCell
+
+"pcs" = "шт";
