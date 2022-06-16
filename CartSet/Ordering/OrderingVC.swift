@@ -45,7 +45,7 @@ class OrderingVC: UIViewController {
         var totalPrice = 0
         
         for product in products {
-            totalPrice += product.product.price
+            totalPrice += product.product.price * product.count
         }
         
         totalPriceLabel.text = String(totalPrice) + " " + NSLocalizedString("Rub", comment: "")
@@ -59,6 +59,25 @@ class OrderingVC: UIViewController {
     
     @IBAction func byButtonAction(_ sender: Any) {
         
+        
+        let alert = UIAlertController(title: NSLocalizedString("Do you want to pay with apple pay?", comment: ""), message: nil, preferredStyle: .alert)
+        
+        let yesAletrAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
+            
+        }
+        
+        let noAlertAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default) { _ in
+            
+            let paymentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
+            
+            
+            self.navigationController?.pushViewController(paymentVC, animated: true)
+        }
+        
+        alert.addAction(yesAletrAction)
+        alert.addAction(noAlertAction)
+        
+        self.present(alert, animated: true)
         
     }
     
