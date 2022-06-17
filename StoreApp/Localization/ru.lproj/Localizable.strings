@@ -49,6 +49,10 @@
 
 "Pick up by yourself" = "Самовывоз";
 
+"Please select payment method." = "Выберите метод оплаты";
+
+"Please select delivering method." = "Выберите способ доставки";
+
 "Do you want to pay with apple pay?" = "Хотите воспользоваться Apple pay?";
 
 //MARK - SettingsTableViewController

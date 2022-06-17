@@ -13,15 +13,12 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var cardTypeLabel: UILabel!
     
-    enum PaymentMethod {
-    case Emoney
-    case CreditCard
-    }
+    var selectedMethod = PaymentMethodTableView.PaymentMethods.CreditCard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        configureVC()
     }
     
     @IBAction func CouniniueButtonAction(_ sender: Any) {
@@ -40,14 +37,19 @@ class PaymentViewController: UIViewController {
         }
     }
     
-    func coufigureVC(paymentMethod: PaymentMethod) {
+    private func configureVC() {
         
-        switch paymentMethod {
-        case .Emoney:
-            label.text = NSLocalizedString("Please write your Emoney card num.", comment: "")
+        switch selectedMethod {
         case .CreditCard:
             label.text = NSLocalizedString("Please write your credit card num.", comment: "")
+        case .EMoney:
+            label.text = NSLocalizedString("Please write your Emoney card num.", comment: "")
+        case .CashOnDelivery:
+            break
+        case .PickUpByYourself:
+            break
         }
+        
         
     }
     

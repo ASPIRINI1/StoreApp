@@ -18,17 +18,14 @@ class OrderingVC: UIViewController {
     
     private var products = [(product: Document ,count: Int)]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        configuring OrderingVC
         configureVC()
        
 //         creating payment method tableView
-        paymentMethodTableView.createPaymentTableView(methods: [NSLocalizedString("Credit card", comment: ""),
-                                                                NSLocalizedString("Qiwi/YaMoney", comment: ""),
-                                                                NSLocalizedString("Сash on delivery", comment: ""),
-                                                                NSLocalizedString("Pick up by yourself", comment: "")])
+        paymentMethodTableView.createPaymentTableView()
         
 //         creating goods list tableView
         goodsListTableView.createGoodsTableView(goods: products)
@@ -59,25 +56,52 @@ class OrderingVC: UIViewController {
     
     @IBAction func byButtonAction(_ sender: Any) {
         
-        
-        let alert = UIAlertController(title: NSLocalizedString("Do you want to pay with apple pay?", comment: ""), message: nil, preferredStyle: .alert)
-        
-        let yesAletrAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
+        guard let selectedPaymentMethod = paymentMethodTableView.selectedCell else {
             
+//            "Please select delivering method."
+            let alert = UIAlertController(title: NSLocalizedString("Please select payment method.", comment: ""), message: nil, preferredStyle: .alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .default)
+            
+            alert.addAction(OKAction)
+            present(alert, animated: true)
+            
+            return
         }
         
-        let noAlertAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default) { _ in
+        let paymentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
+        
+        switch selectedPaymentMethod {
+        case .CreditCard:
+            let alert = UIAlertController(title: NSLocalizedString("Do you want to pay with apple pay?", comment: ""), message: nil, preferredStyle: .alert)
             
-            let paymentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
+            let yesAletrAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
+                
+            }
             
+            let noAlertAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default) { _ in
+                
+                paymentVC.selectedMethod = selectedPaymentMethod
+                self.navigationController?.pushViewController(paymentVC, animated: true)
+            }
             
+            alert.addAction(yesAletrAction)
+            alert.addAction(noAlertAction)
+            
+            self.present(alert, animated: true)
+            
+        case .EMoney:
+            paymentVC.selectedMethod = selectedPaymentMethod
             self.navigationController?.pushViewController(paymentVC, animated: true)
+            
+        case .CashOnDelivery:
+            print("cashOn")
+            
+        case .PickUpByYourself:
+            print("byYourself")
         }
         
-        alert.addAction(yesAletrAction)
-        alert.addAction(noAlertAction)
-        
-        self.present(alert, animated: true)
+   
         
     }
     

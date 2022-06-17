@@ -10,15 +10,24 @@ import UIKit
 
 class PaymentMethodTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
-    private var paymentMethods = [String]()
+    var paymentMethods = [String]()
+    var selectedCell: Optional<PaymentMethods> = nil
     
+    enum PaymentMethods: String, CaseIterable {
+        case CreditCard = "Credit card"
+        case EMoney = "Qiwi/YaMoney"
+        case CashOnDelivery = "Сash on delivery"
+        case PickUpByYourself = "Pick up by yourself"
+    }
     
-    func createPaymentTableView(methods: [String]) {
+    func createPaymentTableView() {
+        
+        for method in PaymentMethods.allCases {
+            paymentMethods.append(method.rawValue)
+        }
         
         self.delegate = self
         self.dataSource = self
-        
-        paymentMethods = methods
         
         self.layer.cornerRadius = 10
         self.reloadData()
@@ -41,6 +50,19 @@ class PaymentMethodTableView: UITableView, UITableViewDelegate, UITableViewDataS
     //    MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.row {
+        case 0:
+            selectedCell = PaymentMethods.CreditCard
+        case 1:
+            selectedCell = PaymentMethods.EMoney
+        case 2:
+            selectedCell = PaymentMethods.CashOnDelivery
+        case 3:
+            selectedCell = PaymentMethods.PickUpByYourself
+        default:
+            selectedCell = nil
+        }
         
         for cell in tableView.visibleCells {
             cell.accessoryType = .none
