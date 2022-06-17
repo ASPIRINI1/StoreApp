@@ -15,6 +15,7 @@
 		DE52EAB92848F22900651828 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52EAB82848F22900651828 /* PaymentViewController.swift */; };
 		DE57F68727EA6B2C0025A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */; };
 		DE5ED33C2820A16C00D46098 /* GoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */; };
+		DE5F8C84285CC9740063F0D7 /* UserDataChangeActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5F8C83285CC9740063F0D7 /* UserDataChangeActionSheet.swift */; };
 		DE65FB412835188C00DB0A51 /* PaymentMethodTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65FB402835188C00DB0A51 /* PaymentMethodTableView.swift */; };
 		DE65FB4328351A2E00DB0A51 /* PaymentMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65FB4228351A2E00DB0A51 /* PaymentMethodTableViewCell.swift */; };
 		DE65FB452835316800DB0A51 /* GoodsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65FB442835316800DB0A51 /* GoodsTableView.swift */; };
@@ -62,6 +63,7 @@
 		DE52EAB82848F22900651828 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
+		DE5F8C83285CC9740063F0D7 /* UserDataChangeActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDataChangeActionSheet.swift; path = "SettingsAdd's/UserDataChangeActionSheet.swift"; sourceTree = "<group>"; };
 		DE65FB402835188C00DB0A51 /* PaymentMethodTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableView.swift; sourceTree = "<group>"; };
 		DE65FB4228351A2E00DB0A51 /* PaymentMethodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableViewCell.swift; sourceTree = "<group>"; };
 		DE65FB442835316800DB0A51 /* GoodsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableView.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */,
 				DE5ED33E2820A42D00D46098 /* Authorization */,
 				DE5ED33D2820A41300D46098 /* SettingsAdd's */,
+				DE5F8C83285CC9740063F0D7 /* UserDataChangeActionSheet.swift */,
 			);
 			path = SettingsSet;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				DE65FB412835188C00DB0A51 /* PaymentMethodTableView.swift in Sources */,
 				DE6916E328216D9900608D18 /* ReviewAddingViewController.swift in Sources */,
 				DEC7719E27F9EB1B006DB6D6 /* WEBViewController.swift in Sources */,
+				DE5F8C84285CC9740063F0D7 /* UserDataChangeActionSheet.swift in Sources */,
 				DE6A9149280B2284005820E3 /* CategoryTableViewController.swift in Sources */,
 				DE26705B27FB34DD0063A84D /* RegistrationViewController.swift in Sources */,
 				DEE68ADA27ED0C6400BA6A55 /* AppSettings.swift in Sources */,

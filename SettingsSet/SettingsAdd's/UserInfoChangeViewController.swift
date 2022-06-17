@@ -24,11 +24,12 @@ class UserInfoChangeViewController: UIViewController {
         case password
         case address
         case phoneNum
+        case delete
     }
     
 //    MARK: - Properties
     
-    private var viewType = changingType.email
+    var viewType = changingType.email
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,6 +151,8 @@ class UserInfoChangeViewController: UIViewController {
                 }))
                 present(alert, animated: true)
             }
+        case .delete:
+            break
         }
     }
     
@@ -206,15 +209,14 @@ class UserInfoChangeViewController: UIViewController {
             
             secondLabel.isHidden = true
             secondTextField.isHidden = true
+        case .delete:
+            break
         }
         
     }
     
 //    MARK: - Additional funcs
     
-    func setViewType(viewType: changingType) {
-        self.viewType = viewType
-    }
     
     func showUpdatingErrorAlert() {
                     

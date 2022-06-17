@@ -162,65 +162,45 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
         return indexPath
     }
     
+    // MARK: - Table view didSelectRowAt
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let userInfoChangeVC = storyboard?.instantiateViewController(withIdentifier: "UserInfoVC") as! UserInfoChangeViewController
+
         
 //        Creating actionSheet
         if indexPath == [0, 1] { // user info change cell
             
-            let userInfoChangeActionSheet = UIAlertController(title: NSLocalizedString("Select user info to change", comment: ""), message: nil, preferredStyle: .actionSheet)
-            
-//            Creating actionSheet action
-            let changeEmailAction = UIAlertAction(title: NSLocalizedString("Change Email", comment: ""), style: .default) { _ in
-                userInfoChangeVC.setViewType(viewType: .email)
-                self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
-            }
-            
-            let chanePassAction = UIAlertAction(title: NSLocalizedString("Change password", comment: ""), style: .default) { _ in
-                userInfoChangeVC.setViewType(viewType: .password)
-                self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
-            }
-            
-            let changeAddressAction = UIAlertAction(title: NSLocalizedString("Change address", comment: ""), style: .default) { _ in
-                userInfoChangeVC.setViewType(viewType: .address)
-                self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
-            }
-            
-            let changePhoneNumAction = UIAlertAction(title: NSLocalizedString("Change phone number", comment: ""), style: .default) { _ in
-                userInfoChangeVC.setViewType(viewType: .phoneNum)
-                self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
-            }
-            
-            let deleteAccountAction = UIAlertAction(title: NSLocalizedString("Delete user account", comment: ""), style: .destructive) { _ in
+            let userInfoChangeActionSheet = UserDataChangeActionSheet().create { changingType in
                 
-//                creating confirming alert
-                let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: nil, preferredStyle: .alert)
+                let userInfoChangeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserInfoVC") as! UserInfoChangeViewController
+                userInfoChangeVC.viewType = changingType
                 
-//                confirming alert actions
-                let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { _ in
-                    FireAPI.shared.deleteAccount()
-                    self.viewWillAppear(false)
+                tableView.cellForRow(at: indexPath)?.isSelected = false
+                
+                guard changingType != .delete else {
+                    
+        //                creating confirming alert
+                    let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: nil, preferredStyle: .alert)
+                    
+        //                confirming alert actions
+                    let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { _ in
+                        FireAPI.shared.deleteAccount()
+                        
+                    }
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default)
+                    
+                    alert.addAction(yesAction)
+                    alert.addAction(cancelAction)
+                    
+                    self.present(alert, animated: true)
+                    return
                 }
-                let cancelAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default)
                 
-                alert.addAction(yesAction)
-                alert.addAction(cancelAction)
-                
-                self.present(alert, animated: true)
+                self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
             }
-            
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
-            
-            userInfoChangeActionSheet.addAction(changeEmailAction)
-            userInfoChangeActionSheet.addAction(chanePassAction)
-            userInfoChangeActionSheet.addAction(changeAddressAction)
-            userInfoChangeActionSheet.addAction(changePhoneNumAction)
-            userInfoChangeActionSheet.addAction(deleteAccountAction)
-            userInfoChangeActionSheet.addAction(cancel)
             
             present(userInfoChangeActionSheet, animated: true)
-            
             tableView.cellForRow(at: indexPath)?.isSelected = false
         }
     }
