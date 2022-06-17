@@ -63,7 +63,7 @@
 		DE52EAB82848F22900651828 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		DE57F68627EA6B2C0025A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE5ED33B2820A16C00D46098 /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
-		DE5F8C83285CC9740063F0D7 /* UserDataChangeActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDataChangeActionSheet.swift; path = "SettingsAdd's/UserDataChangeActionSheet.swift"; sourceTree = "<group>"; };
+		DE5F8C83285CC9740063F0D7 /* UserDataChangeActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataChangeActionSheet.swift; sourceTree = "<group>"; };
 		DE65FB402835188C00DB0A51 /* PaymentMethodTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableView.swift; sourceTree = "<group>"; };
 		DE65FB4228351A2E00DB0A51 /* PaymentMethodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableViewCell.swift; sourceTree = "<group>"; };
 		DE65FB442835316800DB0A51 /* GoodsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableView.swift; sourceTree = "<group>"; };
@@ -170,6 +170,7 @@
 			children = (
 				DEC7719D27F9EB1B006DB6D6 /* WEBViewController.swift */,
 				DEC83E6628032C6500ADE83C /* UserInfoChangeViewController.swift */,
+				DE5F8C83285CC9740063F0D7 /* UserDataChangeActionSheet.swift */,
 				DE93F2DD280F23D900132E6A /* SettingsMapView.swift */,
 			);
 			path = "SettingsAdd's";
@@ -327,7 +328,6 @@
 				DEC7719927F9E8B4006DB6D6 /* SettingsTableViewController.swift */,
 				DE5ED33E2820A42D00D46098 /* Authorization */,
 				DE5ED33D2820A41300D46098 /* SettingsAdd's */,
-				DE5F8C83285CC9740063F0D7 /* UserDataChangeActionSheet.swift */,
 			);
 			path = SettingsSet;
 			sourceTree = "<group>";

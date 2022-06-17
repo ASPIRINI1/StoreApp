@@ -107,7 +107,16 @@ class OrderingVC: UIViewController {
     
     @IBAction func changeUserDataButtonAction(_ sender: Any) {
         
-        
+        let userInfoChangeActionSheet = UserDataChangeActionSheet().create { changingType in
+            
+            let userInfoChangeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserInfoVC") as! UserInfoChangeViewController
+            
+            if changingType == .delete { return }
+            
+            userInfoChangeVC.viewType = changingType
+            self.navigationController?.pushViewController(userInfoChangeVC, animated: true)
+        }
+        present(userInfoChangeActionSheet, animated: true)
     }
 
 }
