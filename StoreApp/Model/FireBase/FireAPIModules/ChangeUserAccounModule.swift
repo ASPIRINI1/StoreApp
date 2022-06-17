@@ -15,11 +15,18 @@ extension FireAPI {
     
     func deleteAccount() {
         
-        currectUser?.delete { error in
-            if let error = error { print("Error deleting user: ",error); return}
+        guard let user = AppSettings.shared.user else {
+            return
         }
-        deleteUserFiles()
-        signOut()
+        
+        signIn(email: user.email, password: user.password) { signedIn in
+            self.currectUser?.delete { error in
+                if let error = error { print("Error deleting user: ",error); return}
+            }
+            self.deleteUserFiles()
+            self.signOut()
+        }
+        
     }
 
     
