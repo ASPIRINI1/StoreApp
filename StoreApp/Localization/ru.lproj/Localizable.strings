@@ -55,6 +55,10 @@
 
 "Do you want to pay with apple pay?" = "Хотите воспользоваться Apple pay?";
 
+"Your order your order is being processed." = "Ваш заказ обрабатывается.";
+
+"Rewrite your card num." = "Введите номер карты повторно.";
+
 //MARK - SettingsTableViewController
 
 "Sign Out" = "Выйти";

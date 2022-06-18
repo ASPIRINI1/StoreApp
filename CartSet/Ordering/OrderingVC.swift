@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PassKit
 
 class OrderingVC: UIViewController {
 
@@ -39,13 +40,7 @@ class OrderingVC: UIViewController {
         addressLabel.text = AppSettings.shared.user?.address
         emailLabel.text = AppSettings.shared.user?.email
         
-        var totalPrice = 0
-        
-        for product in products {
-            totalPrice += product.product.price * product.count
-        }
-        
-        totalPriceLabel.text = String(totalPrice) + " " + NSLocalizedString("Rub", comment: "")
+        totalPriceLabel.text = String(getTotalPrice()) + " " + NSLocalizedString("Rub", comment: "")
     }
     
     func setProducts(products: [(Document,Int)]) {
@@ -76,7 +71,7 @@ class OrderingVC: UIViewController {
             let alert = UIAlertController(title: NSLocalizedString("Do you want to pay with apple pay?", comment: ""), message: nil, preferredStyle: .alert)
             
             let yesAletrAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
-                
+                self.applePay()
             }
             
             let noAlertAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default) { _ in
@@ -95,10 +90,10 @@ class OrderingVC: UIViewController {
             self.navigationController?.pushViewController(paymentVC, animated: true)
             
         case .CashOnDelivery:
-            print("cashOn")
+            break
             
         case .PickUpByYourself:
-            print("byYourself")
+            break
         }
         
    
@@ -119,6 +114,48 @@ class OrderingVC: UIViewController {
         present(userInfoChangeActionSheet, animated: true)
     }
 
+    
+//    MARK: - Additional funcs
+    
+    func getTotalPrice() -> Int {
+        
+        var totalPrice = 0
+        
+        for product in products {
+            totalPrice += product.product.price * product.count
+        }
+        return totalPrice
+    }
+    
+    func applePay() {
+        let paymentRequest: PKPaymentRequest = {
+            let request = PKPaymentRequest()
+            request.supportedNetworks = [.visa,.masterCard]
+            request.supportedCountries = ["RU", "UA"]
+            request.merchantIdentifier = "merchant.com.pushpendra.pay"
+            request.countryCode = "RU"
+            request.currencyCode = "RUB"
+            request.merchantCapabilities = .capability3DS
+            request.paymentSummaryItems = [PKPaymentSummaryItem(label: "StoreApp", amount: NSDecimalNumber(value: getTotalPrice()))]
+            return request
+        }()
+        let paymentController = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
+        if paymentController != nil {
+            paymentController!.delegate = self
+            present(paymentController!, animated: true)
+        }
+    }
+}
+
+extension OrderingVC: PKPaymentAuthorizationViewControllerDelegate {
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true)
+    }
+    
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+    }
+    
 }
 
 

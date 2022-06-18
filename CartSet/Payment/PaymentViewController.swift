@@ -23,18 +23,43 @@ class PaymentViewController: UIViewController {
     
     @IBAction func CouniniueButtonAction(_ sender: Any) {
         
-        if let text = textField.text {
-            
-            if text.isValidVisa() {
-                cardTypeLabel.isHidden = false
-                cardTypeLabel.text = "Visa"
-            }
-            
-            if text.isValidMasterCard() {
-                cardTypeLabel.isHidden = false
-                cardTypeLabel.text = "MasterCard"
-            }
+        guard let text = textField.text else {
+            return
         }
+          
+        if text.isValidVisa() {
+            cardTypeLabel.isHidden = false
+            cardTypeLabel.text = "Visa"
+        }
+        
+        if text.isValidMasterCard() {
+            cardTypeLabel.isHidden = false
+            cardTypeLabel.text = "MasterCard"
+        }
+        
+        if text.isValidVisa() || text.isValidMasterCard() {
+            
+            let alert = UIAlertController(title: NSLocalizedString("Your order your order is being processed.", comment: ""), message: nil, preferredStyle: .alert)
+            
+            let OKAlertAction = UIAlertAction(title: "OK", style: .default) { _ in
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            
+            alert.addAction(OKAlertAction)
+            
+            self.present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: NSLocalizedString("Rewrite your card num.", comment: ""), message: nil, preferredStyle: .alert)
+            
+            let OKAlertAction = UIAlertAction(title: "OK", style: .default) { _ in
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            
+            alert.addAction(OKAlertAction)
+            
+            self.present(alert, animated: true)
+        }
+
     }
     
     private func configureVC() {
