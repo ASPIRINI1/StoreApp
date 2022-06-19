@@ -24,14 +24,11 @@ extension FireAPI {
         }
    }
     
-    func deleteUserFiles(){
+    func deleteUserFiles() {
         
-        guard let userID = AppSettings.shared.user?.userID else {
-            return
-        }
+        guard let userID = AppSettings.shared.user?.userID else { return }
         
         db.collection(RootCollections.users.rawValue).document(userID).delete()
-        db.collection(RootCollections.reviews.rawValue).document(userID).delete()
         
     }
 }

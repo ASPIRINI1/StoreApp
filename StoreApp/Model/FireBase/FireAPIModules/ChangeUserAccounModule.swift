@@ -13,20 +13,23 @@ extension FireAPI {
     
 //    MARK: Change user
     
-    func deleteAccount() {
+    func deleteAccount(completion: @escaping (Bool)->()) {
         
         guard let user = AppSettings.shared.user else {
             return
         }
         
         signIn(email: user.email, password: user.password) { signedIn in
+            guard signedIn else { return }
+            
             self.currectUser?.delete { error in
-                if let error = error { print("Error deleting user: ",error); return}
+                if let error = error { print("Error deleting user: ",error); completion(false); return}
+                
+                self.deleteUserFiles()
+                self.signOut()
+                completion(true)
             }
-            self.deleteUserFiles()
-            self.signOut()
         }
-        
     }
 
     

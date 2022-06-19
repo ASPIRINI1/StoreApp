@@ -143,9 +143,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
     // MARK: - Table view didSelectRowAt
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-
-        
+         
 //        Creating actionSheet
         if indexPath == [0, 1] { // user info change cell
             
@@ -163,8 +161,12 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
                     
         //                confirming alert actions
                     let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { _ in
-                        FireAPI.shared.deleteAccount()
-                        self.viewDidAppear(false)
+                        
+                        FireAPI.shared.deleteAccount(completion: { success in
+                            if success {
+                                self.viewDidAppear(false)
+                            }
+                        })
                     }
                     let cancelAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default)
                     
