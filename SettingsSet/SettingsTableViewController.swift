@@ -17,8 +17,11 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
     @IBOutlet weak var appThemeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var mapView: MKMapView!
     
-    var mapV = SettingsMapView()
+    //webView properties
     var WEBurl = ""
+    
+    //mapView properties
+    var mapV = SettingsMapView()
     var routeEnabled = false
     
     override func viewDidLoad() {
@@ -30,9 +33,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
     
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        addNotifications()
+    override func viewDidAppear(_ animated: Bool) {
         
         if AppSettings.shared.signedIn {
             accountLabel.text = AppSettings.shared.user?.email
@@ -42,14 +43,8 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
             accountLabel.text = NSLocalizedString("Authorization", comment: "")
             signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         }
-        
-        
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     
     //    MARK:  App theme
     
@@ -78,7 +73,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
             
             let alertYesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { UIAlertAction in
                 FireAPI.shared.signOut()
-                self.viewWillAppear(false)
+                self.viewDidAppear(false)
             }
             
             let alertCancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
@@ -95,23 +90,6 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
         }
     }
     
-    
-//    MARK: - Notifications
-    
-    func addNotifications() {
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("SignedIn"), object: nil, queue: nil) { _ in
-            
-            self.accountLabel.text = AppSettings.shared.user?.email
-            self.signInButton.setTitle(NSLocalizedString("Sign Out", comment: ""), for: .normal)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("SignedOut"), object: nil, queue: nil) { _ in
-            
-            self.accountLabel.text = NSLocalizedString("Authorization", comment: "")
-            self.signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
-        }
-    }
     
 //    MARK: - Segue
     
@@ -186,7 +164,7 @@ class SettingsTableViewController: UITableViewController, MKMapViewDelegate {
         //                confirming alert actions
                     let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { _ in
                         FireAPI.shared.deleteAccount()
-                        
+                        self.viewDidAppear(false)
                     }
                     let cancelAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default)
                     
