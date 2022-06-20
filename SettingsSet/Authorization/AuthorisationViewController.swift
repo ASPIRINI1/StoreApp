@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class AuthorisationViewController: UIViewController {
     
@@ -62,6 +63,14 @@ class AuthorisationViewController: UIViewController {
     }
     @IBAction func appleLoginButtonAction(_ sender: Any) {
         
+        let request = FireAPI.shared.appleLogInReguest()
+        
+        let authController = ASAuthorizationController(authorizationRequests: [request])
+        
+        authController.delegate = self
+        authController.presentationContextProvider = self
+        
+        authController.performRequests()
     }
     
     @IBAction func googleLoginButtonAction(_ sender: Any) {
@@ -93,4 +102,13 @@ extension AuthorisationViewController: UITextFieldDelegate {
         }
         return true
     }
+}
+
+extension AuthorisationViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
+    
 }

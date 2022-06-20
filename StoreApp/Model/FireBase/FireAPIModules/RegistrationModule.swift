@@ -8,6 +8,8 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import AuthenticationServices
+import CryptoKit
 
 extension FireAPI {
     
@@ -96,8 +98,16 @@ extension FireAPI {
             }
         }
     
-    func appleLogIn() {
+    func appleLogInReguest() -> ASAuthorizationAppleIDRequest {
         
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.email,.fullName]
+        
+        let nonce = randomNonceString()
+        request.nonce = sha256(nonce)
+        
+        return request
     }
     
     func googleLogIn() {
@@ -106,6 +116,16 @@ extension FireAPI {
     
     func facebookLogIn() {
         
+    }
+    
+    private func sha256(_ input: String) -> String {
+      let inputData = Data(input.utf8)
+      let hashedData = SHA256.hash(data: inputData)
+      let hashString = hashedData.compactMap {
+        String(format: "%02x", $0)
+      }.joined()
+
+      return hashString
     }
     
     private func randomNonceString(length: Int = 32) -> String {
