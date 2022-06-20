@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
+import GoogleSignIn
 
 extension FireAPI {
     
@@ -25,43 +26,40 @@ extension FireAPI {
                     
                 } else {
                     
-                    self.setUser(ID: authResult?.user.uid, email: email, password: password)
+                    guard let authResult = authResult else { return }
+                    self.setUser(ID: authResult.user.uid, email: email, password: password)
                     completion[0](true)
-                    
-                    NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
                 }
             }
         }
         
-    private func setUser(ID: String?, email: String?, password: String?) {
+    private func setUser(ID: String, email: String, password: String?) {
             
-            if ID != nil && email != nil && password != nil {
+        db.collection(RootCollections.users.rawValue).document(ID).getDocument { documentSnapshot, error in
+            if let error = error { print("Error getting user data: ", error); return }
+            
+            guard let documentSnapshot = documentSnapshot else { return }
                 
-                db.collection(RootCollections.users.rawValue).document(ID!).getDocument { documentSnapshot, error in
-                    if let error = error { print("Error getting user data: ", error); return }
-                    
-                    if documentSnapshot != nil {
-                        
-                        if documentSnapshot?.get("fullName") == nil || documentSnapshot?.get("phoneNum") == nil {
-                            print("Error loading user data.")
-                        }
-                       
-                        User.shared.set(UID: ID!,
-                                        email: email!,
-                                        password: password!,
-                                        address: documentSnapshot?.get("address") as? String,
-                                        fullName: documentSnapshot?.get("fullName") as? String ?? "",
-                                        phoneNum: documentSnapshot?.get("phoneNum") as? Int ?? 0)
-                    }
-                    
-                    
-                }
-                
-            } else {
-                
-                User.shared.remove()
+            if documentSnapshot.get("fullName") == nil || documentSnapshot.get("phoneNum") == nil {
+                print("No user data registred.")
             }
+            
+            User.shared.set(UID: ID,
+                            email: email,
+                            password: password,
+                            address: documentSnapshot.get("address") as? String,
+                            fullName: documentSnapshot.get("fullName") as? String ?? "",
+                            phoneNum: documentSnapshot.get("phoneNum") as? Int ?? 0)
+                
+
+            NotificationCenter.default.post(name: NSNotification.Name("SignedIn"), object: nil)
         }
+                
+    }
+    
+    private func removeUser() {
+        User.shared.remove()
+    }
         
         func signOut(){
             
@@ -70,7 +68,7 @@ extension FireAPI {
                
            } catch let signOutError as NSError { print("Error signing out: %@", signOutError); return }
             
-            setUser(ID: nil, email: nil, password: nil)
+            removeUser()
             
             NotificationCenter.default.post(name: NSNotification.Name("SignedOut"), object: nil)
         }
@@ -110,12 +108,48 @@ extension FireAPI {
         return request
     }
     
-    func googleLogIn() {
+    func googleLogIn(presentingVC: UIViewController, completion: @escaping (Bool)->()) {
         
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: presentingVC) { [unowned presentingVC] user, error in
+
+            if let error = error { print("Error google signIn: ", error); completion(false); return }
+
+          guard
+            let authentication = user?.authentication,
+            let idToken = authentication.idToken
+          else {
+            return
+          }
+       
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: authentication.accessToken)
+             
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if let error = error { print("Error Google singIn: ", error); completion(false); return }
+                
+                guard
+                    let authResult = authResult,
+                    let userPhoneNum = Int(authResult.user.phoneNumber ?? "0"),
+                    let userFullname = authResult.user.displayName
+                else { return }
+                
+                self.createNewUserFiles(uid: authResult.user.uid, fullname: userFullname, address: "", phoneNum: userPhoneNum) {
+                    self.setUser(ID: authResult.user.uid, email: authResult.user.email!, password: nil)
+                    completion(true)
+                }
+            }
+        }  
     }
     
     func facebookLogIn() {
         
+        AppSettings.shared.signInMethod = .facebook
     }
     
     private func sha256(_ input: String) -> String {

@@ -75,6 +75,18 @@ class AuthorisationViewController: UIViewController {
     
     @IBAction func googleLoginButtonAction(_ sender: Any) {
         
+        FireAPI.shared.googleLogIn(presentingVC: self) { success in
+            if success {
+                self.navigationController?.popToRootViewController(animated: true)
+                
+            } else {
+                let alert = UIAlertController(title: NSLocalizedString("Error LogIn", comment: ""), message: nil, preferredStyle: .alert)
+            
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                
+                self.present(alert, animated: true)
+            }
+        }
     }
     
     //MARK: Additional funcs

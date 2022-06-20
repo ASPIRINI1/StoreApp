@@ -120,6 +120,8 @@
 
 "Error. Check your email or password." = "Проверьте Email ваш и пароль.";
 
+"Error LogIn" = "Ошибка авторизации.";
+
 
 //MARK - WEBViewController
 

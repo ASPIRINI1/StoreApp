@@ -19,7 +19,7 @@ extension FireAPI {
             return
         }
         
-        signIn(email: user.email, password: user.password) { signedIn in
+        signIn(email: user.email, password: user.password!) { signedIn in
             guard signedIn else { return }
             
             self.currectUser?.delete { error in
@@ -49,7 +49,7 @@ extension FireAPI {
         }
         
         signOut()
-        signIn(email: thisUser.email, password: thisUser.password ) { success in
+        signIn(email: thisUser.email, password: thisUser.password!) { success in
             
             if success {
                 
@@ -75,7 +75,7 @@ extension FireAPI {
                 return
             }
                 
-            signIn(email: email, password: AppSettings.shared.user!.password) { success in
+            signIn(email: email, password: AppSettings.shared.user!.password!) { success in
                 if !success { return }
                 
                 self.currectUser!.updatePassword(to: password, completion: { error in

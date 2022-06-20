@@ -15,7 +15,7 @@ class User: Codable {
         
     }
     
-    func set(UID: String, email: String, password: String, address: String?, fullName: String, phoneNum: Int) {
+    func set(UID: String, email: String, password: String?, address: String?, fullName: String, phoneNum: Int) {
         
         self.userID = UID
         self.email = email
@@ -41,7 +41,7 @@ class User: Codable {
     }
     
     var email = String()
-    var password = String()
+    var password: String? = nil
     var userID = String()
     var address: String? = nil
     var fullName = String()
