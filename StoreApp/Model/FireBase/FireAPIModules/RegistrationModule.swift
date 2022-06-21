@@ -148,8 +148,7 @@ extension FireAPI {
     }
     
     func facebookLogIn() {
-        
-        AppSettings.shared.signInMethod = .facebook
+
     }
     
     private func sha256(_ input: String) -> String {

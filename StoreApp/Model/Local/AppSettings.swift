@@ -8,23 +8,23 @@
 import Foundation
 import CoreLocation
 
-class AppSettings{
+class AppSettings {
     
     let userDefaults = UserDefaults.standard
     static let shared = AppSettings()
     
-    private init (){
+    private init () {
         
     }
     
-    private enum SettingsKeys: String{
+    private enum SettingsKeys: String {
         case isSignIn = "signedIn"
         case appTheme = "AppTheme"
         case categories = "categories"
         case user = "user"
     }
 
-    var signedIn: Bool{
+    var signedIn: Bool {
         get{
             return userDefaults.bool(forKey: SettingsKeys.isSignIn.rawValue)
         }
