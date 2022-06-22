@@ -69,14 +69,14 @@ class DetailViewController: UIViewController {
             self.descriptionLabel.text = description
         })
         
-        let firstImageView = UIImageView(image: doc.image)
-        
-        firstImageView.frame = CGRect(x: self.imageScrollView.contentSize.width, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
-        firstImageView.backgroundColor = .white
-        firstImageView.contentMode = .scaleAspectFit
-        
-        imageScrollView.contentSize.width += imageScrollView.frame.width
-        imageScrollView.addSubview(firstImageView)
+//        let firstImageView = UIImageView(image: doc.image)
+//        
+//        firstImageView.frame = CGRect(x: self.imageScrollView.contentSize.width, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+//        firstImageView.backgroundColor = .white
+//        firstImageView.contentMode = .scaleAspectFit
+//        
+//        imageScrollView.contentSize.width += imageScrollView.frame.width
+//        imageScrollView.addSubview(firstImageView)
         
                     FireAPI.shared.getProductImages(doc: doc) { images in
                         
