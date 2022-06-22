@@ -57,7 +57,7 @@
             </objects>
             <point key="canvasLocation" x="1328" y="-1294"/>
         </scene>
-        <!--Store Collection View Controller-->
+        <!--StoreApp-->
         <scene sceneID="7vZ-qv-LyK">
             <objects>
                 <collectionViewController id="6uH-MQ-Nmp" customClass="StoreCollectionViewController" customModule="StoreApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -122,7 +122,7 @@
                             <outlet property="delegate" destination="6uH-MQ-Nmp" id="fIS-oW-xdV"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="kpm-wo-j4f">
+                    <navigationItem key="navigationItem" title="StoreApp" id="kpm-wo-j4f">
                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="YAB-xs-aiL">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Gj4-73-SgY">
                                 <rect key="frame" x="20" y="5" width="92" height="34.5"/>
@@ -2055,7 +2055,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="X5c-5S-t1f"/>
         <segue reference="tla-k8-bGV"/>
-        <segue reference="Ew2-Kf-qLi"/>
+        <segue reference="1dQ-cU-GHi"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="applelogo" catalog="system" width="103" height="128"/>

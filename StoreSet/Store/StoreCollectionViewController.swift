@@ -63,17 +63,7 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
         navigationItem.searchController = searchController
         definesPresentationContext = true
 
-        FireAPI.shared.getRandomProducts(countForCategory: 2) { docs in
-            self.products = docs
-            self.collectionView.reloadData()
-            
-            for doc in docs {
-                FireAPI.shared.getFirstImage(document: doc, completion:{ image in
-                    doc.image = image
-                    self.collectionView.reloadData()
-                })
-            }
-        }
+        getRandomProducts()
     }
     
 //    MARK: - CategoryButton
@@ -156,6 +146,10 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
         
         hideMenu()
         
+        if subCategory == AppSettings.shared.categories.first?.first {
+            getRandomProducts()
+        }
+        
         FireAPI.shared.getProducts(category: category, subCategoriy: subCategory) { docs in
             
             self.products.removeAll()
@@ -170,6 +164,20 @@ class StoreCollectionViewController: UICollectionViewController, ConfigureStoreC
                     self.collectionView.reloadData()
                     self.collectionView.contentOffset.y = self.collectionView.frameLayoutGuide.layoutFrame.minY
                 }
+            }
+        }
+    }
+    
+    func getRandomProducts() {
+        FireAPI.shared.getRandomProducts(countForCategory: 2) { docs in
+            self.products = docs
+            self.collectionView.reloadData()
+            
+            for doc in docs {
+                FireAPI.shared.getFirstImage(document: doc, completion:{ image in
+                    doc.image = image
+                    self.collectionView.reloadData()
+                })
             }
         }
     }

@@ -10,12 +10,11 @@ import UIKit
 class CategoryTableViewController: UITableViewController {
 
     
-
-//    var selectedCategory = ""
     weak var storeDelegate: ConfigureStoreCVCDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppSettings.shared.categories.insert(["Main page"], at: 0)
     }
     
     func createSubTableView(subCategories: [String]) -> UITableView {
