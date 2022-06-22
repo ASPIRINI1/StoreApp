@@ -118,5 +118,20 @@ extension FireAPI {
                 
             
         }
+    
+    func addToSales(products: [(Document,Int)]) {
+        
+        guard let fullName = AppSettings.shared.user?.fullName else { print("Error getting user fullname."); return }
+        
+        var data = [[String : Any]]()
+        
+        for product in products {
+            data.append(["name" : product.0.name, "price" : product.0.price * product.1])
+            
+        }
+        
+        db.collection(RootCollections.sales.rawValue).addDocument(data: ["name" : fullName,
+                                                                         "products" : data])
+    }
 
 }

@@ -14,6 +14,7 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var cardTypeLabel: UILabel!
     
     var selectedMethod = PaymentMethodTableView.PaymentMethods.CreditCard
+    var products = [(Document, Int)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,8 @@ class PaymentViewController: UIViewController {
             
             self.present(alert, animated: true)
         }
+        
+        FireAPI.shared.addToSales(products: products)
 
     }
     

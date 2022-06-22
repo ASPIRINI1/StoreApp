@@ -26,6 +26,7 @@ class FireAPI {
         case products = "Products"
         case users = "Users"
         case reviews = "Reviews"
+        case sales = "Sales"
     }
     
     private init() {

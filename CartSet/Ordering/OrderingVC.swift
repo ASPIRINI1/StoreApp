@@ -72,10 +72,12 @@ class OrderingVC: UIViewController {
             
             let yesAletrAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
                 self.applePay()
+                FireAPI.shared.addToSales(products: self.products)
             }
             
             let noAlertAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default) { _ in
                 
+                paymentVC.products = self.products
                 paymentVC.selectedMethod = selectedPaymentMethod
                 self.navigationController?.pushViewController(paymentVC, animated: true)
             }
@@ -87,13 +89,14 @@ class OrderingVC: UIViewController {
             
         case .EMoney:
             paymentVC.selectedMethod = selectedPaymentMethod
+            paymentVC.products = products
             self.navigationController?.pushViewController(paymentVC, animated: true)
             
         case .CashOnDelivery:
-            break
+            FireAPI.shared.addToSales(products: self.products)
             
         case .PickUpByYourself:
-            break
+            FireAPI.shared.addToSales(products: self.products)
         }
         
    
