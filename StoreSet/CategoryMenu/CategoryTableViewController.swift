@@ -11,7 +11,7 @@ class CategoryTableViewController: UITableViewController {
 
     
 
-    var selectedCategory = ""
+//    var selectedCategory = ""
     weak var storeDelegate: ConfigureStoreCVCDelegate?
 
     override func viewDidLoad() {
@@ -48,7 +48,7 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
 
-        cell.label.text = AppSettings.shared.categories[indexPath.section][indexPath.row]
+        cell.label.text = NSLocalizedString(AppSettings.shared.categories[indexPath.section][indexPath.row], comment: "")
         
         if indexPath.row == 0 {
             cell.backgroundColor = .systemGray5

@@ -194,9 +194,29 @@
 
 "Please write your credit card num." = "Введите номер вашей банковской карты";
 
-//MARK - OrderingVC
-
 
 // GoodsTableViewCell
 
 "pcs" = "шт";
+
+//MARK - Temporary categories localization
+
+"phones" = "Телефоны";
+
+"pbPhone" = "Кнопочные";
+
+"Smartphones" = "Смартфоны";
+
+"desktops" = "ПК";
+
+"notebooks" = "Ноутбуки";
+
+"pc" = "Стационарные ПК";
+
+"accessories" = "Аксессуары";
+
+"cables" = "Кабели";
+
+"headPhones" = "Наушники";
+
+"powerbanks" = "Повербанки";
