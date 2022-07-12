@@ -10,55 +10,51 @@ import UIKit
 
 extension FireAPI {
     
-    //    MARK: Images
+//    MARK: Images
+    
+    func getProductImages(doc: Document, completion: @escaping ([UIImage]?) -> ()) {
         
-        func getProductImages(doc: Document, completion: @escaping ([UIImage]?) -> ()) {
-            
-            let productsRef = storageRef.child(doc.category + "/" + doc.subCategory).child(doc.ID)
-            var images: [UIImage]? = []
-            
-            
-            productsRef.listAll(completion: { imageList, error in
-                if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
-                if imageList == nil { return }
-                
-                for image in imageList!.items {
-                    image.getData(maxSize: 1 * 1024 * 1024) { data, error in //??
-                        
-                        if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
-                        
-                        if data != nil {
-                            images?.append(UIImage(data: data!) ?? UIImage(named: "NoImageIcon")!)
-                            
-                        }
-                        if imageList!.items.count == images?.count {
-                            completion(images)
-                        }
-                    }
-                }
-                
-            })
-        }
+        let productsRef = storageRef.child(doc.category + "/" + doc.subCategory).child(doc.ID)
+        var images: [UIImage]? = []
         
-        func getFirstImage(document: Document, completion: @escaping (UIImage) -> ()) {
+        productsRef.listAll(completion: { imageList, error in
+            if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
+            guard let items = imageList?.items else { return }
             
-            let productsRef = storageRef.child(document.category + "/" + document.subCategory).child(document.ID)
-            
-            productsRef.listAll(completion: { imageList, error in
-                if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
-                
-                if imageList == nil { return }
-                
-                if !imageList!.items.isEmpty {
+            for image in items {
+                image.getData(maxSize: 1 * 1024 * 1024) { data, error in //!!
                     
-                    imageList?.items[0].getData(maxSize: 1 * 1024 * 1024) { data, error in
-                        if let error = error { print("Error getting first image: ",error); return }
+                    if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
+                    
+                    if data != nil {
+                        images?.append(UIImage(data: data!) ?? UIImage(named: "NoImageIcon")!)
                         
-                        if data != nil {
-                            completion((UIImage(data: data!) ?? UIImage(named: "NoImageIcon"))!)
-                        }
+                    }
+                    if items.count == images?.count {
+                        completion(images)
                     }
                 }
-            })
-        }
+            }
+        })
+    }
+    
+    func getFirstImage(document: Document, completion: @escaping (UIImage) -> ()) {
+        
+        let productsRef = storageRef.child(document.category + "/" + document.subCategory).child(document.ID)
+        
+        productsRef.listAll(completion: { imageList, error in
+            
+            if (error != nil) { print("Error getting image for product: ", error ?? ""); return }
+            guard let images = imageList?.items else { return }
+            if images.isEmpty { return }
+                
+            imageList?.items[0].getData(maxSize: 1 * 1024 * 1024) { data, error in
+                
+                if let error = error { print("Error getting first image: ",error); return }
+                guard let data = data else { return }
+                
+                completion((UIImage(data: data) ?? UIImage(named: "NoImageIcon"))!)
+            }
+        })
+    }
 }
