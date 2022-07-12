@@ -27,7 +27,9 @@ class CategoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        storeDelegate?.setProducts(category: AppSettings.shared.categories[indexPath.section].first!, subCategory: AppSettings.shared.categories[indexPath.section][indexPath.row])
+        guard let storeDelegate = storeDelegate else { return indexPath }
+        
+        storeDelegate.setProducts(category: AppSettings.shared.categories[indexPath.section].first!, subCategory: AppSettings.shared.categories[indexPath.section][indexPath.row])
         
         return indexPath
     }

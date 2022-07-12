@@ -1,5 +1,5 @@
 //
-//  UserDefaults.swift
+//  AppSettings.swift
 //  StoreApp
 //
 //  Created by Станислав Зверьков on 24.03.2022.
@@ -10,46 +10,42 @@ import CoreLocation
 
 class AppSettings {
     
-    let userDefaults = UserDefaults.standard
+    private let userDefaults = UserDefaults.standard
     static let shared = AppSettings()
     
-    private init () {
-        
-    }
+    private init () { }
     
     private enum SettingsKeys: String {
-        case isSignIn = "signedIn"
+        case isSignIn = "SignedIn"
         case appTheme = "AppTheme"
-        case categories = "categories"
-        case user = "user"
+        case categories = "Categories"
+        case user = "User"
     }
 
     var signedIn: Bool {
-        get{
+        get {
             return userDefaults.bool(forKey: SettingsKeys.isSignIn.rawValue)
         }
-        set{
+        set {
             userDefaults.set(newValue, forKey: SettingsKeys.isSignIn.rawValue)
         }
     }
     
     var appTheme: Int {
-        get{
+        get {
             return userDefaults.integer(forKey: SettingsKeys.appTheme.rawValue)
         }
-        set{
+        set {
             userDefaults.set(newValue, forKey: SettingsKeys.appTheme.rawValue)
         }
     }
     
-    var categories: [[String]]{
+    var categories: [[String]] {
         get {
-            if userDefaults.value(forKey: SettingsKeys.categories.rawValue) != nil { // ??
-                
-                return userDefaults.value(forKey: SettingsKeys.categories.rawValue) as! [[String]]
-            } else {
-                return [[""]]
+            if let categories = userDefaults.value(forKey: SettingsKeys.categories.rawValue) as? [[String]] {
+                return categories
             }
+            return [[]]
         }
         set {
             userDefaults.set(newValue, forKey: SettingsKeys.categories.rawValue)
@@ -63,15 +59,10 @@ class AppSettings {
             }
             return nil
         }
-        
         set {
             if let data = try? PropertyListEncoder().encode(newValue) {
                 userDefaults.set(data, forKey: SettingsKeys.user.rawValue)
-            }
-            
-            if newValue != nil {
                 signedIn = true
-                
             } else {
                 signedIn = false
             }
