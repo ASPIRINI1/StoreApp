@@ -23,7 +23,12 @@ class FireAPI {
         case products = "Products"
         case users = "Users"
         case reviews = "Reviews"
-        case sales = "Sales"
+    }
+    
+    enum AdditionalCollectionsPaths: String {
+        case categories = "Additional/Categories"
+        case shops = "Additional/Shops"
+        case sales = "Additional/Sales"
     }
     
     private init() { }
@@ -65,24 +70,24 @@ class FireAPI {
     func getCategories(completion: @escaping ([[String]]) -> ()) { //???????
 
         storageRef.listAll { storageListResult, error in
-            
+
             if let error = error { print(error); return }
             guard let storageListResult = storageListResult else { return }
             var categories: [[String]] = []
-            
+
             for category in storageListResult.prefixes {
-                    
+
                 self.storageRef.child(category.name).listAll { result, err in
                     if err != nil { print("Error getting SubCategory"); return }
-                    
+
                     categories.append([category.name])
-                    
+
                     if result != nil {
                         for subCategory in result!.prefixes {
                             categories[categories.endIndex-1].append(subCategory.name)
                         }
                     }
-                    
+
                     if categories.count == storageListResult.prefixes.count {
                         AppSettings.shared.categories = categories
                         completion(AppSettings.shared.categories)
@@ -90,6 +95,25 @@ class FireAPI {
                 }
             }
         }
+
+        
+//        BETTER
+//        let catt = [
+//            ["e": "eng",
+//             "r": "rus",
+//             "sub": ["e": "e",
+//                     "r": "r"
+//             ]]
+//        ]
+//        db.document(AdditionalCollectionsPaths.categories.rawValue).getDocument { document, error in
+//            if let error = error { print("Error: ", error) }
+//            guard let document = document?.get("categories") as? [[String]] else { return }
+//            print("categories")
+//            print(categories)
+//        }
+//
+//
+//
     }
     
 }
