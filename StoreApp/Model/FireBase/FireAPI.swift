@@ -7,7 +7,6 @@
 
 import Foundation
 import Firebase
-//import GoogleSignIn
 
 class FireAPI {
     
@@ -15,10 +14,8 @@ class FireAPI {
     
     static let shared = FireAPI()
     
-//    var f = FireAPIUserAccount()
     lazy var db = configureFB()
-    lazy var storage = Storage.storage()
-    lazy var storageRef = storage.reference()
+    lazy var storageRef = Storage.storage().reference()
     lazy var docSnapshot: QueryDocumentSnapshot? = nil
     lazy var currectUser = Auth.auth().currentUser
     
@@ -29,13 +26,12 @@ class FireAPI {
         case sales = "Sales"
     }
     
-    private init() {
-    }
+    private init() { }
     
     
 //    MARK: - Configure DB
 
-     private func configureFB() -> Firestore{
+     private func configureFB() -> Firestore {
         var db: Firestore!
         let settings = FirestoreSettings()
         Firestore.firestore().settings = settings
@@ -66,38 +62,34 @@ class FireAPI {
     }
 
     
-    func getCategories(completion: @escaping ([[String]]) -> ()) {
+    func getCategories(completion: @escaping ([[String]]) -> ()) { //???????
 
-        var categories: [[String]] = []
-
-        storageRef.listAll { storageListResult, err in
-
-            if err == nil && storageListResult != nil {
-                for category in storageListResult!.prefixes {
+        storageRef.listAll { storageListResult, error in
+            
+            if let error = error { print(error); return }
+            guard let storageListResult = storageListResult else { return }
+            var categories: [[String]] = []
+            
+            for category in storageListResult.prefixes {
                     
-                    self.storageRef.child(category.name).listAll { result, err in
-                        if err != nil { print("Error getting SubCategory") ; return }
-                        
-                        categories.append([category.name])
-                        
-                        if result != nil {
-                            for subCategory in result!.prefixes {
-                                categories[categories.endIndex-1].append(subCategory.name)
-                            }
-                        }
-                        
-                        if categories.count == storageListResult!.prefixes.count {
-                            AppSettings.shared.categories = categories
-                            completion(AppSettings.shared.categories)
+                self.storageRef.child(category.name).listAll { result, err in
+                    if err != nil { print("Error getting SubCategory"); return }
+                    
+                    categories.append([category.name])
+                    
+                    if result != nil {
+                        for subCategory in result!.prefixes {
+                            categories[categories.endIndex-1].append(subCategory.name)
                         }
                     }
                     
+                    if categories.count == storageListResult.prefixes.count {
+                        AppSettings.shared.categories = categories
+                        completion(AppSettings.shared.categories)
+                    }
                 }
-
-            } else {
-                print("Getting category error : ", err!)
             }
         }
-        
     }
+    
 }

@@ -22,29 +22,28 @@ extension FireAPI {
             
             query.getDocuments() { querySnapshot, error in
 
-                if let err = error{
-                    print("Error getting documents for category: \(err)")
+                if let error = error {
+                    print("Error getting documents for category: \(error)")
                     NotificationCenter.default.post(name: NSNotification.Name( "DocsNotLoaded"), object: nil)
-
-                } else {
-
-
-                    self.docSnapshot = querySnapshot!.documents.last
-                    var products: [Document] = []
-                    for document in querySnapshot!.documents{
-
-                        NotificationCenter.default.post(name: NSNotification.Name( "LoadingDocs"), object: nil)
-
-                        products.append(Document(category: category,
-                                                 subCategory: subCategoriy,
-                                                 documentID:document.documentID,
-                                                 name: document.get("name") as! String,
-                                                 price: document.get("price") as! Int,
-                                                 description: document.get("decription") as? String ?? "no description"))
-                    }
-                    completion(products)
-                    NotificationCenter.default.post(name: NSNotification.Name( "DocsLoaded"), object: nil)
                 }
+
+                guard let documents = querySnapshot?.documents else { return }
+                self.docSnapshot = documents.last
+                var products: [Document] = []
+                
+                NotificationCenter.default.post(name: NSNotification.Name( "LoadingDocs"), object: nil)
+                
+                for document in documents {
+                    products.append(Document(category: category,
+                                                subCategory: subCategoriy,
+                                                documentID: document.documentID,
+                                                name: document.get("name") as? String ?? "Error name",
+                                                price: document.get("price") as? Int ?? 0,
+                                                description: document.get("decription") as? String ?? "no description"))
+                }
+                
+                completion(products)
+                NotificationCenter.default.post(name: NSNotification.Name( "DocsLoaded"), object: nil)
             }
         }
         
@@ -57,7 +56,8 @@ extension FireAPI {
                     subCategoriesCount += category.count-1
                 }
                 
-                var docs: [Document] = []
+                NotificationCenter.default.post(name: NSNotification.Name( "LoadingDocs"), object: nil)
+                
                 for category in categories {
                     for subCategory in category {
                         
@@ -72,21 +72,18 @@ extension FireAPI {
                         query.getDocuments { querySnapshot, error in
                             
                             if let error = error { print("Error getting random doc: ", error); return }
-
-                            NotificationCenter.default.post(name: NSNotification.Name( "LoadingDocs"), object: nil)
-
-                            if querySnapshot != nil {
-                                
-                                self.docSnapshot = querySnapshot!.documents.last
-                                for doc in querySnapshot!.documents {
-
-                                    docs.append(Document(category: category.first!,
-                                                         subCategory: subCategory,
-                                                         documentID: doc.documentID,
-                                                         name: doc.get("name") as! String,
-                                                         price: doc.get("price") as! Int,
-                                                         description: doc.get("decription") as! String))
-                                }
+                            guard let documents = querySnapshot?.documents else { return }
+                            if documents.isEmpty { return }
+                            self.docSnapshot = documents.last
+                            var docs: [Document] = []
+                            
+                            for doc in documents {
+                                docs.append(Document(category: category.first!,
+                                                    subCategory: subCategory,
+                                                    documentID: doc.documentID,
+                                                    name: doc.get("name") as? String ?? "Error name",
+                                                    price: doc.get("price") as? Int ?? 0,
+                                                    description: doc.get("decription") as? String ?? "No description"))
                             }
 
                             if docs.count == (countForCategory * subCategoriesCount) {
@@ -97,15 +94,7 @@ extension FireAPI {
                     }
                 }
             }
-
         }
-        
-//        func getDocumentsCountForCategory(category: String, subCategory: String) {
-//            
-//            db.collection(RootCollections.products.rawValue).document(category).collection(subCategory).getDocuments { querySnapshot, error in
-//                print(querySnapshot?.documents.count)
-//            }
-//        }
         
         func findProduct(name: String, completion: @escaping ([Document]) -> ()) {
             
@@ -120,18 +109,15 @@ extension FireAPI {
                     
                     db.collection(RootCollections.products.rawValue).document(category.first!).collection(subCategory).whereField("name",isGreaterThanOrEqualTo: name).order(by: "name").getDocuments { querySnapshot, error in
                         if let error = error { print("Error searching product: ", error)}
-                        
-                        
-                        if querySnapshot != nil {
-                        
-                            for doc in querySnapshot!.documents {
-                                docs.append(Document(category: category.first!,
-                                                     subCategory: subCategory,
-                                                     documentID: doc.documentID,
-                                                     name: doc.get("name") as! String,
-                                                     price: doc.get("price") as! Int,
-                                                     description: doc.get("decription") as! String))
-                            }
+                        guard let documents = querySnapshot?.documents else { return }
+          
+                        for doc in documents {
+                            docs.append(Document(category: category.first ?? "Error",
+                                                subCategory: subCategory,
+                                                documentID: doc.documentID,
+                                                name: doc.get("name") as? String ?? "Error name",
+                                                price: doc.get("price") as? Int ?? 0,
+                                                description: doc.get("decription") as? String ?? ""))
                         }
                         
                         if docs.count == querySnapshot?.documents.count {
@@ -147,11 +133,13 @@ extension FireAPI {
         func getDecscription(doc: Document, completion: @escaping (String) -> ()) {
             
             db.collection(RootCollections.products.rawValue).document(doc.category).collection(doc.subCategory).document(doc.ID).getDocument { documentSnapshot, error in
-                if let error = error { print("Getting description error: ", error)}
                 
-                if documentSnapshot != nil {
-                    completion(documentSnapshot?.get("decription") as! String)
-                }
+                if let error = error { print("Getting description error: ", error)}
+                guard let description = documentSnapshot?.get("decription") as? String else { return }
+                completion(description)
+//                if documentSnapshot != nil {
+//                    completion(documentSnapshot?.get("decription") as! String)
+//                }
             }
         }
         
