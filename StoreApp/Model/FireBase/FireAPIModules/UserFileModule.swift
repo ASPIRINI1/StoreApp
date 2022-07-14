@@ -25,10 +25,7 @@ extension FireAPI {
    }
     
     func deleteUserFiles() {
-        
         guard let userID = AppSettings.shared.user?.userID else { return }
-        
         db.collection(RootCollections.users.rawValue).document(userID).delete()
-        
     }
 }
